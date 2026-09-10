@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">गणेश चतुर्थी आमंत्रण</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Yatra+One&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon: #3B0F1A;
+    --maroon-deep: #2A0A12;
+    --gold: #D9A441;
+    --gold-light: #F0CE85;
+    --ivory: #F7EEE0;
+    --vermillion: #C1440E;
+    --leaf: #24503C;
+    --edit-bg: #FFF4CC;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--maroon-deep);
+    font-family: 'Mukta', sans-serif;
+    color: var(--ivory);
+  }
+
+  body {
+    padding: 40px 16px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .language-picker {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 8px;
+    border: 1px solid rgba(217,164,65,0.55);
+    background: rgba(42,10,18,0.88);
+    color: var(--gold-light);
+    font-size: 12px;
+  }
+
+  .language-picker label { color: var(--gold); }
+
+  .language-picker select {
+    border: 0;
+    color: var(--ivory);
+    background: transparent;
+    font: 600 12px 'Mukta', sans-serif;
+    cursor: pointer;
+  }
+
+  .language-picker select:focus-visible {
+    outline: 1px solid var(--gold-light);
+    outline-offset: 2px;
+  }
+
+  .language-picker option { color: #3B0F1A; }
+
+  html[lang="kn"] body { font-family: 'Noto Sans Kannada', 'Mukta', sans-serif; }
+  html[lang="kn"] h1.headline,
+  html[lang="kn"] .sanskrit-line,
+  html[lang="kn"] .host-name,
+  html[lang="kn"] .program-title,
+  html[lang="kn"] .blessing,
+  html[lang="kn"] .door-copy h2 { font-family: 'Noto Sans Kannada', 'Mukta', sans-serif; }
+
+  .door-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s ease 0.18s, visibility 0s linear 0.55s;
+  }
+
+  .door-screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(circle at 50% 35%, rgba(217,164,65,0.14), transparent 30%),
+      linear-gradient(135deg, #18070d, #3B0F1A 48%, #17060c);
+    transition: opacity 0.9s ease 1.05s;
+  }
+
+  .door-screen::before {
+    content: "";
+    position: absolute;
+    inset: 7vh 9vw;
+    border: 1px solid rgba(217,164,65,0.35);
+    box-shadow: 0 0 0 12px rgba(217,164,65,0.04), inset 0 0 70px rgba(0,0,0,0.45);
+    z-index: 0;
+    transition: opacity 0.8s ease 1.65s;
+  }
+
+  .doorway {
+    position: relative;
+    width: min(84vw, 430px);
+    height: min(72vh, 620px);
+    min-height: 604px;
+    perspective: 1300px;
+    z-index: 1;
+  }
+
+  .door-frame {
+    position: absolute;
+    top: 104px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 12px solid var(--gold);
+    border-bottom-width: 20px;
+    background: radial-gradient(circle, rgba(240,206,133,0.22), transparent 62%), #241019;
+    box-shadow: 0 0 0 4px rgba(217,164,65,0.2), 0 28px 80px rgba(0,0,0,0.65);
+    transition: opacity 0.8s ease 1.65s;
+    z-index: 1;
+  }
+
+  .door-ganesha {
+    position: absolute;
+    top: -219px;
+    left: 50%;
+    z-index: 4;
+    width: 210px;
+    height: 315px;
+    transform: translateX(-50%);
+    object-fit: contain;
+    object-position: center;
+    pointer-events: none;
+    filter: drop-shadow(0 8px 8px rgba(0,0,0,0.28));
+  }
+
+  .door-frame::before {
+    content: "ॐ";
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold-light);
+    font-family: 'Yatra One', cursive;
+    font-size: 35px;
+  }
+
+  .door-panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.22), transparent 45%, rgba(240,206,133,0.08)),
+      repeating-linear-gradient(90deg, #5a1c29 0 22px, #44131f 22px 25px);
+    border: 2px solid var(--gold);
+    transform-style: preserve-3d;
+    transition: transform 1.25s cubic-bezier(.7,0,.2,1);
+    backface-visibility: hidden;
+  }
+
+  .door-panel::after {
+    content: "✦";
+    position: absolute;
+    top: 25%;
+    color: var(--gold-light);
+    font-size: 22px;
+    text-shadow: 0 0 18px var(--gold);
+  }
+
+  .door-panel.left { left: 0; transform-origin: left center; }
+  .door-panel.left::after { right: 18px; }
+  .door-panel.right { right: 0; transform-origin: right center; }
+  .door-panel.right::after { left: 18px; }
+
+  .door-copy {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    bottom: auto;
+    left: 50%;
+    width: 90%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: auto;
+    transition: opacity 0.35s ease;
+  }
+
+  .door-copy .om { margin-bottom: 10px; }
+  .door-greeting {
+    margin: 0 0 5px;
+    color: var(--gold-light);
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .door-blessing {
+    max-width: 320px;
+    margin: 0 auto 14px;
+    color: rgba(247,238,224,0.86);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .door-copy h2 {
+    margin: 0;
+    color: var(--gold-light);
+    font: 400 30px/1.2 'Yatra One', cursive;
+  }
+
+  .door-copy p {
+    margin: 8px 0 20px;
+    color: rgba(247,238,224,0.8);
+    font-size: 15px;
+  }
+
+  .open-button {
+    border: 1px solid var(--gold);
+    padding: 11px 22px;
+    color: var(--maroon-deep);
+    background: var(--gold-light);
+    font: 700 14px 'Mukta', sans-serif;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    box-shadow: 0 0 0 5px rgba(217,164,65,0.1), 0 9px 24px rgba(0,0,0,0.35);
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+
+  .open-button:hover, .open-button:focus-visible {
+    background: #fff1c5;
+    transform: translateY(-3px);
+    outline: none;
+  }
+
+  .door-diya {
+    position: absolute;
+    z-index: 2;
+    bottom: 3%;
+    width: 34px;
+    height: 16px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    background: var(--vermillion);
+    box-shadow: 0 0 22px rgba(242,169,59,0.75);
+  }
+
+  .door-diya::before {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 23px;
+    left: 9px;
+    bottom: 8px;
+    border-radius: 50% 50% 45% 45%;
+    background: #F2A93B;
+    box-shadow: 0 0 18px 5px rgba(242,169,59,0.4);
+    animation: flicker 1.4s ease-in-out infinite;
+  }
+
+  .door-diya.left { left: 7%; }
+  .door-diya.right { right: 7%; }
+
+  .spark-field {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .spark {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold-light);
+    box-shadow: 0 0 12px 2px var(--gold);
+    animation: sparkle 2.5s ease-in-out infinite;
+  }
+
+  .flower-burst {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .burst-flower {
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    color: var(--gold-light);
+    font-size: 20px;
+    line-height: 1;
+    opacity: 0;
+    text-shadow: 0 0 10px rgba(217,164,65,0.8);
+    animation: flowerPop 4.5s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+
+  .burst-word {
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    color: var(--gold-light);
+    font-family: 'Yatra One', 'Mukta', sans-serif;
+    font-size: clamp(18px, 5vw, 28px);
+    font-weight: 400;
+    line-height: 1;
+    white-space: nowrap;
+    opacity: 0;
+    text-shadow: 0 0 12px rgba(217,164,65,0.9);
+    animation: wordPop 4.5s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+
+  @keyframes wordPop {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    15% { opacity: 1; }
+    100% { opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.12); }
+  }
+
+  @keyframes flowerPop {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2) rotate(0deg); }
+    18% { opacity: 1; }
+    100% { opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1) rotate(var(--rotation)); }
+  }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 0.2; transform: translateY(8px) scale(0.7); }
+    50% { opacity: 1; transform: translateY(-12px) scale(1); }
+  }
+
+  body.invitation-open .door-screen {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  body.invitation-open .door-screen::after { opacity: 0; }
+  body.invitation-open .door-screen::before,
+  body.invitation-open .door-frame { opacity: 0; }
+  body.invitation-open .door-panel.left { transform: rotateY(-105deg); }
+  body.invitation-open .door-panel.right { transform: rotateY(105deg); }
+  body.invitation-open .door-copy { opacity: 0; }
+
+  body.invitation-open .card {
+    animation: cardIn 1s cubic-bezier(.2,.7,.2,1) 0.35s both;
+  }
+
+  .card {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    background:
+      radial-gradient(circle at top, rgba(217,164,65,0.08), transparent 55%),
+      var(--maroon);
+    border: 1px solid rgba(217,164,65,0.35);
+    padding: 56px 40px 44px;
+    overflow: hidden;
+  }
+
+  .card::before, .card::after {
+    content: "";
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    border: 2px solid var(--gold);
+    opacity: 0.55;
+  }
+  .card::before { top: 14px; left: 14px; border-right: none; border-bottom: none; }
+  .card::after  { bottom: 14px; right: 14px; border-left: none; border-top: none; }
+
+  .inner-border {
+    position: absolute;
+    inset: 26px;
+    border: 1px solid rgba(217,164,65,0.28);
+    pointer-events: none;
+  }
+
+  .motif { display: flex; justify-content: center; margin-bottom: 18px; }
+
+  .om {
+    text-align: center;
+    font-family: 'Yatra One', cursive;
+    color: var(--gold);
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    margin-bottom: 4px;
+    opacity: 0.9;
+  }
+
+  h1.headline {
+    font-family: 'Yatra One', cursive;
+    font-weight: 400;
+    text-align: center;
+    font-size: clamp(30px, 7vw, 42px);
+    line-height: 1.25;
+    color: var(--gold-light);
+    margin: 6px 0 2px;
+  }
+
+  .sanskrit-line {
+    text-align: center;
+    font-family: 'Yatra One', cursive;
+    color: var(--gold);
+    font-size: 17px;
+    margin: 0 0 26px;
+    opacity: 0.85;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 22px 0;
+  }
+  .divider .line { flex: 1; height: 1px; background: rgba(217,164,65,0.35); }
+  .divider .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--vermillion); }
+
+  .invite-line {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ivory);
+    margin: 0 0 4px;
+  }
+
+  .host-name {
+    text-align: center;
+    font-family: 'Yatra One', cursive;
+    font-size: 26px;
+    color: var(--gold-light);
+    margin: 6px 0 20px;
+  }
+
+  .invite-body {
+    text-align: center;
+    font-size: 15.5px;
+    line-height: 1.85;
+    color: rgba(247,238,224,0.92);
+    margin: 0 0 8px;
+    padding: 0 6px;
+  }
+
+  .details {
+    margin: 28px 0 8px;
+    display: grid;
+    gap: 16px;
+  }
+
+  .detail-row {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .detail-row .icon { color: var(--gold); }
+  .detail-row > div:last-child { text-align: left; }
+
+  .detail-label {
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    margin-bottom: 3px;
+  }
+
+  .detail-value {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ivory);
+  }
+
+  .edit {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+    font-weight: 600;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .venue-link {
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .venue-link::after {
+    content: "↗";
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .venue-link:hover, .venue-link:focus-visible {
+    background: transparent;
+    color: var(--gold-light);
+  }
+
+  .program {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(217,164,65,0.35);
+  }
+
+  .program-title {
+    text-align: center;
+    font-family: 'Yatra One', cursive;
+    color: var(--gold-light);
+    font-size: 19px;
+    margin: 0 0 8px;
+  }
+
+  .program-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 5px;
+  }
+
+  .program-list li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    align-items: start;
+    gap: 12px;
+    font-size: 15.5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(247,238,224,0.08);
+  }
+
+  .program-list li span { min-width: 0; }
+  .program-list li span:first-child { color: rgba(247,238,224,0.85); }
+  .program-list li span:last-child { color: var(--gold-light); text-align: right; font-weight: 600; padding-left: 8px; }
+
+  .rsvp {
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .rsvp-title {
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .rsvp-value { font-size: 16px; line-height: 1.7; }
+
+  .blessing {
+    margin-top: 34px;
+    text-align: center;
+    font-family: 'Yatra One', cursive;
+    font-size: 15px;
+    color: var(--gold);
+    opacity: 0.9;
+  }
+
+  .footer-note {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(247,238,224,0.4);
+  }
+
+  @media (max-width: 600px) {
+    body {
+      min-height: 100svh;
+      padding: 10px 8px;
+      overflow: hidden;
+      align-items: center;
+    }
+
+    body.invitation-open {
+      overflow-y: auto;
+      align-items: flex-start;
+    }
+
+    .card {
+      max-height: calc(100svh - 20px);
+      padding: 18px 16px 14px;
+      overflow: hidden;
+    }
+
+    body.invitation-open .card {
+      max-height: none;
+      overflow: visible;
+    }
+
+    .diyas { gap: 34px; margin-bottom: 0; }
+    .diyas svg { width: 20px; height: 26px; }
+    .motif { margin-bottom: 2px; }
+    .motif svg { width: 72px; height: 42px; }
+    .om { font-size: 11px; margin-bottom: 0; }
+    h1.headline { font-size: 27px; margin: 2px 0 0; }
+    .sanskrit-line { font-size: 13px; margin-bottom: 6px; }
+    .divider { gap: 6px; margin: 7px 0; }
+    .divider .dot { width: 4px; height: 4px; }
+    .invite-line { font-size: 12px; line-height: 1.25; }
+    .host-name { font-size: 20px; margin: 2px 0 5px; }
+    .invite-body { font-size: 11.5px; line-height: 1.3; margin-bottom: 2px; padding: 0; }
+    .details { margin: 8px 0 3px; gap: 5px; }
+    .detail-row { grid-template-columns: 20px 1fr; gap: 7px; }
+    .detail-row > div:last-child { text-align: left; }
+    .detail-label { font-size: 8.5px; margin-bottom: 1px; }
+    .detail-value { font-size: 11.5px; line-height: 1.25; }
+    .edit { padding: 0; }
+    .venue-link { justify-content: flex-start; gap: 3px; line-height: 1.2; }
+    .venue-link::after { font-size: 9px; }
+    .program { margin-top: 5px; padding-top: 5px; }
+    .program-title { font-size: 14px; margin-bottom: 3px; }
+    .program-list { gap: 2px; }
+    .program-list li {
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: 5px;
+      font-size: 11.5px;
+      line-height: 1.2;
+      padding-bottom: 2px;
+    }
+    .program-list li span:last-child { text-align: right; padding-left: 8px; }
+    .rsvp { margin-top: 8px; }
+    .rsvp-title { font-size: 8.5px; margin-bottom: 2px; }
+    .rsvp-value { font-size: 11.5px; line-height: 1.25; }
+    .blessing { margin-top: 9px; font-size: 11px; }
+    .footer-note { margin-top: 2px; font-size: 8px; }
+  }
+
+  @media (max-width: 600px) and (max-height: 600px) {
+    html, body { overflow: hidden; }
+
+    .doorway {
+      height: 100svh;
+      min-height: 0;
+    }
+
+    .door-ganesha { top: -248px; }
+    .door-frame { top: 72px; }
+    .door-copy {
+      bottom: 14px;
+      width: 92%;
+    }
+    .door-copy .om { margin-bottom: 4px; font-size: 12px; }
+    .door-greeting { margin-bottom: 2px; font-size: 15px; }
+    .door-blessing { margin-bottom: 6px; font-size: 10px; line-height: 1.25; }
+    .door-copy h2 { font-size: 22px; }
+    .door-copy p { margin: 4px 0 8px; font-size: 11px; }
+    .open-button { padding: 8px 17px; font-size: 12px; }
+  }
+
+  /* ---------- live / animated elements ---------- */
+
+  body { position: relative; }
+
+  .petal-field {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .petal {
+    position: absolute;
+    top: -24px;
+    opacity: 0.85;
+    animation-name: fall, sway;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+    will-change: transform;
+  }
+
+  @keyframes fall {
+    0%   { transform: translateY(-6vh) rotate(0deg); }
+    100% { transform: translateY(106vh) rotate(280deg); }
+  }
+  @keyframes sway {
+    0%, 100% { margin-left: 0px; }
+    50%      { margin-left: 28px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .petal { animation: none; display: none; }
+  }
+
+  .card {
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  @keyframes cardIn {
+    0%   { opacity: 0; transform: translateY(18px) scale(0.97); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .motif svg { transform-origin: center; }
+
+  .om, .headline, .sanskrit-line, .divider,
+  .invite-line, .host-name, .invite-body,
+  .details, .program, .rsvp, .blessing, .footer-note {
+    opacity: 0;
+    animation: riseIn 0.7s ease-out forwards;
+  }
+  .om            { animation-delay: 0.35s; }
+  .headline      { animation-delay: 0.5s; }
+  .sanskrit-line { animation-delay: 0.65s; }
+  .divider       { animation-delay: 0.8s; }
+  .invite-line   { animation-delay: 0.95s; }
+  .host-name     { animation-delay: 1.1s; }
+  .invite-body   { animation-delay: 1.25s; }
+  .details       { animation-delay: 1.4s; }
+  .program       { animation-delay: 1.55s; }
+  .rsvp          { animation-delay: 1.7s; }
+  .blessing      { animation-delay: 1.85s; }
+  .footer-note   { animation-delay: 1.95s; }
+
+  @keyframes riseIn {
+    0%   { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .door-panel,
+    .door-copy,
+    .door-frame,
+    .door-screen::after,
+    .door-screen::before,
+    .burst-flower,
+    .card {
+      transition: none !important;
+      animation: none !important;
+    }
+    .door-panel { transform: none !important; }
+    body.invitation-open .door-screen { display: none; }
+    body.invitation-open .door-screen::after,
+    body.invitation-open .door-screen::before,
+    body.invitation-open .door-frame { opacity: 0; }
+    body.invitation-open .card { opacity: 1; transform: none; }
+    .card,
+    .om, .headline, .sanskrit-line, .divider,
+    .invite-line, .host-name, .invite-body,
+    .details, .program, .rsvp, .blessing, .footer-note {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  .diyas {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 4px;
+  }
+  .diya-flame {
+    animation: flicker 1.6s ease-in-out infinite;
+    transform-origin: bottom center;
+  }
+  @keyframes flicker {
+    0%, 100% { transform: scaleY(1) scaleX(1) rotate(0deg); opacity: 1; }
+    25%      { transform: scaleY(1.08) scaleX(0.95) rotate(-2deg); opacity: 0.92; }
+    50%      { transform: scaleY(0.94) scaleX(1.05) rotate(1.5deg); opacity: 1; }
+    75%      { transform: scaleY(1.05) scaleX(0.97) rotate(-1deg); opacity: 0.95; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .diya-flame { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="language-picker">
+  <label for="languageSelect" data-i18n="languageLabel">भाषा</label>
+  <select id="languageSelect" aria-label="भाषा निवडा">
+    <option value="mr">मराठी</option>
+    <option value="en">English</option>
+    <option value="kn">ಕನ್ನಡ</option>
+  </select>
+</div>
+
+<div class="petal-field" id="petalField"></div>
+
+<section class="door-screen" aria-label="गणेश आमंत्रण उघडा" data-i18n-attr="aria-label:doorAria">
+  <div class="spark-field" aria-hidden="true">
+    <span class="spark" style="left: 17%; top: 22%; animation-delay: .2s"></span>
+    <span class="spark" style="left: 82%; top: 19%; animation-delay: 1s"></span>
+    <span class="spark" style="left: 12%; top: 66%; animation-delay: 1.7s"></span>
+    <span class="spark" style="left: 88%; top: 73%; animation-delay: .7s"></span>
+  </div>
+  <div class="doorway">
+    <div class="door-frame">
+      <div class="door-panel left"></div>
+      <div class="door-panel right"></div>
+      <img class="door-ganesha" src="ganesha.png" alt="Lord Ganesha above the door" loading="eager">
+      <div class="door-diya left"></div>
+      <div class="door-diya right"></div>
+      <div class="door-copy">
+        <div class="om" data-i18n="doorMantra">|| ॐ नमः शिवाय ||</div>
+        <div class="door-greeting" data-i18n="greeting">नमस्कार</div>
+        <div class="door-blessing" data-i18n="doorBlessing">परमपूज्य गुरुदेवता श्री कलावती आई यांच्या आशीर्वादाने दरवर्षीप्रमाणे यावर्षीही आपण गणेशाची स्थापना करीत आहोत.</div>
+        <h2 data-i18n="doorTitle">गणपती बाप्पा मोरया</h2>
+        <p data-i18n="doorSubtitle">आपल्यासाठी खास आमंत्रण</p>
+        <button class="open-button" id="openInvitation" type="button" data-i18n="openButton">आमंत्रण उघडा</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="flower-burst" id="flowerBurst" aria-hidden="true"></div>
+
+<div class="card">
+  <div class="inner-border"></div>
+
+  <div class="diyas">
+    <svg width="26" height="34" viewBox="0 0 26 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="diya-flame" d="M13 2C13 2 8 9 8 13.5C8 16.5 10.2 19 13 19C15.8 19 18 16.5 18 13.5C18 9 13 2 13 2Z" fill="#F2A93B"/>
+      <path d="M2 23C2 23 6 30 13 30C20 30 24 23 24 23" stroke="#D9A441" stroke-width="1.6" stroke-linecap="round"/>
+      <ellipse cx="13" cy="23" rx="11" ry="3" stroke="#D9A441" stroke-width="1.6"/>
+    </svg>
+    <svg width="26" height="34" viewBox="0 0 26 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="diya-flame" d="M13 2C13 2 8 9 8 13.5C8 16.5 10.2 19 13 19C15.8 19 18 16.5 18 13.5C18 9 13 2 13 2Z" fill="#F2A93B"/>
+      <path d="M2 23C2 23 6 30 13 30C20 30 24 23 24 23" stroke="#D9A441" stroke-width="1.6" stroke-linecap="round"/>
+      <ellipse cx="13" cy="23" rx="11" ry="3" stroke="#D9A441" stroke-width="1.6"/>
+    </svg>
+  </div>
+
+  <div class="motif">
+    <svg width="120" height="70" viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- simple decorative lotus / mandala motif -->
+      <g stroke="#D9A441" stroke-width="1.4" fill="none">
+        <path d="M60 10 C 68 22, 68 30, 60 40 C 52 30, 52 22, 60 10 Z"/>
+        <path d="M35 20 C 45 24, 50 30, 50 40 C 40 38, 33 32, 35 20 Z"/>
+        <path d="M85 20 C 75 24, 70 30, 70 40 C 80 38, 87 32, 85 20 Z"/>
+        <path d="M20 40 C 32 38, 42 42, 48 50 C 36 54, 24 52, 20 40 Z"/>
+        <path d="M100 40 C 88 38, 78 42, 72 50 C 84 54, 96 52, 100 40 Z"/>
+        <circle cx="60" cy="42" r="6"/>
+      </g>
+      <path d="M35 62 C 45 50, 75 50, 85 62" stroke="#D9A441" stroke-width="1.4" fill="none"/>
+    </svg>
+  </div>
+
+  <div class="om" data-i18n="cardMantra">|| ॐ नमः शिवाय || श्री गणेशाय नमः ||</div>
+  <h1 class="headline" data-i18n="headline">गणपती बाप्पा मोरया</h1>
+  <div class="sanskrit-line" data-i18n="invitationTitle">सहर्ष आमंत्रण</div>
+
+  <div class="divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+
+  <p class="invite-line" data-i18n="inviteLine">अत्यंत आनंदाने आणि भक्तिभावाने</p>
+  <div class="host-name" data-i18n="hostNames">जोशी परिवार</div>
+  <p class="invite-body" data-i18n="inviteBody">आपणास व आपल्या परिवारास <strong>गणेश चतुर्थी</strong><br>उत्सवासाठी सहर्ष आमंत्रित करत आहोत — पूजा,<br>आरती आणि आपलेपणाने बाप्पाचे<br>स्वागत करण्याचा हा सोहळा.</p>
+
+  <div class="details">
+    <div class="detail-row">
+      <div class="icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="1.5" stroke="#D9A441" stroke-width="1.4"/><path d="M3 9.5H21" stroke="#D9A441" stroke-width="1.4"/><path d="M8 3V6.5M16 3V6.5" stroke="#D9A441" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="detail-label" data-i18n="dateLabel">तारीख</div>
+        <div class="detail-value"><span class="edit" data-i18n="dateValue">Monday, September 14, 2026</span></div>
+      </div>
+    </div>
+
+    <div class="detail-row">
+      <div class="icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#D9A441" stroke-width="1.4"/><path d="M12 7.5V12L15 14" stroke="#D9A441" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="detail-label" data-i18n="timeLabel">वेळ</div>
+        <div class="detail-value"><span class="edit" data-i18n="timeValue">सकाळची आरती: ११ ते १२ दरम्यान केली जाईल<br>सायंकाळची आरती: ८ ते ९ दरम्यान केली जाईल</span></div>
+      </div>
+    </div>
+
+    <div class="detail-row">
+      <div class="icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21C12 21 5 14.5 5 9.5C5 5.9 8.1 3 12 3C15.9 3 19 5.9 19 9.5C19 14.5 12 21 12 21Z" stroke="#D9A441" stroke-width="1.4"/><circle cx="12" cy="9.5" r="2.4" stroke="#D9A441" stroke-width="1.4"/></svg>
+      </div>
+      <div>
+        <div class="detail-label" data-i18n="locationLabel">स्थळ</div>
+        <div class="detail-value">
+          <a class="edit venue-link" href="https://maps.app.goo.gl/VcFcN8xLvwtnT2pR7" target="_blank" rel="noopener" data-i18n="address">स्वामी धाम अपार्टमेंट,<br>१०३ ब्लॉक नंबर, पहिला मजला,<br>थ्री टायर चौक, कंसई,<br>अंबरनाथ पूर्व ४२१५०१</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="program">
+    <div class="program-title" data-i18n="programTitle">कार्यक्रम</div>
+    <ul class="program-list">
+      <li><span data-i18n="pranLabel">प्राणप्रतिष्ठा</span><span data-i18n="pranValue">Monday, September 14, 2026</span></li>
+      <li><span data-i18n="morningLabel">सकाळची आरती</span><span data-i18n="morningValue">११ ते १२ दरम्यान</span></li>
+      <li><span data-i18n="eveningLabel">सायंकाळची आरती</span><span data-i18n="eveningValue">८ ते ९ दरम्यान</span></li>
+      <li><span data-i18n="visarjanLabel">गणपती विसर्जन</span><span data-i18n="visarjanValue">Saturday, September 19, 2026, evening</span></li>
+    </ul>
+  </div>
+
+  <div class="rsvp">
+    <div class="rsvp-title" data-i18n="rsvpTitle">संपर्क</div>
+    <div class="rsvp-value">
+      <span class="edit" data-i18n="contacts">Sameer Joshi: 8668768526<br>Shashank Joshi: 8999365388<br>Jyoti Joshi: 9309854569</span>
+    </div>
+  </div>
+
+  <div class="blessing" data-i18n="blessing">मंगलमूर्ती मोरया</div>
+  <div class="footer-note" data-i18n="footerNote">बाप्पाचे आशीर्वाद घेण्यासाठी कृपया उपस्थित रहा</div>
+</div>
+
+<script>
+  var translations = {
+    mr: {
+      pageTitle: 'गणेश चतुर्थी आमंत्रण',
+      languageLabel: 'भाषा',
+      doorAria: 'गणेश आमंत्रण उघडा',
+      doorMantra: '|| ॐ नमः शिवाय ||',
+      greeting: 'नमस्कार',
+      doorBlessing: 'परमपूज्य गुरुदेवता श्री कलावती आई यांच्या आशीर्वादाने दरवर्षीप्रमाणे यावर्षीही आपण गणेशाची स्थापना करीत आहोत.',
+      doorTitle: 'गणपती बाप्पा मोरया',
+      doorSubtitle: 'आपल्यासाठी खास आमंत्रण',
+      openButton: 'आमंत्रण उघडा',
+      cardMantra: '|| ॐ नमः शिवाय || श्री गणेशाय नमः ||',
+      headline: 'गणपती बाप्पा मोरया',
+      invitationTitle: 'सहर्ष आमंत्रण',
+      inviteLine: 'अत्यंत आनंदाने आणि भक्तिभावाने',
+      inviteBody: 'आपणास व आपल्या परिवारास <strong>गणेश चतुर्थी</strong><br>उत्सवासाठी सहर्ष आमंत्रित करत आहोत — पूजा,<br>आरती आणि आपलेपणाने बाप्पाचे<br>स्वागत करण्याचा हा सोहळा.',
+      hostNames: 'जोशी परिवार',
+      dateLabel: 'तारीख',
+      dateValue: 'सोमवार, १४ सप्टेंबर २०२६',
+      timeLabel: 'वेळ',
+      timeValue: 'सकाळची आरती: ११ ते १२ दरम्यान केली जाईल<br>सायंकाळची आरती: ८ ते ९ दरम्यान केली जाईल',
+      locationLabel: 'स्थळ',
+      address: 'स्वामी धाम अपार्टमेंट,<br>१०३ ब्लॉक नंबर, पहिला मजला,<br>थ्री टायर चौक, कंसई,<br>अंबरनाथ पूर्व ४२१५०१',
+      programTitle: 'कार्यक्रम',
+      pranLabel: 'प्राणप्रतिष्ठा',
+      pranValue: 'सोमवार, १४ सप्टेंबर २०२६',
+      morningLabel: 'सकाळची आरती',
+      morningValue: '११ ते १२ दरम्यान',
+      eveningLabel: 'सायंकाळची आरती',
+      eveningValue: '८ ते ९ दरम्यान',
+      visarjanLabel: 'गणपती विसर्जन',
+      visarjanValue: 'शनिवार, १९ सप्टेंबर २०२६, सायंकाळी',
+      rsvpTitle: 'संपर्क',
+      contacts: 'समीर जोशी: 8668768526<br>शशांक जोशी: 8999365388<br>ज्योती जोशी: 9309854569',
+      blessing: 'मंगलमूर्ती मोरया',
+      footerNote: 'बाप्पाचे आशीर्वाद घेण्यासाठी कृपया उपस्थित रहा'
+    },
+    en: {
+      pageTitle: 'Ganesh Chaturthi Invitation',
+      languageLabel: 'Language',
+      doorAria: 'Open Ganesh invitation',
+      doorMantra: '|| Om Namah Shivaya ||',
+      greeting: 'Namaskar',
+      doorBlessing: 'With the blessings of our revered Gurudevta Shri Kalavati Aai, as every year, we are installing Ganpati this year too.',
+      doorTitle: 'Ganpati Bappa Morya',
+      doorSubtitle: 'A special invitation for you',
+      openButton: 'Open Invitation',
+      cardMantra: '|| Om Namah Shivaya || Shri Ganeshaya Namah ||',
+      headline: 'Ganpati Bappa Morya',
+      invitationTitle: 'A heartfelt invitation',
+      inviteLine: 'With great joy and devotion',
+      inviteBody: 'You and your family are <strong>cordially invited</strong><br>to our Ganesh Chaturthi celebration — a heartfelt<br>gathering of prayer, aarti, and<br>the welcoming of Bappa.',
+      hostNames: 'Joshi Parivar',
+      dateLabel: 'Date',
+      dateValue: 'Monday, September 14, 2026',
+      timeLabel: 'Time',
+      timeValue: 'Morning aarti: between 11 and 12<br>Evening aarti: between 8 and 9',
+      locationLabel: 'Location',
+      address: 'Swami Dham Apartment,<br>Block 103, 1st floor,<br>Three Tyre Chowk, Kansai,<br>Ambernath East 421501',
+      programTitle: 'Programme',
+      pranLabel: 'Pranpratishtha',
+      pranValue: 'Monday, September 14, 2026',
+      morningLabel: 'Morning aarti',
+      morningValue: 'Between 11 and 12',
+      eveningLabel: 'Evening aarti',
+      eveningValue: 'Between 8 and 9',
+      visarjanLabel: 'Ganpati visarjan',
+      visarjanValue: 'Saturday, September 19, 2026, evening',
+      rsvpTitle: 'Contact',
+      contacts: 'Sameer Joshi: 8668768526<br>Shashank Joshi: 8999365388<br>Jyoti Joshi: 9309854569',
+      blessing: 'Mangalmurti Morya',
+      footerNote: 'Please be present to receive Bappa’s blessings'
+    },
+    kn: {
+      pageTitle: 'ಗಣೇಶ ಚತುರ್ಥಿ ಆಮಂತ್ರಣ',
+      languageLabel: 'ಭಾಷೆ',
+      doorAria: 'ಗಣೇಶ ಆಮಂತ್ರಣ ತೆರೆಯಿರಿ',
+      doorMantra: '|| ಓಂ ನಮಃ ಶಿವಾಯ ||',
+      greeting: 'ನಮಸ್ಕಾರ',
+      doorBlessing: 'ಪರಮಪೂಜ್ಯ ಗುರುದೇವತೆ ಶ್ರೀ ಕಲಾವತಿ ಆಯಿಯವರ ಆಶೀರ್ವಾದದಿಂದ ಪ್ರತಿವರ್ಷದಂತೆ ಈ ವರ್ಷವೂ ನಾವು ಗಣೇಶನ ಪ್ರತಿಷ್ಠಾಪನೆ ಮಾಡುತ್ತಿದ್ದೇವೆ.',
+      doorTitle: 'ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ',
+      doorSubtitle: 'ನಿಮಗಾಗಿ ವಿಶೇಷ ಆಮಂತ್ರಣ',
+      openButton: 'ಆಮಂತ್ರಣ ತೆರೆಯಿರಿ',
+      cardMantra: '|| ಓಂ ನಮಃ ಶಿವಾಯ || ಶ್ರೀ ಗಣೇಶಾಯ ನಮಃ ||',
+      headline: 'ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ',
+      invitationTitle: 'ಸಹರ್ಷ ಆಮಂತ್ರಣ',
+      inviteLine: 'ಅತ್ಯಂತ ಸಂತೋಷದಿಂದ ಮತ್ತು ಭಕ್ತಿಭಾವದಿಂದ',
+      inviteBody: 'ನಿಮ್ಮನ್ನು ಮತ್ತು ನಿಮ್ಮ ಕುಟುಂಬವನ್ನು <strong>ಗಣೇಶ ಚತುರ್ಥಿ</strong><br>ಉತ್ಸವಕ್ಕೆ ಆತ್ಮೀಯವಾಗಿ ಆಹ್ವಾನಿಸುತ್ತೇವೆ — ಪೂಜೆ,<br>ಆರತಿ ಮತ್ತು ಭಕ್ತಿಯಿಂದ ಬಪ್ಪನನ್ನು<br>ಸ್ವಾಗತಿಸುವ ಈ ಸಮಾರಂಭಕ್ಕೆ.',
+      hostNames: 'ಜೋಶಿ ಕುಟುಂಬ',
+      dateLabel: 'ದಿನಾಂಕ',
+      dateValue: 'ಸೋಮವಾರ, ಸೆಪ್ಟೆಂಬರ್ 14, 2026',
+      timeLabel: 'ಸಮಯ',
+      timeValue: 'ಬೆಳಗಿನ ಆರತಿ: ೧೧ ರಿಂದ ೧೨ರ ನಡುವೆ ನಡೆಯಲಿದೆ<br>ಸಂಜೆಯ ಆರತಿ: ೮ ರಿಂದ ೯ರ ನಡುವೆ ನಡೆಯಲಿದೆ',
+      locationLabel: 'ಸ್ಥಳ',
+      address: 'ಸ್ವಾಮಿ ಧಾಮ ಅಪಾರ್ಟ್‌ಮೆಂಟ್,<br>೧೦೩ ಬ್ಲಾಕ್ ಸಂಖ್ಯೆ, ಮೊದಲ ಮಹಡಿ,<br>ಥ್ರೀ ಟೈರ್ ಚೌಕ್, ಕನ್ಸಾಯಿ,<br>ಅಂಬರ್‌ನಾಥ್ ಪೂರ್ವ ೪೨೧೫೦೧',
+      programTitle: 'ಕಾರ್ಯಕ್ರಮ',
+      pranLabel: 'ಪ್ರಾಣಪ್ರತಿಷ್ಠೆ',
+      pranValue: 'ಸೋಮವಾರ, ಸೆಪ್ಟೆಂಬರ್ 14, 2026',
+      morningLabel: 'ಬೆಳಗಿನ ಆರತಿ',
+      morningValue: '೧೧ ರಿಂದ ೧೨ರ ನಡುವೆ',
+      eveningLabel: 'ಸಂಜೆಯ ಆರತಿ',
+      eveningValue: '೮ ರಿಂದ ೯ರ ನಡುವೆ',
+      visarjanLabel: 'ಗಣಪತಿ ವಿಸರ್ಜನೆ',
+      visarjanValue: 'ಶನಿವಾರ, ಸೆಪ್ಟೆಂಬರ್ 19, 2026, ಸಂಜೆ',
+      rsvpTitle: 'ಸಂಪರ್ಕ',
+      contacts: 'ಸಮೀರ್ ಜೋಶಿ: 8668768526<br>ಶಶಾಂಕ್ ಜೋಶಿ: 8999365388<br>ಜ್ಯೋತಿ ಜೋಶಿ: 9309854569',
+      blessing: 'ಮಂಗಳಮೂರ್ತಿ ಮೋರಯಾ',
+      footerNote: 'ಬಪ್ಪನ ಆಶೀರ್ವಾದ ಪಡೆಯಲು ದಯವಿಟ್ಟು ಉಪಸ್ಥಿತರಿರಿ'
+    }
+  };
+
+  function setLanguage(language) {
+    var selected = translations[language] || translations.mr;
+    document.documentElement.lang = language;
+    document.title = selected.pageTitle;
+    document.querySelectorAll('[data-i18n]').forEach(function (element) {
+      var value = selected[element.getAttribute('data-i18n')];
+      if (value !== undefined) element.innerHTML = value;
+    });
+    document.querySelectorAll('[data-i18n-attr]').forEach(function (element) {
+      element.getAttribute('data-i18n-attr').split(',').forEach(function (item) {
+        var parts = item.split(':');
+        if (parts.length === 2 && selected[parts[1]]) element.setAttribute(parts[0], selected[parts[1]]);
+      });
+    });
+    document.getElementById('languageSelect').setAttribute('aria-label', selected.languageLabel);
+  }
+
+  var languageSelect = document.getElementById('languageSelect');
+  languageSelect.addEventListener('change', function () { setLanguage(this.value); });
+  setLanguage('mr');
+
+  // Generates a gentle, continuous drift of marigold-orange petals
+  // across the page for a "live" e-card feel. Respects reduced-motion.
+  (function () {
+    var openButton = document.getElementById('openInvitation');
+    var flowerBurst = document.getElementById('flowerBurst');
+    if (openButton) {
+      openButton.addEventListener('click', function () {
+        document.body.classList.add('invitation-open');
+        if (flowerBurst && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+          var flowerColors = ['#F0CE85', '#D9A441', '#F2A93B', '#FFFFFF'];
+          for (var flowerIndex = 0; flowerIndex < 48; flowerIndex++) {
+            var flower = document.createElement('span');
+            flower.className = 'burst-flower';
+            flower.textContent = flowerIndex % 3 === 0 ? '✿' : '✦';
+            flower.style.color = flowerColors[flowerIndex % flowerColors.length];
+            flower.style.setProperty('--x', ((Math.random() - 0.5) * 430) + 'px');
+            flower.style.setProperty('--y', ((Math.random() - 0.55) * 520) + 'px');
+            flower.style.setProperty('--rotation', ((Math.random() - 0.5) * 560) + 'deg');
+            flower.style.animationDelay = (Math.random() * 0.22) + 's';
+            flowerBurst.appendChild(flower);
+          }
+
+          var devotionalWords = ['ॐ'];
+          devotionalWords.forEach(function (word, wordIndex) {
+            var wordElement = document.createElement('span');
+            wordElement.className = 'burst-word';
+            wordElement.textContent = word;
+            wordElement.style.setProperty('--x', ((wordIndex - 1.5) * 105) + 'px');
+            wordElement.style.setProperty('--y', (-90 - (wordIndex % 2) * 85) + 'px');
+            wordElement.style.animationDelay = (0.12 + wordIndex * 0.16) + 's';
+            flowerBurst.appendChild(wordElement);
+          });
+        }
+      });
+    }
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+
+    var field = document.getElementById('petalField');
+    var colors = ['#D9A441', '#C1440E', '#F0CE85'];
+    var count = window.innerWidth < 480 ? 10 : 16;
+
+    for (var i = 0; i < count; i++) {
+      var petal = document.createElement('div');
+      petal.className = 'petal';
+
+      var size = 8 + Math.random() * 8;
+      var left = Math.random() * 100;
+      var fallDuration = 9 + Math.random() * 8;
+      var swayDuration = 3 + Math.random() * 2;
+      var delay = -Math.random() * 15;
+      var color = colors[Math.floor(Math.random() * colors.length)];
+
+      petal.style.left = left + 'vw';
+      petal.style.width = size + 'px';
+      petal.style.height = size * 0.75 + 'px';
+      petal.style.background = color;
+      petal.style.borderRadius = '0% 60% 0% 60%';
+      petal.style.animationDuration = fallDuration + 's, ' + swayDuration + 's';
+      petal.style.animationDelay = delay + 's, ' + delay + 's';
+
+      field.appendChild(petal);
+    }
+  })();
+</script>
+
+</body>
+</html>

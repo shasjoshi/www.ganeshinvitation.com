@@ -66,6 +66,8 @@
 
   .language-picker option { color: #3B0F1A; }
 
+  .invitation-audio { display: none; }
+
   html[lang="kn"] body { font-family: 'Noto Sans Kannada', 'Mukta', sans-serif; }
   html[lang="kn"] h1.headline,
   html[lang="kn"] .sanskrit-line,
@@ -798,6 +800,8 @@
 </head>
 <body>
 
+<audio class="invitation-audio" id="invitationAudio" src="marathi_voiceover_puck.wav" preload="auto" loop></audio>
+
 <div class="language-picker">
   <label for="languageSelect" data-i18n="languageLabel">भाषा</label>
   <select id="languageSelect" aria-label="भाषा निवडा">
@@ -1071,8 +1075,10 @@
   (function () {
     var openButton = document.getElementById('openInvitation');
     var flowerBurst = document.getElementById('flowerBurst');
+    var invitationAudio = document.getElementById('invitationAudio');
     if (openButton) {
       openButton.addEventListener('click', function () {
+        openButton.disabled = true;
         document.body.classList.add('invitation-open');
         if (flowerBurst && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
           var flowerColors = ['#F0CE85', '#D9A441', '#F2A93B', '#FFFFFF'];
@@ -1099,6 +1105,13 @@
             flowerBurst.appendChild(wordElement);
           });
         }
+
+        window.setTimeout(function () {
+          if (invitationAudio) {
+            invitationAudio.currentTime = 0;
+            invitationAudio.play().catch(function () {});
+          }
+        }, 5000);
       });
     }
 

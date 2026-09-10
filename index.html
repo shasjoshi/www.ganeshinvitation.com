@@ -233,13 +233,20 @@
     letter-spacing: 0.04em;
     cursor: pointer;
     box-shadow: 0 0 0 5px rgba(217,164,65,0.1), 0 9px 24px rgba(0,0,0,0.35);
+    animation: buttonGlow 1.8s ease-in-out infinite;
     transition: transform 0.25s ease, background 0.25s ease;
   }
 
   .open-button:hover, .open-button:focus-visible {
     background: #fff1c5;
     transform: translateY(-3px);
+    box-shadow: 0 0 0 8px rgba(217,164,65,0.2), 0 0 28px rgba(240,206,133,0.75), 0 9px 24px rgba(0,0,0,0.35);
     outline: none;
+  }
+
+  @keyframes buttonGlow {
+    0%, 100% { box-shadow: 0 0 0 5px rgba(217,164,65,0.1), 0 9px 24px rgba(0,0,0,0.35); }
+    50% { box-shadow: 0 0 0 8px rgba(217,164,65,0.2), 0 0 28px rgba(240,206,133,0.75), 0 9px 24px rgba(0,0,0,0.35); }
   }
 
   .door-diya {
@@ -359,6 +366,7 @@
     position: relative;
     width: 100%;
     max-width: 560px;
+    font-size: 102%;
     background:
       radial-gradient(circle at top, rgba(217,164,65,0.08), transparent 55%),
       var(--maroon);
@@ -414,6 +422,11 @@
     font-size: 17px;
     margin: 0 0 26px;
     opacity: 0.85;
+  }
+
+  .sanskrit-line::selection {
+    background: transparent;
+    color: var(--gold);
   }
 
   .divider {
@@ -475,9 +488,12 @@
   }
 
   .detail-value {
+    min-width: 0;
+    max-width: 100%;
     font-size: 16px;
     line-height: 1.5;
     color: var(--ivory);
+    overflow-wrap: anywhere;
   }
 
   .edit {
@@ -491,11 +507,13 @@
   }
 
   .venue-link {
+    max-width: 100%;
     text-decoration: none;
     display: inline-flex;
     justify-content: flex-start;
     align-items: baseline;
     gap: 6px;
+    overflow-wrap: anywhere;
   }
   .venue-link::after {
     content: "↗";
@@ -531,15 +549,15 @@
 
   .program-list li {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     align-items: start;
     gap: 12px;
-    font-size: 15.5px;
+    font-size: clamp(11px, 2.5vw, 15.5px);
     padding-bottom: 5px;
     border-bottom: 1px solid rgba(247,238,224,0.08);
   }
 
-  .program-list li span { min-width: 0; }
+  .program-list li span { min-width: 0; overflow-wrap: anywhere; }
   .program-list li span:first-child { color: rgba(247,238,224,0.85); }
   .program-list li span:last-child { color: var(--gold-light); text-align: right; font-weight: 600; padding-left: 8px; }
 
@@ -589,7 +607,7 @@
 
     .card {
       max-height: calc(100svh - 20px);
-      padding: 18px 16px 14px;
+      padding: 18px 26px 14px;
       overflow: hidden;
     }
 
@@ -736,6 +754,7 @@
     .door-screen::after,
     .door-screen::before,
     .burst-flower,
+    .open-button,
     .card {
       transition: none !important;
       animation: none !important;
@@ -926,9 +945,9 @@
       doorTitle: 'गणपती बाप्पा मोरया',
       doorSubtitle: 'आपल्यासाठी खास आमंत्रण',
       openButton: 'आमंत्रण उघडा',
-      cardMantra: '|| ॐ नमः शिवाय || श्री गणेशाय नमः ||',
+      cardMantra: '|| ॐ नमः शिवाय || गणरायाला नमस्कार ||',
       headline: 'गणपती बाप्पा मोरया',
-      invitationTitle: 'सहर्ष आमंत्रण',
+      invitationTitle: 'मनःपूर्वक आमंत्रण',
       inviteLine: 'अत्यंत आनंदाने आणि भक्तिभावाने',
       inviteBody: 'आपणास व आपल्या परिवारास <strong>गणेश चतुर्थी</strong><br>उत्सवासाठी सहर्ष आमंत्रित करत आहोत — पूजा,<br>आरती आणि आपलेपणाने बाप्पाचे<br>स्वागत करण्याचा हा सोहळा.',
       hostNames: 'जोशी परिवार',

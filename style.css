@@ -1,0 +1,1456 @@
+/* ==========================================================================
+   Ganesh Chaturthi Royal Invitation Stylesheet
+   ========================================================================== */
+
+:root {
+  /* Royal Palette */
+  --maroon-deep: #1a050b;
+  --maroon-dark: #2a0a12;
+  --maroon: #3b0f1a;
+  --maroon-mid: #4d1523;
+  --maroon-light: #5e1c2c;
+  
+  /* Gold Accents & Shimmers */
+  --gold-primary: #d9a441;
+  --gold-light: #f3d28e;
+  --gold-bright: #ffe6a3;
+  --gold-dark: #a97520;
+  --gold-soft: rgba(217, 164, 65, 0.15);
+  --gold-border: rgba(217, 164, 65, 0.38);
+  --gold-border-bright: rgba(243, 210, 142, 0.65);
+  
+  /* Accent Colors */
+  --vermillion: #c1440e;
+  --vermillion-glow: rgba(193, 68, 14, 0.5);
+  --ivory: #faf3e6;
+  --ivory-muted: rgba(250, 243, 230, 0.82);
+  --ivory-dim: rgba(250, 243, 230, 0.6);
+  
+  /* Shadows & Elevations */
+  --shadow-elevation: 0 25px 70px rgba(0, 0, 0, 0.7), 0 0 45px rgba(217, 164, 65, 0.12);
+  --door-shadow: 0 30px 90px rgba(0, 0, 0, 0.85);
+  
+  /* Typography */
+  --font-body: 'Mukta', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-kannada: 'Noto Sans Kannada', 'Mukta', sans-serif;
+  --font-display: 'Yatra One', cursive, serif;
+}
+
+/* --------------------------------------------------------------------------
+   Base & Reset
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--maroon-deep);
+  background-image:
+    radial-gradient(circle at 50% 25%, rgba(217, 164, 65, 0.08) 0%, transparent 55%),
+    radial-gradient(circle at 85% 85%, rgba(193, 68, 14, 0.06) 0%, transparent 45%),
+    linear-gradient(145deg, #160409 0%, #2a0a12 50%, #17050a 100%);
+  font-family: var(--font-body);
+  color: var(--ivory);
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  padding: 48px 16px 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Kannada Language Typography Support */
+html[lang="kn"] body,
+html[lang="kn"] .headline,
+html[lang="kn"] .sanskrit-line,
+html[lang="kn"] .host-name,
+html[lang="kn"] .program-title,
+html[lang="kn"] .blessing,
+html[lang="kn"] .door-copy h2 {
+  font-family: var(--font-kannada);
+}
+
+/* --------------------------------------------------------------------------
+   Floating Top Navigation Controls (Language & Audio)
+   -------------------------------------------------------------------------- */
+.top-controls {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.control-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(31, 7, 14, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--gold-border);
+  border-radius: 30px;
+  color: var(--gold-light);
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.control-pill:hover,
+.control-pill:focus-within {
+  border-color: var(--gold-border-bright);
+  box-shadow: 0 6px 20px rgba(217, 164, 65, 0.25);
+  transform: translateY(-1px);
+}
+
+.language-picker label {
+  color: var(--gold-primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.language-picker label svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--gold-primary);
+}
+
+.language-picker select {
+  border: none;
+  color: var(--ivory);
+  background: transparent;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  padding: 0 4px;
+}
+
+.language-picker select option {
+  background: #2a0a12;
+  color: var(--gold-light);
+}
+
+.audio-btn {
+  cursor: pointer;
+  color: var(--gold-light);
+  border: 1px solid var(--gold-border);
+}
+
+.audio-btn .audio-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.audio-btn.playing {
+  border-color: var(--gold-primary);
+  background: rgba(59, 15, 26, 0.95);
+  animation: audioPulse 2s ease-in-out infinite;
+}
+
+@keyframes audioPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(217, 164, 65, 0.35); }
+  50% { box-shadow: 0 0 0 6px rgba(217, 164, 65, 0); }
+}
+
+.invitation-audio {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Background Ambient Petals
+   -------------------------------------------------------------------------- */
+.petal-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.petal {
+  position: absolute;
+  top: -24px;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  animation-name: fall, sway;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+  will-change: transform;
+}
+
+@keyframes fall {
+  0%   { transform: translateY(-6vh) rotate(0deg); }
+  100% { transform: translateY(106vh) rotate(290deg); }
+}
+
+@keyframes sway {
+  0%, 100% { margin-left: 0; }
+  50%      { margin-left: 32px; }
+}
+
+/* --------------------------------------------------------------------------
+   Entrance / Grand Royal Temple Doorway (Mahadwar)
+   -------------------------------------------------------------------------- */
+.door-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1) 0.25s, visibility 0s linear 0.8s;
+}
+
+.door-screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(243, 210, 142, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(193, 68, 14, 0.18) 0%, transparent 55%),
+    linear-gradient(135deg, #120307 0%, #2b0811 50%, #110206 100%);
+  transition: opacity 0.9s ease 1s;
+}
+
+.door-screen::before {
+  content: "";
+  position: absolute;
+  inset: 5vh 7vw;
+  border: 1px solid rgba(217, 164, 65, 0.3);
+  box-shadow: 0 0 0 12px rgba(217, 164, 65, 0.03), inset 0 0 90px rgba(0, 0, 0, 0.7);
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease 1.6s;
+}
+
+.doorway {
+  position: relative;
+  width: min(88vw, 440px);
+  height: min(76vh, 660px);
+  min-height: 600px;
+  perspective: 1500px;
+  z-index: 1;
+}
+
+/* Divine Halo & Ganesha Ledge Positioning */
+.door-ganesha-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(100% - 118px);
+  width: min(78vw, 290px);
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transition: opacity 0.5s ease;
+}
+
+.divine-halo {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255, 238, 180, 0.65) 0%, rgba(243, 210, 142, 0.35) 35%, rgba(217, 164, 65, 0.15) 60%, transparent 75%);
+  filter: blur(10px);
+  animation: haloPulse 3.8s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes haloPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.85; }
+  50%      { transform: translateX(-50%) scale(1.1); opacity: 1; }
+}
+
+.door-ganesha {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(217, 164, 65, 0.45)) drop-shadow(0 14px 18px rgba(0, 0, 0, 0.6));
+}
+
+/* Grand Temple Arch Frame */
+.door-frame {
+  position: absolute;
+  top: 112px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 10px solid #D9A441;
+  border-bottom: 24px solid #A8731D;
+  border-radius: 8px 8px 0 0;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(243, 210, 142, 0.18), transparent 65%),
+    #1f0810;
+  box-shadow:
+    0 0 0 2px rgba(255, 235, 170, 0.5),
+    0 0 0 6px rgba(217, 164, 65, 0.3),
+    inset 0 0 30px rgba(0, 0, 0, 0.8),
+    var(--door-shadow);
+  transition: opacity 0.8s ease 1.6s;
+  z-index: 1;
+}
+
+/* Ornate Toran Lintel Bar */
+.door-toran-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.toran-beam {
+  height: 22px;
+  background: linear-gradient(180deg, #FFEAA8 0%, #D9A441 50%, #8F5E12 100%);
+  border-bottom: 1.5px solid #573303;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.beam-knot {
+  color: #380D17;
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.beam-title {
+  margin: 0 8px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: #310711;
+  letter-spacing: normal;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.toran-garland {
+  width: 100%;
+  height: 26px;
+  display: block;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.45));
+}
+
+/* Authentic Carved Palace / Temple Door Panels */
+.door-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  transition: transform 1.35s cubic-bezier(0.7, 0, 0.2, 1);
+  backface-visibility: hidden;
+  z-index: 2;
+  overflow: hidden;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.7);
+}
+
+.door-panel.left {
+  left: 0;
+  transform-origin: left center;
+  border-right: 2px solid #E5B04F;
+}
+
+.door-panel.right {
+  right: 0;
+  transform-origin: right center;
+  border-left: 2px solid #E5B04F;
+}
+
+.panel-surface {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, #3d101c 0%, #290812 50%, #1c050c 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 26px 12px 42px;
+}
+
+.carved-panel-box {
+  flex: 1;
+  margin: 6px 0;
+  background: linear-gradient(145deg, #481320 0%, #2c0912 60%, #1a040a 100%);
+  border: 1.5px solid rgba(217, 164, 65, 0.4);
+  border-radius: 5px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.65), 0 2px 4px rgba(0, 0, 0, 0.4);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carved-panel-box::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px dashed rgba(243, 210, 142, 0.18);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.brass-rosette {
+  color: var(--gold-bright);
+  font-size: 15px;
+  text-shadow: 0 0 10px rgba(217, 164, 65, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* Traditional Brass Ring Handles (Kadi) */
+.door-handle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 4;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.6));
+}
+
+.door-panel.left .door-handle {
+  right: 6px;
+}
+
+.door-panel.right .door-handle {
+  left: 6px;
+}
+
+.handle-base {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FFF0C2 0%, #D9A441 55%, #8F5E12 100%);
+  border: 1px solid #FFE6A3;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.handle-ring {
+  width: 18px;
+  height: 24px;
+  margin-top: -6px;
+  border: 3.5px solid #D9A441;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.5);
+  border-top-color: #FFF0C2;
+  border-bottom-color: #8F5E12;
+}
+
+/* Traditional Base Glowing Samai / Brass Diyas */
+.door-diya-wrap {
+  position: absolute;
+  bottom: 8px;
+  z-index: 4;
+  width: 58px;
+  height: 50px;
+  pointer-events: none;
+}
+
+.door-diya-wrap.left  { left: 10px; }
+.door-diya-wrap.right { right: 10px; }
+
+.diya-light-halo {
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 193, 7, 0.4) 0%, rgba(242, 169, 59, 0.18) 45%, transparent 70%);
+  filter: blur(8px);
+  animation: flamePulse 1.8s ease-in-out infinite;
+}
+
+.brass-diya-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.65));
+}
+
+.diya-flame-aura {
+  animation: flamePulse 1.4s ease-in-out infinite;
+  transform-origin: 30px 15px;
+}
+
+.diya-flame-outer {
+  animation: flameWiggle 1.5s ease-in-out infinite;
+  transform-origin: 30px 30px;
+}
+
+.diya-flame-inner {
+  animation: flameWiggleInner 1.3s ease-in-out infinite;
+  transform-origin: 30px 27px;
+}
+
+@keyframes flamePulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes flameWiggle {
+  0%, 100% { transform: scaleY(1) rotate(0deg); }
+  25%      { transform: scaleY(1.08) rotate(-2deg); }
+  50%      { transform: scaleY(0.95) rotate(1.5deg); }
+  75%      { transform: scaleY(1.04) rotate(-1deg); }
+}
+
+@keyframes flameWiggleInner {
+  0%, 100% { transform: scaleY(1) rotate(0deg); opacity: 1; }
+  50%      { transform: scaleY(1.1) rotate(-1deg); opacity: 0.9; }
+}
+
+/* Royal Festive Cartouche (Door Invitation Content) */
+.door-copy {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  width: 92%;
+  max-width: 380px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: auto;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.door-cartouche {
+  position: relative;
+  background: rgba(22, 5, 10, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(217, 164, 65, 0.45);
+  border-radius: 12px;
+  padding: 22px 18px 24px;
+  box-shadow:
+    0 16px 45px rgba(0, 0, 0, 0.75),
+    0 0 35px rgba(217, 164, 65, 0.16),
+    inset 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+.cartouche-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--gold-primary);
+  opacity: 0.8;
+}
+
+.cartouche-corner.tl { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.cartouche-corner.tr { top: 6px; right: 6px; border-left: none; border-bottom: none; }
+.cartouche-corner.bl { bottom: 6px; left: 6px; border-right: none; border-top: none; }
+.cartouche-corner.br { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+
+.door-mantra {
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: normal;
+  margin-bottom: 6px;
+  text-shadow: 0 0 14px rgba(217, 164, 65, 0.7);
+}
+
+.door-greeting-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.greeting-sparkle {
+  color: var(--gold-bright);
+  font-size: 12px;
+  text-shadow: 0 0 10px var(--gold-primary);
+}
+
+.door-greeting {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: normal;
+  color: var(--gold-light);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.door-blessing {
+  max-width: 320px;
+  margin: 0 auto 12px;
+  color: var(--ivory-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.door-title {
+  margin: 0 0 4px;
+  font: 400 clamp(28px, 6vw, 36px)/1.2 var(--font-display);
+  background: linear-gradient(135deg, #FFF5D6 0%, #F5CE7A 35%, #D9A441 70%, #A8731D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(217, 164, 65, 0.5));
+}
+
+.door-subtitle {
+  margin: 0 0 18px;
+  color: var(--ivory-muted);
+  font-size: 14.5px;
+  letter-spacing: normal;
+}
+
+/* Opulent 3D Royal Gold Open Button */
+.open-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1.5px solid #FFE082;
+  border-radius: 30px;
+  padding: 12px 28px;
+  color: #2a070f;
+  background: linear-gradient(135deg, #FFF0C2 0%, #F5CE7A 40%, #D9A441 75%, #B37D20 100%);
+  font: 700 15px/1 var(--font-body);
+  letter-spacing: normal;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 4px rgba(217, 164, 65, 0.25),
+    0 8px 24px rgba(0, 0, 0, 0.55),
+    inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: buttonGlow 2s ease-in-out infinite;
+}
+
+.btn-diya-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.btn-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(60deg, transparent 40%, rgba(255, 255, 255, 0.55) 50%, transparent 60%);
+  transform: translateX(-100%);
+  animation: shimmerSweep 3s infinite;
+  pointer-events: none;
+}
+
+.open-button:hover,
+.open-button:focus-visible {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow:
+    0 0 0 6px rgba(217, 164, 65, 0.35),
+    0 0 35px rgba(243, 210, 142, 0.85),
+    0 12px 28px rgba(0, 0, 0, 0.65);
+  outline: none;
+}
+
+@keyframes buttonGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 4px rgba(217, 164, 65, 0.25),
+      0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 0 7px rgba(217, 164, 65, 0.4),
+      0 0 30px rgba(243, 210, 142, 0.75),
+      0 10px 24px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes shimmerSweep {
+  0% { transform: translateX(-100%); }
+  35%, 100% { transform: translateX(100%); }
+}
+
+/* Sparkles on Door */
+.spark-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.spark {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  box-shadow: 0 0 14px 3px var(--gold-primary);
+  animation: sparkle 2.4s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.15; transform: translateY(8px) scale(0.6); }
+  50%      { opacity: 1;    transform: translateY(-14px) scale(1.2); }
+}
+
+/* --------------------------------------------------------------------------
+   Door Opening State Transitions
+   -------------------------------------------------------------------------- */
+body.invitation-open .door-screen {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+body.invitation-open .door-screen::after,
+body.invitation-open .door-screen::before,
+body.invitation-open .door-frame {
+  opacity: 0;
+}
+
+body.invitation-open .door-panel.left {
+  transform: rotateY(-115deg);
+}
+
+body.invitation-open .door-panel.right {
+  transform: rotateY(115deg);
+}
+
+body.invitation-open .door-copy {
+  opacity: 0;
+  transform: translate(-50%, -46%) scale(0.94);
+}
+
+body.invitation-open .door-ganesha-wrapper,
+body.invitation-open .door-toran-bar,
+body.invitation-open .door-diya-wrap {
+  opacity: 0;
+  transition: opacity 0.4s ease 0.2s;
+}
+
+/* --------------------------------------------------------------------------
+   Flower & Word Burst Particle Animation
+   -------------------------------------------------------------------------- */
+.flower-burst {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.burst-flower {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  font-size: 22px;
+  line-height: 1;
+  opacity: 0;
+  text-shadow: 0 0 14px rgba(217, 164, 65, 0.85);
+  animation: flowerPop 4.2s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+.burst-word {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: clamp(22px, 6vw, 36px);
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  text-shadow: 0 0 16px rgba(217, 164, 65, 0.95);
+  animation: wordPop 4.2s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+@keyframes wordPop {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  15%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.15); }
+}
+
+@keyframes flowerPop {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.2) rotate(0deg); }
+  18%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.05) rotate(var(--rotation)); }
+}
+
+/* --------------------------------------------------------------------------
+   Main Invitation Card
+   -------------------------------------------------------------------------- */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 590px;
+  margin: 0 auto;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(22px) scale(0.97);
+  background:
+    radial-gradient(circle at top center, rgba(243, 210, 142, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at bottom center, rgba(193, 68, 14, 0.08) 0%, transparent 55%),
+    linear-gradient(180deg, #3d101b 0%, #2f0b14 50%, #250911 100%);
+  border: 1px solid var(--gold-border);
+  border-radius: 12px;
+  padding: 52px 38px 44px;
+  box-shadow: var(--shadow-elevation);
+  overflow: hidden;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+body.invitation-open .card {
+  animation: cardIn 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.3s both;
+}
+
+@keyframes cardIn {
+  0%   { opacity: 0; transform: translateY(22px) scale(0.97); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Traditional Corner Flourishes */
+.corner-flourish {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.corner-flourish svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--gold-primary);
+  fill: none;
+}
+
+.corner-flourish.top-left     { top: 12px; left: 12px; }
+.corner-flourish.top-right    { top: 12px; right: 12px; transform: scaleX(-1); }
+.corner-flourish.bottom-left  { bottom: 12px; left: 12px; transform: scaleY(-1); }
+.corner-flourish.bottom-right { bottom: 12px; right: 12px; transform: scale(-1); }
+
+/* Double Inner Border */
+.inner-border {
+  position: absolute;
+  inset: 22px;
+  border: 1px solid rgba(217, 164, 65, 0.28);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.inner-border::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px dashed rgba(217, 164, 65, 0.16);
+  border-radius: 4px;
+}
+
+/* Diyas on the Card */
+.diyas {
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+  margin-bottom: 8px;
+}
+
+.diya-flame {
+  animation: flicker 1.6s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes flicker {
+  0%, 100% { transform: scaleY(1) scaleX(1) rotate(0deg); opacity: 1; }
+  25%      { transform: scaleY(1.1) scaleX(0.95) rotate(-2deg); opacity: 0.92; }
+  50%      { transform: scaleY(0.93) scaleX(1.06) rotate(2deg); opacity: 1; }
+  75%      { transform: scaleY(1.06) scaleX(0.96) rotate(-1.5deg); opacity: 0.95; }
+}
+
+/* Lotus / Mandala Motif */
+.motif {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.motif svg {
+  transform-origin: center;
+  filter: drop-shadow(0 0 10px rgba(217, 164, 65, 0.3));
+}
+
+/* Om & Inscriptions */
+.om {
+  text-align: center;
+  font-family: var(--font-display);
+  color: var(--gold-light);
+  font-size: 15.5px;
+  letter-spacing: normal;
+  margin-bottom: 6px;
+  text-shadow: 0 0 12px rgba(217, 164, 65, 0.6);
+}
+
+h1.headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-align: center;
+  font-size: clamp(32px, 6.5vw, 44px);
+  line-height: 1.25;
+  color: var(--gold-bright);
+  margin: 6px 0 2px;
+  text-shadow: 0 0 18px rgba(217, 164, 65, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.sanskrit-line {
+  text-align: center;
+  font-family: 'Mukta', var(--font-display);
+  color: var(--gold-light);
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 24px;
+  letter-spacing: normal;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga" 1, "calt" 1, "rphf" 1, "akhn" 1;
+  opacity: 0.95;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px auto;
+  max-width: 420px;
+}
+
+.divider .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(217, 164, 65, 0.5) 50%, transparent 100%);
+}
+
+.divider .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--vermillion);
+  box-shadow: 0 0 10px var(--vermillion);
+}
+
+.invite-line {
+  text-align: center;
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--ivory);
+  margin: 0 0 4px;
+}
+
+.host-name {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--gold-bright);
+  margin: 6px 0 18px;
+  text-shadow: 0 0 14px rgba(217, 164, 65, 0.45);
+}
+
+.invite-body {
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--ivory-muted);
+  margin: 0 auto 20px;
+  max-width: 460px;
+  padding: 0 8px;
+}
+
+.invite-body strong {
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Details Section (Date, Time, Location Cards)
+   -------------------------------------------------------------------------- */
+.details {
+  margin: 28px 0 12px;
+  display: grid;
+  gap: 14px;
+}
+
+.detail-card {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 14px;
+  align-items: center;
+  background: rgba(217, 164, 65, 0.05);
+  border: 1px solid rgba(217, 164, 65, 0.2);
+  border-radius: 10px;
+  padding: 12px 16px;
+  backdrop-filter: blur(4px);
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.detail-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(217, 164, 65, 0.45);
+  background: rgba(217, 164, 65, 0.09);
+}
+
+.detail-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(217, 164, 65, 0.12);
+  border: 1px solid rgba(217, 164, 65, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-light);
+}
+
+.detail-icon-wrap svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--gold-light);
+}
+
+.detail-info {
+  text-align: left;
+  min-width: 0;
+}
+
+.detail-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: normal;
+  color: var(--gold-light);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.detail-value {
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--ivory);
+  overflow-wrap: anywhere;
+}
+
+/* Venue Link Button */
+.venue-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ivory);
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 1.45;
+  margin-top: 3px;
+  padding: 2px 0;
+  transition: color 0.2s ease;
+}
+
+.venue-link:hover,
+.venue-link:focus-visible {
+  color: var(--gold-bright);
+}
+
+.venue-action-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  padding: 4px 10px;
+  background: rgba(217, 164, 65, 0.15);
+  border: 1px solid var(--gold-border);
+  border-radius: 20px;
+  color: var(--gold-bright);
+  font-size: 12px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.venue-action-badge:hover {
+  background: rgba(217, 164, 65, 0.28);
+}
+
+.venue-action-badge svg {
+  width: 12px;
+  height: 12px;
+  stroke: var(--gold-bright);
+}
+
+/* --------------------------------------------------------------------------
+   Program Schedule Table
+   -------------------------------------------------------------------------- */
+.program {
+  margin-top: 24px;
+  padding: 18px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px dashed rgba(217, 164, 65, 0.3);
+  border-radius: 10px;
+}
+
+.program-title {
+  text-align: center;
+  font-family: var(--font-display);
+  color: var(--gold-light);
+  font-size: 21px;
+  margin: 0 0 12px;
+  text-shadow: 0 0 10px rgba(217, 164, 65, 0.35);
+}
+
+.program-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.program-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(250, 243, 230, 0.08);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.program-list li:last-child {
+  border-bottom: none;
+}
+
+.program-list li:hover {
+  background: rgba(217, 164, 65, 0.06);
+}
+
+.program-list li span:first-child {
+  color: var(--ivory-muted);
+  font-weight: 500;
+}
+
+.program-list li span:last-child {
+  color: var(--gold-bright);
+  text-align: right;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   RSVP / Contacts
+   -------------------------------------------------------------------------- */
+.rsvp {
+  margin-top: 28px;
+  text-align: center;
+  padding: 14px 16px;
+  border-top: 1px solid rgba(217, 164, 65, 0.25);
+}
+
+.rsvp-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: normal;
+  color: var(--gold-primary);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.rsvp-value {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--ivory);
+}
+
+.contact-tel {
+  color: var(--gold-bright);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 3px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.contact-tel:hover,
+.contact-tel:focus-visible {
+  color: #ffffff;
+  background: rgba(217, 164, 65, 0.25);
+}
+
+/* Blessing & Footer Note */
+.blessing {
+  margin-top: 30px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--gold-bright);
+  letter-spacing: normal;
+  text-shadow: 0 0 12px rgba(217, 164, 65, 0.5);
+}
+
+.footer-note {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--ivory-dim);
+}
+
+/* --------------------------------------------------------------------------
+   Staggered Element Entrance Animation
+   -------------------------------------------------------------------------- */
+.om, .headline, .sanskrit-line, .divider,
+.invite-line, .host-name, .invite-body,
+.details, .program, .rsvp, .blessing, .footer-note {
+  opacity: 0;
+  animation: riseIn 0.7s ease-out forwards;
+}
+
+.om            { animation-delay: 0.35s; }
+.headline      { animation-delay: 0.48s; }
+.sanskrit-line { animation-delay: 0.60s; }
+.divider       { animation-delay: 0.72s; }
+.invite-line   { animation-delay: 0.84s; }
+.host-name     { animation-delay: 0.96s; }
+.invite-body   { animation-delay: 1.08s; }
+.details       { animation-delay: 1.20s; }
+.program       { animation-delay: 1.34s; }
+.rsvp          { animation-delay: 1.48s; }
+.blessing      { animation-delay: 1.60s; }
+.footer-note   { animation-delay: 1.72s; }
+
+@keyframes riseIn {
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Layout & Mobile Optimizations
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  body {
+    padding: 24px 10px 48px;
+    align-items: flex-start;
+  }
+
+  .top-controls {
+    top: 10px;
+    right: 10px;
+    gap: 6px;
+  }
+
+  .control-pill {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .language-picker select {
+    font-size: 12px;
+  }
+
+  .card {
+    padding: 38px 20px 32px;
+    border-radius: 8px;
+  }
+
+  .inner-border {
+    inset: 12px;
+  }
+
+  .corner-flourish {
+    width: 32px;
+    height: 32px;
+  }
+
+  .diyas {
+    gap: 40px;
+    margin-bottom: 4px;
+  }
+
+  .motif svg {
+    width: 90px;
+    height: 52px;
+  }
+
+  h1.headline {
+    font-size: 30px;
+  }
+
+  .host-name {
+    font-size: 24px;
+    margin: 4px 0 14px;
+  }
+
+  .invite-body {
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+
+  .detail-card {
+    grid-template-columns: 32px 1fr;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .detail-icon-wrap {
+    width: 32px;
+    height: 32px;
+  }
+
+  .detail-value {
+    font-size: 14px;
+  }
+
+  .program-list li {
+    font-size: 13.5px;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 8px;
+  }
+
+  .rsvp-value {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .blessing {
+    font-size: 16px;
+  }
+}
+
+/* Ultra-compact / short-height screens (landscape or tiny phones) */
+@media (max-width: 600px) and (max-height: 650px) {
+  .doorway {
+    height: 96vh;
+    min-height: 0;
+  }
+
+  .door-frame {
+    top: 72px;
+  }
+
+  .door-ganesha-wrapper {
+    width: min(70vw, 210px);
+    bottom: calc(100% - 76px);
+  }
+
+  .divine-halo {
+    width: 180px;
+    height: 180px;
+  }
+
+  .door-copy {
+    width: 95%;
+  }
+
+  .door-cartouche {
+    padding: 14px 12px 16px;
+  }
+
+  .door-title {
+    font-size: 22px;
+    margin-bottom: 2px;
+  }
+
+  .door-greeting {
+    font-size: 15px;
+  }
+
+  .door-blessing {
+    font-size: 11.5px;
+    margin-bottom: 8px;
+    line-height: 1.35;
+  }
+
+  .door-subtitle {
+    margin: 0 0 10px;
+    font-size: 12.5px;
+  }
+
+  .open-button {
+    padding: 9px 20px;
+    font-size: 13px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility: Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .petal,
+  .spark,
+  .open-button,
+  .btn-shine,
+  .burst-flower,
+  .burst-word,
+  .diya-flame,
+  .diya-flame-aura,
+  .diya-flame-outer,
+  .diya-flame-inner,
+  .divine-halo,
+  .audio-btn.playing {
+    animation: none !important;
+  }
+
+  .petal-field {
+    display: none;
+  }
+
+  .door-panel,
+  .door-copy,
+  .door-frame,
+  .door-screen::after,
+  .door-screen::before,
+  .door-ganesha-wrapper,
+  .door-toran-bar,
+  .door-diya-wrap,
+  .card {
+    transition: none !important;
+  }
+
+  body.invitation-open .door-screen {
+    display: none !important;
+  }
+
+  body.invitation-open .card {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .om, .headline, .sanskrit-line, .divider,
+  .invite-line, .host-name, .invite-body,
+  .details, .program, .rsvp, .blessing, .footer-note {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+

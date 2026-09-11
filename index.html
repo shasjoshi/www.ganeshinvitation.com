@@ -800,7 +800,7 @@
 </head>
 <body>
 
-<audio class="invitation-audio" id="invitationAudio" src="marathi_voiceover_puck.wav" preload="auto" loop></audio>
+<audio class="invitation-audio" id="invitationAudio" src="marathi_voiceover_puck.wav" preload="auto"></audio>
 
 <div class="language-picker">
   <label for="languageSelect" data-i18n="languageLabel">भाषा</label>
@@ -1111,7 +1111,7 @@
             invitationAudio.currentTime = 0;
             invitationAudio.play().catch(function () {});
           }
-        }, 5000);
+        }, 1500);
       });
     }
 

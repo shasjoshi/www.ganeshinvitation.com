@@ -822,7 +822,7 @@ body.invitation-open .door-diya-wrap {
     linear-gradient(180deg, #3d101b 0%, #2f0b14 50%, #250911 100%);
   border: 1px solid var(--gold-border);
   border-radius: 12px;
-  padding: 52px 38px 44px;
+  padding: 82px 52px 70px;
   box-shadow: var(--shadow-elevation);
   overflow: hidden;
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -837,42 +837,20 @@ body.invitation-open .card {
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Traditional Corner Flourishes */
-.corner-flourish {
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  pointer-events: none;
-  opacity: 0.85;
-}
-
-.corner-flourish svg {
-  width: 100%;
-  height: 100%;
-  stroke: var(--gold-primary);
-  fill: none;
-}
-
-.corner-flourish.top-left     { top: 12px; left: 12px; }
-.corner-flourish.top-right    { top: 12px; right: 12px; transform: scaleX(-1); }
-.corner-flourish.bottom-left  { bottom: 12px; left: 12px; transform: scaleY(-1); }
-.corner-flourish.bottom-right { bottom: 12px; right: 12px; transform: scale(-1); }
-
-/* Double Inner Border */
+/* --------------------------------------------------------------------------
+   Royal Golden Ornamental Border for Inner Card
+   -------------------------------------------------------------------------- */
+.card-ornate-border,
 .inner-border {
   position: absolute;
-  inset: 22px;
-  border: 1px solid rgba(217, 164, 65, 0.28);
-  border-radius: 6px;
+  inset: -8px;
+  border-style: solid;
+  border-width: 140px;
+  border-image-source: url('card-border.png');
+  border-image-slice: 210;
+  border-image-repeat: stretch;
   pointer-events: none;
-}
-
-.inner-border::after {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border: 1px dashed rgba(217, 164, 65, 0.16);
-  border-radius: 4px;
+  z-index: 2;
 }
 
 /* Diyas on the Card */
@@ -1320,17 +1298,14 @@ h1.headline {
   }
 
   .card {
-    padding: 38px 20px 32px;
-    border-radius: 8px;
+    padding: 64px 30px 52px;
+    border-radius: 10px;
   }
 
+  .card-ornate-border,
   .inner-border {
-    inset: 12px;
-  }
-
-  .corner-flourish {
-    width: 32px;
-    height: 32px;
+    inset: -5px;
+    border-width: 92px;
   }
 
   .diyas {
@@ -1385,6 +1360,18 @@ h1.headline {
 
   .blessing {
     font-size: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .card {
+    padding: 54px 22px 44px;
+  }
+
+  .card-ornate-border,
+  .inner-border {
+    inset: -4px;
+    border-width: 74px;
   }
 }
 

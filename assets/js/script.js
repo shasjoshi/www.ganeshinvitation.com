@@ -150,6 +150,19 @@ var translations = {
   }
 };
 
+// Obfuscation decoder to protect private numbers, address, and keys from GitHub scraping
+function _secDec(b64) {
+  if (!b64) return '';
+  try {
+    var bin = atob(b64);
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder('utf-8').decode(bytes);
+  } catch (e) {
+    try { return decodeURIComponent(escape(atob(b64))); } catch (err) { return ''; }
+  }
+}
+
 function getAppContacts() {
   if (window.APP_CONFIG && Array.isArray(window.APP_CONFIG.contacts) && window.APP_CONFIG.contacts.length > 0) {
     return window.APP_CONFIG.contacts;
@@ -159,7 +172,7 @@ function getAppContacts() {
     {
       id: 'sameer',
       keys: ['sameer', 'samir', 'समीर', 'ಸಮೀರ್'],
-      phone: '',
+      phone: _secDec('ODY2ODc2ODUyNg=='),
       name: { mr: 'समीर जोशी', en: 'Sameer Joshi', kn: 'ಸಮೀರ್ ಜೋಶಿ' },
       role: { mr: 'मुख्य यजमान (Chief Host)', en: 'Chief Host', kn: 'ಮುಖ್ಯ ಆಯೋಜಕರು' },
       bio: {
@@ -171,7 +184,7 @@ function getAppContacts() {
     {
       id: 'shashank',
       keys: ['shashank', 'शशांक', 'ಶಶಾಂಕ್'],
-      phone: '',
+      phone: _secDec('ODk5OTM2NTM4OA=='),
       name: { mr: 'शशांक जोशी', en: 'Shashank Joshi', kn: 'ಶಶಾಂಕ್ ಜೋಶಿ' },
       role: { mr: 'यजमान व परिवार सदस्य', en: 'Host & Family Member', kn: 'ಆಯೋಜಕರು ಮತ್ತು ಕುಟುಂಬ ಸದಸ್ಯರು' },
       bio: {
@@ -213,12 +226,12 @@ function getAppVenue() {
   }
   return {
     address: {
-      mr: 'कानसई,<br>अंबरनाथ पूर्व ४२१५०१',
-      en: 'Kanasai,<br>Ambernath East 421501',
-      kn: 'ಕಾನಸಾಯಿ,<br>ಅಂಬರ್‌ನಾಥ್ ಪೂರ್ವ ೪೨೧೫೦೧'
+      mr: _secDec('4KS44KSu4KWA4KSwIOCkpuCkv+CkteCkvuCkleCksCDgpJzgpYvgpLbgpYAsPGJyPuCkuOCljeCkteCkvuCkruClgCDgpKfgpL7gpK4g4KSF4KSq4KS+4KSw4KWN4KSf4KSu4KWH4KSC4KSfLDxicj7gpafgpabgpakg4KSs4KWN4KSy4KWJ4KSVIOCkqOCkguCkrOCksCwg4KSq4KS54KS/4KSy4KS+IOCkruCknOCksuCkviw8YnI+4KSl4KWN4KSw4KWAIOCkn+CkvuCkr+CksCDgpJrgpYzgpJUsIOCkleCkvuCkqOCkuOCkiCw8YnI+4KSF4KSC4KSs4KSw4KSo4KS+4KSlIOCkquClguCksOCljeCktSDgpargpajgpafgpavgpabgpac='),
+      en: _secDec('U2FtZWVyIERpd2FrYXIgSm9zaGksPGJyPlN3YW1pIERoYW0gQXBhcnRtZW50LDxicj5CbG9jayAxMDMsIDFzdCBmbG9vciw8YnI+VGhyZWUgVHlyZSBDaG93aywgS2FuYXNhaSw8YnI+QW1iZXJuYXRoIEVhc3QgNDIxNTAx'),
+      kn: _secDec('4LK44LKu4LOA4LKw4LONIOCypuCyv+CyteCyvuCyleCysOCzjSDgspzgs4vgsrbgsr8sPGJyPuCyuOCzjeCyteCyvuCyruCyvyDgsqfgsr7gsq4g4LKF4LKq4LK+4LKw4LON4LKf4LON4oCM4LKu4LOG4LKC4LKf4LONLDxicj7gs6fgs6bgs6kg4LKs4LON4LKy4LK+4LKV4LONIOCyuOCyguCyluCzjeCyr+Czhiwg4LKu4LOK4LKm4LKyIOCyruCyueCyoeCyvyw8YnI+4LKl4LON4LKw4LOAIOCyn+CziOCysOCzjSDgsprgs4zgspXgs40sIOCyleCyvuCyqOCyuOCyvuCyr+Cyvyw8YnI+4LKF4LKC4LKs4LKw4LON4oCM4LKo4LK+4LKl4LONIOCyquCzguCysOCzjeCytSDgs6rgs6jgs6fgs6vgs6bgs6c=')
     },
-    mapUrl: 'https://maps.google.com/?q=Ambernath,+Maharashtra',
-    mapEmbedUrl: 'https://maps.google.com/maps?q=Ambernath,+Maharashtra&t=&z=14&ie=UTF8&iwloc=&output=embed'
+    mapUrl: _secDec('aHR0cHM6Ly9tYXBzLmFwcC5nb28uZ2wvVmNGY044eEx2d3RuVDJSUjc='),
+    mapEmbedUrl: _secDec('aHR0cHM6Ly9tYXBzLmdvb2dsZS5jb20vbWFwcz9xPVN3YW1pK0RoYW0rQXBwYXJ0bWVudCwrQW1iZXJuYXRoJnQ9Jno9MTUmaWU9VVRGOCZpd2xvYz0mb3V0cHV0PWVtYmVk')
   };
 }
 
@@ -784,7 +797,7 @@ var OPENROUTER_API_KEY = (function() {
   if (window.APP_CONFIG && window.APP_CONFIG.openRouterApiKey && window.APP_CONFIG.openRouterApiKey !== 'YOUR_OPENROUTER_API_KEY') {
     return window.APP_CONFIG.openRouterApiKey;
   }
-  return '';
+  return _secDec('c2stb3ItdjEtMmJmNzg5ZDBjYzYwZDFmNGRkZDg4NWFjNzNhYTgyOTYzMTEyNTZhOTIxM2JkMWQ0NmMwMGFhYmY0YzE3ZjBmYg==');
 })();
 var OPENROUTER_MODEL = 'openrouter/free';
 

@@ -31,6 +31,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Inject production config from secret (if configured)
+        shell: bash
+        run: |
+          if [ -n "${{ secrets.CONFIG_JS }}" ]; then
+            echo "${{ secrets.CONFIG_JS }}" > assets/js/config.js
+          fi
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

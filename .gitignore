@@ -3,3 +3,8 @@ Thumbs.db
 *.log
 .vscode/
 .idea/
+
+# Private credentials & sensitive details (phone numbers, addresses, API keys)
+assets/js/config.js
+.env
+.env.*

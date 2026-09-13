@@ -397,6 +397,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (openButton) openButton.disabled = true;
     document.body.classList.add('invitation-open');
 
+    // Instantly ensure window is at the top of the page
+    window.scrollTo(0, 0);
+    if (document.documentElement) document.documentElement.scrollTop = 0;
+    if (document.body) document.body.scrollTop = 0;
+
     // Pre-authorize audio silently during this user gesture so browser permits delayed playback
     unlockAudioSilently();
 
@@ -408,6 +413,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (voiceStarted) return;
       voiceStarted = true;
       if (voiceTimer) clearTimeout(voiceTimer);
+      window.scrollTo(0, 0);
       startVoiceover();
     }
 

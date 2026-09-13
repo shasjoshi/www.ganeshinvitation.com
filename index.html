@@ -177,17 +177,16 @@
         <div class="detail-info">
           <div class="detail-label" data-i18n="locationLabel">स्थळ</div>
           <div class="detail-value">
-            <a class="venue-link" href="https://maps.app.goo.gl/VcFcN8xLvwtnT2pR7" target="_blank" rel="noopener">
-              <span data-i18n="address">समीर दिवाकर जोशी,<br>स्वामी धाम अपार्टमेंट,<br>१०३ ब्लॉक नंबर, पहिला मजला,<br>थ्री टायर चौक,
-                कानसई,<br>अंबरनाथ पूर्व ४२१५०१</span>
+            <a class="venue-link" href="https://maps.google.com/?q=Ambernath,+Maharashtra" target="_blank" rel="noopener">
+              <span data-i18n="address">कानसई,<br>अंबरनाथ पूर्व ४२१५०१</span>
             </a>
 
             <!-- Mini Map Preview Window -->
             <div class="venue-map-window">
               <iframe
                 class="venue-map-iframe"
-                src="https://maps.google.com/maps?q=Swami+Dham+Appartment,+Ambernath&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
-                title="Google Map: Swami Dham Appartment, Ambernath"
+                src="https://maps.google.com/maps?q=Ambernath,+Maharashtra&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                title="Google Map: Ambernath"
                 loading="lazy"
                 allowfullscreen=""
                 referrerpolicy="no-referrer-when-downgrade">
@@ -195,7 +194,7 @@
             </div>
 
             <div>
-              <a class="venue-action-badge" href="https://maps.app.goo.gl/VcFcN8xLvwtnT2pR7" target="_blank"
+              <a class="venue-action-badge" href="https://maps.google.com/?q=Ambernath,+Maharashtra" target="_blank"
                 rel="noopener">
                 <span data-i18n="mapsLabel">गुगल मॅप्सवर पहा</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
@@ -211,11 +210,8 @@
     <!-- RSVP / Contacts -->
     <div class="rsvp">
       <div class="rsvp-title" data-i18n="rsvpTitle">संपर्क</div>
-      <div class="rsvp-value" data-i18n="contacts">
-        समीर जोशी: <a href="tel:8668768526" class="contact-tel">8668768526</a><br>
-        शशांक जोशी: <a href="tel:8999365388" class="contact-tel">8999365388</a><br>
-        ज्योती जोशी: <a href="tel:9309854569" class="contact-tel">9309854569</a><br>
-        सिद्धी जोशी: <a href="tel:9423367844" class="contact-tel">9423367844</a>
+      <div class="rsvp-value" id="rsvpContactsList" data-i18n="contacts">
+        <!-- Contact details dynamically rendered from secure configuration -->
       </div>
     </div>
 
@@ -318,6 +314,8 @@
     </div>
   </div>
 
+  <!-- Configuration loader (Ignored in Git for privacy; fallbacks safely if missing) -->
+  <script src="assets/js/config.js"></script>
   <script src="assets/js/script.js" defer></script>
 </body>
 

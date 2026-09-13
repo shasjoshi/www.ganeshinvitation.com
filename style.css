@@ -343,8 +343,8 @@ html[lang="kn"] .door-copy h2 {
 
 .beam-title {
   margin: 0 8px;
-  font-family: var(--font-display);
-  font-size: 13px;
+  font-family: 'Mukta', 'Noto Sans Kannada', sans-serif;
+  font-size: 13.5px;
   font-weight: 700;
   color: #310711;
   letter-spacing: normal;
@@ -910,9 +910,10 @@ body.invitation-open .card {
 /* Om & Inscriptions */
 .om {
   text-align: center;
-  font-family: var(--font-display);
+  font-family: 'Mukta', 'Noto Sans Kannada', sans-serif;
+  font-weight: 600;
   color: var(--gold-light);
-  font-size: 15.5px;
+  font-size: 16px;
   letter-spacing: normal;
   margin-bottom: 6px;
   text-shadow: 0 0 12px rgba(217, 164, 65, 0.6);
@@ -1105,6 +1106,48 @@ h1.headline {
   width: 12px;
   height: 12px;
   stroke: var(--gold-bright);
+}
+
+/* Location Card alignment with Map */
+.detail-card.location-card {
+  align-items: flex-start;
+}
+
+.detail-card.location-card .detail-icon-wrap {
+  margin-top: 2px;
+}
+
+/* Small Map Window */
+.venue-map-window {
+  margin-top: 10px;
+  margin-bottom: 8px;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(217, 164, 65, 0.35);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  background: #19050c;
+  line-height: 0;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.venue-map-window:hover {
+  border-color: rgba(217, 164, 65, 0.65);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55), 0 0 12px rgba(217, 164, 65, 0.2);
+}
+
+.venue-map-iframe {
+  width: 100%;
+  height: 165px;
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .venue-map-iframe {
+    height: 150px;
+  }
 }
 
 /* --------------------------------------------------------------------------

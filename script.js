@@ -14,7 +14,7 @@ var translations = {
     doorTitle: 'गणपती बाप्पा मोरया',
     doorSubtitle: 'आपल्यासाठी खास आमंत्रण',
     openButton: 'आमंत्रण उघडा',
-    cardMantra: '|| ॐ नमः शिवाय || गणरायाला नमस्कार ||',
+    cardMantra: '|| ॐ नमः शिवाय || श्री गणेशाय नमः ||',
     headline: 'गणपती बाप्पा मोरया',
     invitationTitle: 'मनःपूर्वक आमंत्रण',
     inviteLine: 'अत्यंत आनंदाने आणि भक्तिभावाने',

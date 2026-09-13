@@ -316,10 +316,113 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var scrollTrack = document.querySelector('.scroll-body-track');
 
+  function unlockAudioSilently() {
+    if (!invitationAudio) return;
+    try {
+      invitationAudio.muted = true;
+      var playPromise = invitationAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(function () {
+          invitationAudio.pause();
+          invitationAudio.muted = false;
+          if (invitationAudio.readyState > 0 && isFinite(invitationAudio.duration)) {
+            try { invitationAudio.currentTime = 0; } catch (seekErr) {}
+          }
+          invitationAudio.volume = 1.0;
+        }).catch(function () {
+          invitationAudio.muted = false;
+        });
+      }
+    } catch (e) {
+      try { invitationAudio.muted = false; } catch (err) {}
+    }
+  }
+
+  function startVoiceover() {
+    if (!invitationAudio) return;
+    try {
+      invitationAudio.muted = false;
+      invitationAudio.volume = 1.0;
+
+      if (!invitationAudio.paused && !invitationAudio.ended) {
+        if (audioToggle) audioToggle.classList.add('playing');
+        updateAudioBtnText();
+        return;
+      }
+
+      if (invitationAudio.readyState > 0 && isFinite(invitationAudio.duration)) {
+        try {
+          invitationAudio.currentTime = 0;
+        } catch (seekErr) {}
+      }
+
+      var playPromise = invitationAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(function () {
+          if (audioToggle) audioToggle.classList.add('playing');
+          updateAudioBtnText();
+        }).catch(function (err) {
+          setupInteractionUnlock();
+        });
+      }
+    } catch (e) {
+      setupInteractionUnlock();
+    }
+  }
+
+  function setupInteractionUnlock() {
+    var unlockHandler = function () {
+      if (invitationAudio && invitationAudio.paused) {
+        try {
+          invitationAudio.muted = false;
+          invitationAudio.volume = 1.0;
+          invitationAudio.play().then(function () {
+            if (audioToggle) audioToggle.classList.add('playing');
+            updateAudioBtnText();
+          }).catch(function () {});
+        } catch (err) {}
+      }
+      window.removeEventListener('click', unlockHandler, true);
+      window.removeEventListener('touchstart', unlockHandler, true);
+      window.removeEventListener('pointerup', unlockHandler, true);
+    };
+
+    window.addEventListener('click', unlockHandler, true);
+    window.addEventListener('touchstart', unlockHandler, true);
+    window.addEventListener('pointerup', unlockHandler, true);
+  }
+
   function openLetterScroll() {
     if (document.body.classList.contains('invitation-open')) return;
     if (openButton) openButton.disabled = true;
     document.body.classList.add('invitation-open');
+
+    // Pre-authorize audio silently during this user gesture so browser permits delayed playback
+    unlockAudioSilently();
+
+    // Start voiceover ONLY after the upward scrolling/rolling animation completes!
+    var voiceStarted = false;
+    var voiceTimer = null;
+
+    function playAfterScroll() {
+      if (voiceStarted) return;
+      voiceStarted = true;
+      if (voiceTimer) clearTimeout(voiceTimer);
+      startVoiceover();
+    }
+
+    if (scrollTrack) {
+      scrollTrack.addEventListener('animationend', function (e) {
+        if (e.animationName === 'parchmentRollUp' || e.target === scrollTrack) {
+          playAfterScroll();
+        }
+      }, { once: true });
+    }
+
+    // Safety timer matching scroll roll-up completion (~1.25s)
+    voiceTimer = window.setTimeout(function () {
+      playAfterScroll();
+    }, 1250);
 
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (flowerBurst && !reduce) {
@@ -350,28 +453,174 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       }, 1150);
     }
+  }
 
-    window.setTimeout(function () {
-      if (invitationAudio) {
-        invitationAudio.currentTime = 0;
-        invitationAudio.play().then(function () {
-          if (audioToggle) audioToggle.classList.add('playing');
-          updateAudioBtnText();
-        }).catch(function () {
-          // Autoplay might be restricted in some browsers
-        });
+  // Dynamic Touch & Drag Gesture to Scroll Up the Vertical Letter
+  if (scrollTrack) {
+    var isDragging = false;
+    var startY = 0;
+    var currentY = 0;
+    var hasMoved = false;
+    var lastY = 0;
+    var lastTime = 0;
+    var velocityY = 0;
+    var activePointerId = null;
+
+    function onPointerDown(e) {
+      if (document.body.classList.contains('invitation-open')) return;
+      if (e.button !== undefined && e.button !== 0) return;
+
+      isDragging = true;
+      hasMoved = false;
+      var clientY = (e.touches && e.touches[0]) ? e.touches[0].clientY : e.clientY;
+      startY = clientY;
+      currentY = clientY;
+      lastY = clientY;
+      lastTime = Date.now();
+      velocityY = 0;
+      activePointerId = e.pointerId !== undefined ? e.pointerId : null;
+
+      scrollTrack.classList.add('is-dragging');
+      scrollTrack.style.transition = 'none';
+
+      try {
+        if (scrollTrack.setPointerCapture && e.pointerId !== undefined) {
+          scrollTrack.setPointerCapture(e.pointerId);
+        }
+      } catch (err) {}
+    }
+
+    function onPointerMove(e) {
+      if (!isDragging) return;
+      if (activePointerId !== null && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
+
+      var clientY = (e.touches && e.touches[0]) ? e.touches[0].clientY : e.clientY;
+      var deltaY = clientY - startY;
+      var now = Date.now();
+      var dt = now - lastTime;
+      if (dt > 10) {
+        velocityY = (clientY - lastY) / dt;
+        lastY = clientY;
+        lastTime = now;
       }
-    }, 1400);
+
+      if (Math.abs(deltaY) > 5) {
+        hasMoved = true;
+      }
+
+      // If dragging upward (deltaY < 0), translate the vertical letter up directly with touch/pointer
+      // If dragging down (deltaY > 0), add rubber-band resistance
+      var moveY = deltaY < 0 ? deltaY : (deltaY * 0.2);
+
+      // Max upward drag before it auto-rolls up
+      if (moveY < -280) {
+        moveY = -280;
+      }
+
+      scrollTrack.style.setProperty('--scroll-current-y', moveY + 'px');
+      scrollTrack.style.transform = 'translateY(' + moveY + 'px)';
+    }
+
+    function onPointerUp(e) {
+      if (!isDragging) return;
+      if (activePointerId !== null && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
+
+      isDragging = false;
+      scrollTrack.classList.remove('is-dragging');
+
+      try {
+        if (scrollTrack.releasePointerCapture && e.pointerId !== undefined) {
+          scrollTrack.releasePointerCapture(e.pointerId);
+        }
+      } catch (err) {}
+
+      var clientY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : e.clientY;
+      if (clientY === undefined) clientY = currentY;
+      var deltaY = clientY - startY;
+
+      // If user scrolled/dragged upward by > 45px or swiped/flicked upward
+      if (deltaY < -45 || (deltaY < -15 && velocityY < -0.3)) {
+        scrollTrack.style.transform = '';
+        scrollTrack.style.transition = '';
+        openLetterScroll();
+      } else if (!hasMoved) {
+        // Direct tap/click without dragging
+        scrollTrack.style.setProperty('--scroll-current-y', '0px');
+        scrollTrack.style.transform = '';
+        scrollTrack.style.transition = '';
+        openLetterScroll();
+      } else {
+        // Dragged insufficiently -> smoothly spring back to initial hanging position
+        scrollTrack.style.transition = 'transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)';
+        scrollTrack.style.transform = 'translateY(0px)';
+        scrollTrack.style.setProperty('--scroll-current-y', '0px');
+        setTimeout(function () {
+          if (!document.body.classList.contains('invitation-open')) {
+            scrollTrack.style.transition = '';
+            scrollTrack.style.transform = '';
+          }
+        }, 360);
+      }
+    }
+
+    function onPointerCancel(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      scrollTrack.classList.remove('is-dragging');
+      scrollTrack.style.transition = 'transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)';
+      scrollTrack.style.transform = 'translateY(0px)';
+      scrollTrack.style.setProperty('--scroll-current-y', '0px');
+      setTimeout(function () {
+        if (!document.body.classList.contains('invitation-open')) {
+          scrollTrack.style.transition = '';
+          scrollTrack.style.transform = '';
+        }
+      }, 360);
+    }
+
+    // Pointer Events API (Unified touch, mouse & stylus support)
+    if (window.PointerEvent) {
+      scrollTrack.addEventListener('pointerdown', onPointerDown);
+      scrollTrack.addEventListener('pointermove', onPointerMove);
+      scrollTrack.addEventListener('pointerup', onPointerUp);
+      scrollTrack.addEventListener('pointercancel', onPointerCancel);
+    }
+    
+    // Also bind direct touch & mouse events for maximum cross-browser audio permission compatibility
+    scrollTrack.addEventListener('touchstart', onPointerDown, { passive: true });
+    scrollTrack.addEventListener('touchmove', onPointerMove, { passive: true });
+    scrollTrack.addEventListener('touchend', onPointerUp, { passive: true });
+    scrollTrack.addEventListener('touchcancel', onPointerCancel, { passive: true });
+    scrollTrack.addEventListener('mousedown', onPointerDown);
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup', onPointerUp);
+
+    // Prevent click conflict if dragged
+    scrollTrack.addEventListener('click', function (e) {
+      if (hasMoved) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      openLetterScroll();
+    });
+
+    // Trackpad / Mouse Wheel gesture support
+    scrollTrack.addEventListener('wheel', function (e) {
+      if (document.body.classList.contains('invitation-open')) return;
+      if (e.deltaY > 15 || e.deltaY < -15) {
+        scrollTrack.style.setProperty('--scroll-current-y', '0px');
+        scrollTrack.style.transform = '';
+        openLetterScroll();
+      }
+    }, { passive: true });
   }
 
   if (openButton) {
-    openButton.addEventListener('click', openLetterScroll);
-  }
-  if (scrollTrack) {
-    scrollTrack.addEventListener('click', function(e) {
-      // Don't trigger twice if the button itself was clicked
-      if (e.target && (e.target.closest('#openInvitation') || e.target.id === 'openInvitation')) {
-        return;
+    openButton.addEventListener('click', function (e) {
+      if (scrollTrack) {
+        scrollTrack.style.setProperty('--scroll-current-y', '0px');
+        scrollTrack.style.transform = '';
       }
       openLetterScroll();
     });

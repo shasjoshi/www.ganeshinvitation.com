@@ -8,24 +8,17 @@ var translations = {
     pageTitle: 'गणेश चतुर्थी आमंत्रण',
     languageLabel: 'भाषा',
     doorAria: 'गणेश आमंत्रण उघडा',
-    doorMantra: '|| ॐ नमः शिवाय ||',
-    greeting: 'नमस्कार',
-    doorBlessing: 'परमपूज्य गुरुदेवता श्री कलावती आई यांच्या आशीर्वादाने दरवर्षीप्रमाणे यावर्षीही आपण गणेशाची स्थापना करीत आहोत.',
-    doorTitle: 'गणपती बाप्पा मोरया',
-    doorSubtitle: 'आपल्यासाठी खास आमंत्रण',
     openButton: 'आमंत्रण उघडा',
     cardMantra: '|| ॐ नमः शिवाय || श्री गणेशाय नमः ||',
     headline: 'गणपती बाप्पा मोरया',
     invitationTitle: 'मनःपूर्वक आमंत्रण',
-    inviteLine: 'अत्यंत आनंदाने आणि भक्तिभावाने',
-    inviteBody: 'आपणास व आपल्या परिवारास <strong>गणेश चतुर्थी</strong><br>उत्सवासाठी सहर्ष आमंत्रित करत आहोत.',
-    hostNames: 'जोशी परिवार',
+    inviteUnifiedText: 'परमपूज्य गुरुदेवता श्री कलावती आई यांच्या आशीर्वादाने दरवर्षीप्रमाणे यावर्षीही आपण गणेशाची स्थापना करीत आहोत.<br>अत्यंत आनंदाने आणि भक्तिभावाने<br><span class="host-name-inline">जोशी परिवार</span><br>आपणास व आपल्या परिवारास <strong>गणेश चतुर्थी</strong><br>उत्सवासाठी सहर्ष आमंत्रित करत आहोत.',
     dateLabel: 'तारीख',
     dateValue: 'सोमवार, १४ सप्टेंबर २०२६ ते शनिवार, १९ सप्टेंबर २०२६',
     timeLabel: 'वेळ',
     timeValue: 'सकाळची आरती: ११ ते १२ दरम्यान केली जाईल<br>सायंकाळची आरती: ८ ते ९ दरम्यान केली जाईल',
     locationLabel: 'स्थळ',
-    address: 'स्वामी धाम अपार्टमेंट,<br>१०३ ब्लॉक नंबर, पहिला मजला,<br>थ्री टायर चौक, कंसई,<br>अंबरनाथ पूर्व ४२१५०१',
+    address: 'समीर दिवाकर जोशी,<br>स्वामी धाम अपार्टमेंट,<br>१०३ ब्लॉक नंबर, पहिला मजला,<br>थ्री टायर चौक, कानसई,<br>अंबरनाथ पूर्व ४२१५०१',
     mapsLabel: 'गुगल मॅप्सवर पहा',
     programTitle: 'कार्यक्रम',
     pranLabel: 'प्राणप्रतिष्ठा',
@@ -63,24 +56,17 @@ var translations = {
     pageTitle: 'Ganesh Chaturthi Invitation',
     languageLabel: 'Language',
     doorAria: 'Open Ganesh invitation',
-    doorMantra: '|| Om Namah Shivaya ||',
-    greeting: 'Namaskar',
-    doorBlessing: 'With the blessings of our revered Gurudevta Shri Kalavati Aai, as every year, we are installing Ganpati this year too.',
-    doorTitle: 'Ganpati Bappa Morya',
-    doorSubtitle: 'A special invitation for you',
     openButton: 'Open Invitation',
     cardMantra: '|| Om Namah Shivaya || Shri Ganeshaya Namah ||',
     headline: 'Ganpati Bappa Morya',
     invitationTitle: 'A heartfelt invitation',
-    inviteLine: 'With great joy and devotion',
-    inviteBody: 'You and your family are cordially invited<br>to our <strong>Ganesh Chaturthi</strong> celebration.',
-    hostNames: 'Joshi Parivar',
+    inviteUnifiedText: 'With the divine blessings of our revered Gurudevta Shri Kalavati Aai, as every year, we are establishing Lord Ganesha this year too.<br>With immense joy and devotion,<br><span class="host-name-inline">Joshi Parivar</span><br>cordially invites you and your family to the<br><strong>Ganesh Chaturthi</strong> celebrations.',
     dateLabel: 'Date',
     dateValue: 'Monday, September 14, 2026 to Saturday, September 19, 2026',
     timeLabel: 'Time',
     timeValue: 'Morning aarti: between 11 and 12<br>Evening aarti: between 8 and 9',
     locationLabel: 'Location',
-    address: 'Swami Dham Apartment,<br>Block 103, 1st floor,<br>Three Tyre Chowk, Kansai,<br>Ambernath East 421501',
+    address: 'Sameer Diwakar Joshi,<br>Swami Dham Apartment,<br>Block 103, 1st floor,<br>Three Tyre Chowk, Kanasai,<br>Ambernath East 421501',
     mapsLabel: 'View on Google Maps',
     programTitle: 'Programme',
     pranLabel: 'Pranpratishtha',
@@ -118,24 +104,17 @@ var translations = {
     pageTitle: 'ಗಣೇಶ ಚತುರ್ಥಿ ಆಮಂತ್ರಣ',
     languageLabel: 'ಭಾಷೆ',
     doorAria: 'ಗಣೇಶ ಆಮಂತ್ರಣ ತೆರೆಯಿರಿ',
-    doorMantra: '|| ಓಂ ನಮಃ ಶಿವಾಯ ||',
-    greeting: 'ನಮಸ್ಕಾರ',
-    doorBlessing: 'ಪರಮಪೂಜ್ಯ ಗುರುದೇವತೆ ಶ್ರೀ ಕಲಾವತಿ ಆಯಿಯವರ ಆಶೀರ್ವಾದದಿಂದ ಪ್ರತಿವರ್ಷದಂತೆ ಈ ವರ್ಷವೂ ನಾವು ಗಣೇಶನ ಪ್ರತಿಷ್ಠಾಪನೆ ಮಾಡುತ್ತಿದ್ದೇವೆ.',
-    doorTitle: 'ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ',
-    doorSubtitle: 'ನಿಮಗಾಗಿ ವಿಶೇಷ ಆಮಂತ್ರಣ',
     openButton: 'ಆಮಂತ್ರಣ ತೆರೆಯಿರಿ',
     cardMantra: '|| ಓಂ ನಮಃ ಶಿವಾಯ || ಶ್ರೀ ಗಣೇಶಾಯ ನಮಃ ||',
     headline: 'ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ',
     invitationTitle: 'ಸಹರ್ಷ ಆಮಂತ್ರಣ',
-    inviteLine: 'ಅತ್ಯಂತ ಸಂತೋಷದಿಂದ ಮತ್ತು ಭಕ್ತಿಭಾವದಿಂದ',
-    inviteBody: 'ನಿಮ್ಮನ್ನು ಮತ್ತು ನಿಮ್ಮ ಕುಟುಂಬವನ್ನು <strong>ಗಣೇಶ ಚತುರ್ಥಿ</strong><br>ಉತ್ಸವಕ್ಕೆ ಆತ್ಮೀಯವಾಗಿ ಆಹ್ವಾನಿಸುತ್ತೇವೆ.',
-    hostNames: 'ಜೋಶಿ ಕುಟುಂಬ',
+    inviteUnifiedText: 'ಪರಮಪೂಜ್ಯ ಗುರುದೇವತೆ ಶ್ರೀ ಕಲಾವತಿ ಆಯಿಯವರ ಆಶೀರ್ವಾದದಿಂದ ಪ್ರತಿವರ್ಷದಂತೆ ಈ ವರ್ಷವೂ ನಾವು ಗಣೇಶನ ಪ್ರತಿಷ್ಠಾಪನೆ ಮಾಡುತ್ತಿದ್ದೇವೆ.<br>ಅತ್ಯಂತ ಸಂತೋಷದಿಂದ ಮತ್ತು ಭಕ್ತಿಭಾವದಿಂದ<br><span class="host-name-inline">ಜೋಶಿ ಕುಟುಂಬ</span><br>ನಿಮ್ಮನ್ನು ಮತ್ತು ನಿಮ್ಮ ಕುಟುಂಬವನ್ನು <strong>ಗಣೇಶ ಚತುರ್ಥಿ</strong><br>ಉತ್ಸವಕ್ಕೆ ಆತ್ಮೀಯವಾಗಿ ಆಹ್ವಾನಿಸುತ್ತೇವೆ.',
     dateLabel: 'ದಿನಾಂಕ',
     dateValue: 'ಸೋಮವಾರ, ಸೆಪ್ಟೆಂಬರ್ 14, 2026 ರಿಂದ ಶನಿವಾರ, ಸೆಪ್ಟೆಂಬರ್ 19, 2026',
     timeLabel: 'ಸಮಯ',
     timeValue: 'ಬೆಳಗಿನ ಆರತಿ: ೧೧ ರಿಂದ ೧೨ರ ನಡುವೆ ನಡೆಯಲಿದೆ<br>ಸಂಜೆಯ ಆರತಿ: ೮ ರಿಂದ ೯ರ ನಡುವೆ ನಡೆಯಲಿದೆ',
     locationLabel: 'ಸ್ಥಳ',
-    address: 'ಸ್ವಾಮಿ ಧಾಮ ಅಪಾರ್ಟ್‌ಮೆಂಟ್,<br>೧೦೩ ಬ್ಲಾಕ್ ಸಂಖ್ಯೆ, ಮೊದಲ ಮಹಡಿ,<br>ಥ್ರೀ ಟೈರ್ ಚೌಕ್, ಕನ್ಸಾಯಿ,<br>ಅಂಬರ್‌ನಾಥ್ ಪೂರ್ವ ೪೨೧೫೦೧',
+    address: 'ಸಮೀರ್ ದಿವಾಕರ್ ಜೋಶಿ,<br>ಸ್ವಾಮಿ ಧಾಮ ಅಪಾರ್ಟ್‌ಮೆಂಟ್,<br>೧೦೩ ಬ್ಲಾಕ್ ಸಂಖ್ಯೆ, ಮೊದಲ ಮಹಡಿ,<br>ಥ್ರೀ ಟೈರ್ ಚೌಕ್, ಕಾನಸಾಯಿ,<br>ಅಂಬರ್‌ನಾಥ್ ಪೂರ್ವ ೪೨೧೫೦೧',
     mapsLabel: 'ಗೂಗಲ್ ಮ್ಯಾಪ್ಸ್‌ನಲ್ಲಿ ನೋಡಿ',
     programTitle: 'ಕಾರ್ಯಕ್ರಮ',
     pranLabel: 'ಪ್ರಾಣಪ್ರತಿಷ್ಠೆ',
@@ -226,6 +205,21 @@ function setLanguage(language) {
     updateChatWelcomeLanguage();
   }
 
+  // Handle calligraphy button language display
+  var calligraphyImg = document.querySelector('.calligraphy-ink-img');
+  var altLangText = document.querySelector('.calligraphy-alt-lang');
+  if (calligraphyImg && altLangText) {
+    altLangText.classList.remove('lang-mr', 'lang-en', 'lang-kn');
+    altLangText.classList.add('lang-' + language);
+    if (language === 'mr') {
+      calligraphyImg.style.display = 'block';
+      altLangText.style.display = 'none';
+    } else {
+      calligraphyImg.style.display = 'none';
+      altLangText.style.display = 'inline-block';
+    }
+  }
+
   // Update invitation voiceover track according to selected language
   updateInvitationAudioTrack(language);
 
@@ -233,9 +227,9 @@ function setLanguage(language) {
 }
 
 var languageAudioMap = {
-  mr: 'voice/Bappa-Darshan-Marathi-Invitation-Joshi-Family.wav',
-  en: 'voice/Bappa-Darshan-English-Invitation-Joshi-Family.wav',
-  kn: 'voice/Ganesha-Darshan-Kannada-Invitation-Joshi-Family.wav'
+  mr: 'assets/audio/Bappa-Darshan-Marathi-Invitation-Joshi-Family.wav',
+  en: 'assets/audio/Bappa-Darshan-English-Invitation-Joshi-Family.wav',
+  kn: 'assets/audio/Ganesha-Darshan-Kannada-Invitation-Joshi-Family.wav'
 };
 
 function updateInvitationAudioTrack(language) {
@@ -320,21 +314,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  if (openButton) {
-    openButton.addEventListener('click', function () {
-      openButton.disabled = true;
-      document.body.classList.add('invitation-open');
+  var scrollTrack = document.querySelector('.scroll-body-track');
 
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (flowerBurst && !reduce) {
+  function openLetterScroll() {
+    if (document.body.classList.contains('invitation-open')) return;
+    if (openButton) openButton.disabled = true;
+    document.body.classList.add('invitation-open');
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (flowerBurst && !reduce) {
+      window.setTimeout(function () {
+        flowerBurst.innerHTML = '';
         var flowerColors = ['#F0CE85', '#D9A441', '#F2A93B', '#FFFFFF', '#E65100'];
-        for (var flowerIndex = 0; flowerIndex < 52; flowerIndex++) {
+        for (var flowerIndex = 0; flowerIndex < 56; flowerIndex++) {
           var flower = document.createElement('span');
           flower.className = 'burst-flower';
           flower.textContent = flowerIndex % 4 === 0 ? '✿' : (flowerIndex % 2 === 0 ? '✦' : '❃');
           flower.style.color = flowerColors[flowerIndex % flowerColors.length];
-          flower.style.setProperty('--x', ((Math.random() - 0.5) * 440) + 'px');
-          flower.style.setProperty('--y', ((Math.random() - 0.55) * 540) + 'px');
+          flower.style.setProperty('--x', ((Math.random() - 0.5) * 460) + 'px');
+          flower.style.setProperty('--y', ((Math.random() - 0.55) * 560) + 'px');
           flower.style.setProperty('--rotation', ((Math.random() - 0.5) * 560) + 'deg');
           flower.style.animationDelay = (Math.random() * 0.25) + 's';
           flowerBurst.appendChild(flower);
@@ -350,19 +348,32 @@ document.addEventListener('DOMContentLoaded', function () {
           wordElement.style.animationDelay = (0.12 + wordIndex * 0.16) + 's';
           flowerBurst.appendChild(wordElement);
         });
-      }
+      }, 1150);
+    }
 
-      window.setTimeout(function () {
-        if (invitationAudio) {
-          invitationAudio.currentTime = 0;
-          invitationAudio.play().then(function () {
-            if (audioToggle) audioToggle.classList.add('playing');
-            updateAudioBtnText();
-          }).catch(function () {
-            // Autoplay might be restricted in some browsers
-          });
-        }
-      }, 1400);
+    window.setTimeout(function () {
+      if (invitationAudio) {
+        invitationAudio.currentTime = 0;
+        invitationAudio.play().then(function () {
+          if (audioToggle) audioToggle.classList.add('playing');
+          updateAudioBtnText();
+        }).catch(function () {
+          // Autoplay might be restricted in some browsers
+        });
+      }
+    }, 1400);
+  }
+
+  if (openButton) {
+    openButton.addEventListener('click', openLetterScroll);
+  }
+  if (scrollTrack) {
+    scrollTrack.addEventListener('click', function(e) {
+      // Don't trigger twice if the button itself was clicked
+      if (e.target && (e.target.closest('#openInvitation') || e.target.id === 'openInvitation')) {
+        return;
+      }
+      openLetterScroll();
     });
   }
 
@@ -427,7 +438,7 @@ var GANESH_SYSTEM_PROMPT =
   "- Visarjan (विसर्जन): Saturday, 19 September 2026 evening (शनिवार, १९ सप्टेंबर २०२६, सायंकाळी)\n" +
   "- Daily Morning Aarti: Between 11:00 AM and 12:00 PM (सकाळी ११ ते १२ दरम्यान)\n" +
   "- Daily Evening Aarti: Between 8:00 PM and 9:00 PM (सायंकाळी ८ ते ९ दरम्यान)\n" +
-  "- Venue / Address: Swami Dham Apartment, Block 103, 1st Floor, Three Tyre Chowk, Kansai, Ambernath East 421501 (स्वामी धाम अपार्टमेंट, १०३ ब्लॉक नंबर, पहिला मजला, थ्री टायर चौक, कंसई, अंबरनाथ पूर्व ४२१५०१)\n" +
+  "- Venue / Address: Sameer Diwakar Joshi, Swami Dham Apartment, Block 103, 1st Floor, Three Tyre Chowk, Kanasai, Ambernath East 421501 (समीर दिवाकर जोशी, स्वामी धाम अपार्टमेंट, १०३ ब्लॉक नंबर, पहिला मजला, थ्री टायर चौक, कानसई, अंबरनाथ पूर्व ४२१५०१)\n" +
   "- Google Maps Link: https://maps.app.goo.gl/VcFcN8xLvwtnT2pR7\n" +
   "- Contact Persons & Numbers:\n" +
   "  * Sameer Joshi (समीर जोशी): 8668768526\n" +
@@ -607,21 +618,24 @@ function getLocalSmartAnswer(query, lang) {
   if (q.indexOf('पत्ता') !== -1 || q.indexOf('patta') !== -1 || q.indexOf('स्थळ') !== -1 || q.indexOf('sthal') !== -1 || q.indexOf('address') !== -1 || q.indexOf('venue') !== -1 || q.indexOf('location') !== -1 || q.indexOf('kothe') !== -1 || q.indexOf('कुठे') !== -1 || q.indexOf('kuthe') !== -1 || q.indexOf('map') !== -1 || q.indexOf('maps') !== -1 || q.indexOf('नकाशा') !== -1 || q.indexOf('ambernath') !== -1 || q.indexOf('अंबरनाथ') !== -1 || q.indexOf('ಮ್ಯಾಪ್') !== -1 || q.indexOf('ಸ್ಥಳ') !== -1 || q.indexOf('ವಿಳಾಸ') !== -1) {
     if (lang === 'mr') {
       return "📍 **उत्सवाचे स्थळ व पत्ता:**\n\n" +
+             "समीर दिवाकर जोशी,\n" +
              "स्वामी धाम अपार्टमेंट, १०३ ब्लॉक नंबर, पहिला मजला,\n" +
-             "थ्री टायर चौक, कंसई,\n" +
+             "थ्री टायर चौक, कानसई,\n" +
              "अंबरनाथ पूर्व ४२१५०१\n\n" +
              "🗺️ **Google Maps लिंक:** https://maps.app.goo.gl/VcFcN8xLvwtnT2pR7\n\n" +
              "आपले सहर्ष स्वागत आहे!";
     } else if (lang === 'kn') {
       return "📍 **ಸ್ಥಳ ಮತ್ತು ವಿಳಾಸ:**\n\n" +
+             "ಸಮೀರ್ ದಿವಾಕರ್ ಜೋಶಿ,\n" +
              "ಸ್ವಾಮಿ ಧಾಮ ಅಪಾರ್ಟ್‌ಮೆಂಟ್, ೧೦೩ ಬ್ಲಾಕ್ ಸಂಖ್ಯೆ, ಮೊದಲ ಮಹಡಿ,\n" +
-             "ಥ್ರೀ ಟೈರ್ ಚೌಕ್, ಕನ್ಸಾಯಿ,\n" +
+             "ಥ್ರೀ ಟೈರ್ ಚೌಕ್, ಕಾನಸಾಯಿ,\n" +
              "ಅಂಬರ್‌ನಾಥ್ ಪೂರ್ವ ೪೨೧೫೦೧\n\n" +
              "🗺️ **Google Maps ಲಿಂಕ್:** https://maps.app.goo.gl/VcFcN8xLvwtnT2pR7";
     } else {
       return "📍 **Celebration Venue & Address:**\n\n" +
+             "Sameer Diwakar Joshi,\n" +
              "Swami Dham Apartment, Block 103, 1st floor,\n" +
-             "Three Tyre Chowk, Kansai,\n" +
+             "Three Tyre Chowk, Kanasai,\n" +
              "Ambernath East 421501\n\n" +
              "🗺️ **Google Maps:** https://maps.app.goo.gl/VcFcN8xLvwtnT2pR7\n\n" +
              "We warmly await your gracious presence!";
@@ -854,6 +868,23 @@ var JOSHI_CONTACTS = [
              "• Bappa's Darshan is open throughout the day for everyone.\n" +
              "• Sacred Prasad will be distributed to all devotees following the Aarti ceremonies.\n\n" +
              "Mangalmurti Morya! 🙏";
+    }
+  }
+
+  // Gurudevta Shri Kalavati Aai blessings query
+  if (q.indexOf('कलावती') !== -1 || q.indexOf('kalavati') !== -1 || q.indexOf('गुरुदेवता') !== -1 || q.indexOf('gurudevta') !== -1 || q.indexOf('आशीर्वाद') !== -1 || q.indexOf('blessing') !== -1 || q.indexOf('ಕಲಾವತಿ') !== -1 || q.indexOf('शिव') !== -1 || q.indexOf('शिवाय') !== -1) {
+    if (lang === 'mr') {
+      return "🙏 **|| ॐ नमः शिवाय ||**\n\n" +
+             "परमपूज्य गुरुदेवता श्री कलावती आई यांच्या पावन आशीर्वादाने दरवर्षीप्रमाणे यावर्षीही जोशी परिवारातर्फे श्री गणेशाची मंगलमय स्थापना करण्यात येत आहे.\n\n" +
+             "गणपती बाप्पा मोरया! 🌸";
+    } else if (lang === 'kn') {
+      return "🙏 **|| ಓಂ ನಮಃ ಶಿವಾಯ ||**\n\n" +
+             "ಪರಮಪೂಜ್ಯ ಗುರುದೇವತೆ ಶ್ರೀ ಕಲಾವತಿ ಆಯಿಯವರ ದಿವ್ಯ ಆಶೀರ್ವಾದದಿಂದ ಪ್ರತಿವರ್ಷದಂತೆ ಈ ವರ್ಷವೂ ಜೋಶಿ ಕುಟುಂಬದಿಂದ ಶ್ರೀ ಗಣೇಶನ ಮಂಗಳಕರ ಪ್ರತಿಷ್ಠಾಪನೆ ನಡೆಯುತ್ತಿದೆ.\n\n" +
+             "ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ! 🌸";
+    } else {
+      return "🙏 **|| Om Namah Shivaya ||**\n\n" +
+             "With the divine blessings of our revered Gurudevta Shri Kalavati Aai, as every year, the Joshi family is establishing Lord Ganesha this year too.\n\n" +
+             "Ganpati Bappa Morya! 🌸";
     }
   }
 

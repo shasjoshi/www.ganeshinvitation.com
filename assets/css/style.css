@@ -28,7 +28,6 @@
   
   /* Shadows & Elevations */
   --shadow-elevation: 0 25px 70px rgba(0, 0, 0, 0.7), 0 0 45px rgba(217, 164, 65, 0.12);
-  --door-shadow: 0 30px 90px rgba(0, 0, 0, 0.85);
   
   /* Typography */
   --font-body: 'Mukta', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -71,10 +70,9 @@ body {
 html[lang="kn"] body,
 html[lang="kn"] .headline,
 html[lang="kn"] .sanskrit-line,
-html[lang="kn"] .host-name,
+html[lang="kn"] .host-name-inline,
 html[lang="kn"] .program-title,
-html[lang="kn"] .blessing,
-html[lang="kn"] .door-copy h2 {
+html[lang="kn"] .blessing {
   font-family: var(--font-kannada);
 }
 
@@ -205,501 +203,316 @@ html[lang="kn"] .door-copy h2 {
 }
 
 /* --------------------------------------------------------------------------
-   Entrance / Grand Royal Temple Doorway (Mahadwar)
+   Entrance / Royal Scroll Letter Front Screen (राजेशाही आमंत्रण पत्रिका)
    -------------------------------------------------------------------------- */
-.door-screen {
+.letter-screen {
   position: fixed;
   inset: 0;
   z-index: 20;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1) 0.25s, visibility 0s linear 0.8s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px 14px;
+  background-color: #1a0409;
+  background-image:
+    radial-gradient(ellipse at 50% 20%, rgba(243, 210, 142, 0.16) 0%, transparent 55%),
+    radial-gradient(circle at 50% 82%, rgba(193, 68, 14, 0.22) 0%, transparent 60%),
+    radial-gradient(circle at 12% 18%, rgba(77, 21, 35, 0.75) 0%, transparent 45%),
+    radial-gradient(circle at 88% 82%, rgba(59, 15, 26, 0.75) 0%, transparent 45%),
+    linear-gradient(135deg, #160307 0%, #2f0812 50%, #130206 100%);
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1) 0.8s, visibility 0s linear 1.45s;
 }
 
-.door-screen::after {
+.letter-screen::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 0;
-  background:
-    radial-gradient(circle at 50% 30%, rgba(243, 210, 142, 0.16) 0%, transparent 45%),
-    radial-gradient(circle at 50% 85%, rgba(193, 68, 14, 0.18) 0%, transparent 55%),
-    linear-gradient(135deg, #120307 0%, #2b0811 50%, #110206 100%);
-  transition: opacity 0.9s ease 1s;
+  background-image:
+    radial-gradient(rgba(217, 164, 65, 0.07) 1px, transparent 1px),
+    radial-gradient(rgba(193, 68, 14, 0.05) 1px, transparent 1px);
+  background-size: 26px 26px;
+  background-position: 0 0, 13px 13px;
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity 0.8s ease 0.6s;
 }
 
-.door-screen::before {
+.letter-screen::before {
   content: "";
   position: absolute;
-  inset: 5vh 7vw;
-  border: 1px solid rgba(217, 164, 65, 0.3);
-  box-shadow: 0 0 0 12px rgba(217, 164, 65, 0.03), inset 0 0 90px rgba(0, 0, 0, 0.7);
+  inset: 0;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
   z-index: 0;
-  pointer-events: none;
-  transition: opacity 0.8s ease 1.6s;
+  transition: opacity 0.8s ease 0.8s;
 }
 
-.doorway {
+/* Stage that holds Lord Ganesha resting on top frame and the hanging Royal Scroll */
+.letter-stage {
   position: relative;
-  width: min(88vw, 440px);
-  height: min(76vh, 660px);
-  min-height: 600px;
-  perspective: 1500px;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(92vw, 440px);
+  margin: auto;
+  perspective: 1200px;
 }
 
-/* Divine Halo & Ganesha Ledge Positioning */
-.door-ganesha-wrapper {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: calc(100% - 118px);
-  width: min(78vw, 290px);
-  z-index: 5;
-  pointer-events: none;
+/* Divine Lord Ganesha GIF (Firmly touches and rests directly on top frame of the vertical letter) */
+.letter-ganesha-wrapper {
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  transition: opacity 0.5s ease;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: -8px; /* Firmly seated directly on top of the golden rod frame */
+  z-index: 12;
+  pointer-events: none;
 }
 
 .divine-halo {
   position: absolute;
-  top: -15px;
+  top: 48%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 260px;
-  height: 260px;
+  transform: translate(-50%, -50%);
+  width: 295px;
+  height: 295px;
   border-radius: 50%;
-  background:
-    radial-gradient(circle, rgba(255, 238, 180, 0.65) 0%, rgba(243, 210, 142, 0.35) 35%, rgba(217, 164, 65, 0.15) 60%, transparent 75%);
-  filter: blur(10px);
-  animation: haloPulse 3.8s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(255, 238, 180, 0.75) 0%, rgba(243, 210, 142, 0.45) 35%, rgba(217, 164, 65, 0.18) 60%, transparent 75%);
+  filter: blur(12px);
+  animation: haloPulse 3.6s ease-in-out infinite;
   z-index: -1;
 }
 
 @keyframes haloPulse {
-  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.85; }
-  50%      { transform: translateX(-50%) scale(1.1); opacity: 1; }
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.85; }
+  50%      { transform: translate(-50%, -50%) scale(1.12); opacity: 1; }
 }
 
-.door-ganesha {
-  width: 100%;
+.letter-ganesha {
+  width: 230px;
+  max-width: 54vw;
   height: auto;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 0 20px rgba(217, 164, 65, 0.45)) drop-shadow(0 14px 18px rgba(0, 0, 0, 0.6));
+  margin-bottom: 0;
+  filter: drop-shadow(0 0 24px rgba(217, 164, 65, 0.7)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.85));
+  /* Resting firmly on the rod frame */
 }
 
-/* Grand Temple Arch Frame */
-.door-frame {
-  position: absolute;
-  top: 112px;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: 10px solid #D9A441;
-  border-bottom: 24px solid #A8731D;
-  border-radius: 8px 8px 0 0;
-  background:
-    radial-gradient(circle at 50% 45%, rgba(243, 210, 142, 0.18), transparent 65%),
-    #1f0810;
-  box-shadow:
-    0 0 0 2px rgba(255, 235, 170, 0.5),
-    0 0 0 6px rgba(217, 164, 65, 0.3),
-    inset 0 0 30px rgba(0, 0, 0, 0.8),
-    var(--door-shadow);
-  transition: opacity 0.8s ease 1.6s;
-  z-index: 1;
-}
-
-/* Ornate Toran Lintel Bar */
-.door-toran-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 6;
-  pointer-events: none;
-}
-
-.toran-beam {
-  height: 22px;
-  background: linear-gradient(180deg, #FFEAA8 0%, #D9A441 50%, #8F5E12 100%);
-  border-bottom: 1.5px solid #573303;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
-}
-
-.beam-knot {
-  color: #380D17;
-  font-size: 11px;
-  opacity: 0.8;
-}
-
-.beam-title {
-  margin: 0 8px;
-  font-family: 'Mukta', 'Noto Sans Kannada', sans-serif;
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #310711;
-  letter-spacing: normal;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
-}
-
-.toran-garland {
-  width: 100%;
-  height: 26px;
-  display: block;
-  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.45));
-}
-
-/* Authentic Carved Palace / Temple Door Panels */
-.door-panel {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 50%;
-  pointer-events: none;
-  transform-style: preserve-3d;
-  transition: transform 1.35s cubic-bezier(0.7, 0, 0.2, 1);
-  backface-visibility: hidden;
-  z-index: 2;
-  overflow: hidden;
-  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.7);
-}
-
-.door-panel.left {
-  left: 0;
-  transform-origin: left center;
-  border-right: 2px solid #E5B04F;
-}
-
-.door-panel.right {
-  right: 0;
-  transform-origin: right center;
-  border-left: 2px solid #E5B04F;
-}
-
-.panel-surface {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(135deg, #3d101c 0%, #290812 50%, #1c050c 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 26px 12px 42px;
-}
-
-.carved-panel-box {
-  flex: 1;
-  margin: 6px 0;
-  background: linear-gradient(145deg, #481320 0%, #2c0912 60%, #1a040a 100%);
-  border: 1.5px solid rgba(217, 164, 65, 0.4);
-  border-radius: 5px;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.65), 0 2px 4px rgba(0, 0, 0, 0.4);
+/* Royal Scroll Assembly (राजेशाही निमंत्रण पत्रिका) */
+.royal-scroll-assembly {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.carved-panel-box::after {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border: 1px dashed rgba(243, 210, 142, 0.18);
-  border-radius: 3px;
-  pointer-events: none;
-}
-
-.brass-rosette {
-  color: var(--gold-bright);
-  font-size: 15px;
-  text-shadow: 0 0 10px rgba(217, 164, 65, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9);
-}
-
-/* Traditional Brass Ring Handles (Kadi) */
-.door-handle {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 42px;
+  width: 100%;
+  max-width: 440px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 4;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.6));
-}
-
-.door-panel.left .door-handle {
-  right: 6px;
-}
-
-.door-panel.right .door-handle {
-  left: 6px;
-}
-
-.handle-base {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #FFF0C2 0%, #D9A441 55%, #8F5E12 100%);
-  border: 1px solid #FFE6A3;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-}
-
-.handle-ring {
-  width: 18px;
-  height: 24px;
-  margin-top: -6px;
-  border: 3.5px solid #D9A441;
-  border-radius: 50%;
-  background: transparent;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.5);
-  border-top-color: #FFF0C2;
-  border-bottom-color: #8F5E12;
-}
-
-/* Traditional Base Glowing Samai / Brass Diyas */
-.door-diya-wrap {
-  position: absolute;
-  bottom: 8px;
-  z-index: 4;
-  width: 58px;
-  height: 50px;
-  pointer-events: none;
-}
-
-.door-diya-wrap.left  { left: 10px; }
-.door-diya-wrap.right { right: 10px; }
-
-.diya-light-halo {
-  position: absolute;
-  width: 85px;
-  height: 85px;
-  top: -24px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 193, 7, 0.4) 0%, rgba(242, 169, 59, 0.18) 45%, transparent 70%);
-  filter: blur(8px);
-  animation: flamePulse 1.8s ease-in-out infinite;
-}
-
-.brass-diya-svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.65));
-}
-
-.diya-flame-aura {
-  animation: flamePulse 1.4s ease-in-out infinite;
-  transform-origin: 30px 15px;
-}
-
-.diya-flame-outer {
-  animation: flameWiggle 1.5s ease-in-out infinite;
-  transform-origin: 30px 30px;
-}
-
-.diya-flame-inner {
-  animation: flameWiggleInner 1.3s ease-in-out infinite;
-  transform-origin: 30px 27px;
-}
-
-@keyframes flamePulse {
-  0%, 100% { opacity: 0.85; transform: scale(1); }
-  50%      { opacity: 1; transform: scale(1.1); }
-}
-
-@keyframes flameWiggle {
-  0%, 100% { transform: scaleY(1) rotate(0deg); }
-  25%      { transform: scaleY(1.08) rotate(-2deg); }
-  50%      { transform: scaleY(0.95) rotate(1.5deg); }
-  75%      { transform: scaleY(1.04) rotate(-1deg); }
-}
-
-@keyframes flameWiggleInner {
-  0%, 100% { transform: scaleY(1) rotate(0deg); opacity: 1; }
-  50%      { transform: scaleY(1.1) rotate(-1deg); opacity: 0.9; }
-}
-
-/* Royal Festive Cartouche (Door Invitation Content) */
-.door-copy {
-  position: absolute;
-  z-index: 5;
-  top: 50%;
-  left: 50%;
-  width: 92%;
-  max-width: 380px;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  pointer-events: auto;
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-
-.door-cartouche {
-  position: relative;
-  background: rgba(22, 5, 10, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(217, 164, 65, 0.45);
-  border-radius: 12px;
-  padding: 22px 18px 24px;
-  box-shadow:
-    0 16px 45px rgba(0, 0, 0, 0.75),
-    0 0 35px rgba(217, 164, 65, 0.16),
-    inset 0 0 30px rgba(0, 0, 0, 0.6);
-}
-
-.cartouche-corner {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border: 2px solid var(--gold-primary);
-  opacity: 0.8;
-}
-
-.cartouche-corner.tl { top: 6px; left: 6px; border-right: none; border-bottom: none; }
-.cartouche-corner.tr { top: 6px; right: 6px; border-left: none; border-bottom: none; }
-.cartouche-corner.bl { bottom: 6px; left: 6px; border-right: none; border-top: none; }
-.cartouche-corner.br { bottom: 6px; right: 6px; border-left: none; border-top: none; }
-
-.door-mantra {
-  color: var(--gold-bright);
-  font-family: var(--font-display);
-  font-size: 15px;
-  letter-spacing: normal;
-  margin-bottom: 6px;
-  text-shadow: 0 0 14px rgba(217, 164, 65, 0.7);
-}
-
-.door-greeting-wrap {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-.greeting-sparkle {
-  color: var(--gold-bright);
-  font-size: 12px;
-  text-shadow: 0 0 10px var(--gold-primary);
-}
-
-.door-greeting {
-  font-size: 19px;
-  font-weight: 600;
-  letter-spacing: normal;
-  color: var(--gold-light);
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-}
-
-.door-blessing {
-  max-width: 320px;
-  margin: 0 auto 12px;
-  color: var(--ivory-muted);
-  font-size: 13px;
-  line-height: 1.5;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-}
-
-.door-title {
-  margin: 0 0 4px;
-  font: 400 clamp(28px, 6vw, 36px)/1.2 var(--font-display);
-  background: linear-gradient(135deg, #FFF5D6 0%, #F5CE7A 35%, #D9A441 70%, #A8731D 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 8px rgba(217, 164, 65, 0.5));
-}
-
-.door-subtitle {
-  margin: 0 0 18px;
-  color: var(--ivory-muted);
-  font-size: 14.5px;
-  letter-spacing: normal;
-}
-
-/* Opulent 3D Royal Gold Open Button */
-.open-button {
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: 1.5px solid #FFE082;
-  border-radius: 30px;
-  padding: 12px 28px;
-  color: #2a070f;
-  background: linear-gradient(135deg, #FFF0C2 0%, #F5CE7A 40%, #D9A441 75%, #B37D20 100%);
-  font: 700 15px/1 var(--font-body);
-  letter-spacing: normal;
-  cursor: pointer;
-  box-shadow:
-    0 0 0 4px rgba(217, 164, 65, 0.25),
-    0 8px 24px rgba(0, 0, 0, 0.55),
-    inset 0 1px 1px rgba(255, 255, 255, 0.7);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  animation: buttonGlow 2s ease-in-out infinite;
-}
-
-.btn-diya-icon {
-  font-size: 14px;
-  line-height: 1;
-}
-
-.btn-shine {
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(60deg, transparent 40%, rgba(255, 255, 255, 0.55) 50%, transparent 60%);
-  transform: translateX(-100%);
-  animation: shimmerSweep 3s infinite;
-  pointer-events: none;
-}
-
-.open-button:hover,
-.open-button:focus-visible {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow:
-    0 0 0 6px rgba(217, 164, 65, 0.35),
-    0 0 35px rgba(243, 210, 142, 0.85),
-    0 12px 28px rgba(0, 0, 0, 0.65);
+  filter: drop-shadow(0 18px 45px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 25px rgba(217, 164, 65, 0.2));
+  border: none;
   outline: none;
 }
 
-@keyframes buttonGlow {
+/* Top Suspension Rod Frame */
+.scroll-rod-wrap {
+  position: relative;
+  width: 100%;
+  z-index: 11;
+  display: block;
+  line-height: 0;
+  border: none;
+  outline: none;
+}
+
+.scroll-rod-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: none;
+  outline: none;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.65));
+}
+
+/* Scroll Body Viewport (Hangs directly under the top rod, rolls upward into it) */
+.scroll-body-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: -2px; /* Seamless union under the top rod */
+  z-index: 5;
+  border: none;
+  outline: none;
+}
+
+/* Scroll Body Track (Holds parchment, letters, and calligraphy trigger that roll up together) */
+.scroll-body-track {
+  position: relative;
+  width: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.scroll-body-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: none;
+  outline: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Calligraphic Inscribed Open Trigger (Situated inside the letter parchment, matching royal calligraphy) */
+.calligraphy-open-trigger {
+  position: absolute;
+  top: 61%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 82%;
+  z-index: 10;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.28s cubic-bezier(0.2, 0, 0, 1), filter 0.28s ease;
+  animation: calligraphyPulse 3.2s ease-in-out infinite;
+}
+
+/* Authentic Marathi Devanagari Calligraphy Handwriting Image */
+.calligraphy-ink-img {
+  width: 225px;
+  max-width: 48vw;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 1px 1px rgba(255, 240, 190, 0.7));
+  transition: transform 0.28s ease, filter 0.28s ease;
+}
+
+/* Subtle sacred golden aura pulse inviting touch */
+@keyframes calligraphyPulse {
   0%, 100% {
-    box-shadow:
-      0 0 0 4px rgba(217, 164, 65, 0.25),
-      0 8px 24px rgba(0, 0, 0, 0.5);
+    transform: translateX(-50%) scale(1);
+    filter: drop-shadow(0 0 6px rgba(217, 164, 65, 0.45));
   }
   50% {
-    box-shadow:
-      0 0 0 7px rgba(217, 164, 65, 0.4),
-      0 0 30px rgba(243, 210, 142, 0.75),
-      0 10px 24px rgba(0, 0, 0, 0.5);
+    transform: translateX(-50%) scale(1.04);
+    filter: drop-shadow(0 0 16px rgba(242, 169, 59, 0.85)) drop-shadow(0 2px 5px rgba(88, 13, 29, 0.35));
   }
 }
 
-@keyframes shimmerSweep {
-  0% { transform: translateX(-100%); }
-  35%, 100% { transform: translateX(100%); }
+.calligraphy-open-trigger:hover,
+.calligraphy-open-trigger:focus-visible {
+  transform: translateX(-50%) scale(1.08);
+  filter: drop-shadow(0 0 22px rgba(243, 210, 142, 0.95)) drop-shadow(0 2px 8px rgba(88, 13, 29, 0.5));
 }
 
-/* Sparkles on Door */
+.calligraphy-open-trigger:active {
+  transform: translateX(-50%) scale(0.97);
+}
+
+/* Alternate language text (English and Kannada calligraphy inscriptions - ZERO background) */
+.calligraphy-alt-lang {
+  display: inline-block;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: #580d1d;
+  white-space: nowrap;
+  text-align: center;
+  user-select: none;
+  pointer-events: none;
+  transition: transform 0.28s ease, filter 0.28s ease, color 0.28s ease;
+}
+
+/* English Authentic Calligraphy Cursive Flourish Script */
+.calligraphy-alt-lang.lang-en {
+  font-family: 'Great Vibes', 'Alex Brush', cursive, serif;
+  font-size: clamp(34px, 8.8vw, 45px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 1.2px;
+  color: #580d1d;
+  text-shadow:
+    0 0 1px rgba(88, 13, 29, 0.9),
+    0 1px 2px rgba(255, 240, 190, 0.7);
+  filter: drop-shadow(0 0 8px rgba(217, 164, 65, 0.45));
+}
+
+/* Calligraphy Flourish Underline for English */
+.calligraphy-alt-lang.lang-en::after {
+  content: "";
+  display: block;
+  width: 84%;
+  height: 2px;
+  margin: -2px auto 0;
+  background: radial-gradient(ellipse at center, #6b1225 0%, #8f5e12 50%, transparent 95%);
+  opacity: 0.75;
+  border-radius: 2px;
+}
+
+/* Kannada Authentic Calligraphy Serif Script */
+.calligraphy-alt-lang.lang-kn {
+  font-family: 'Noto Serif Kannada', 'Noto Sans Kannada', serif;
+  font-size: clamp(21px, 5.5vw, 27px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.8px;
+  color: #580d1d;
+  text-shadow:
+    0 0 1px rgba(88, 13, 29, 0.9),
+    0 1px 2px rgba(255, 240, 190, 0.7);
+  filter: drop-shadow(0 0 8px rgba(217, 164, 65, 0.45));
+}
+
+/* Calligraphy Flourish Underline for Kannada */
+.calligraphy-alt-lang.lang-kn::after {
+  content: "";
+  display: block;
+  width: 78%;
+  height: 2px;
+  margin: 3px auto 0;
+  background: radial-gradient(ellipse at center, #6b1225 0%, #8f5e12 50%, transparent 95%);
+  opacity: 0.75;
+  border-radius: 2px;
+}
+
+.calligraphy-open-trigger:hover .calligraphy-alt-lang,
+.calligraphy-open-trigger:focus-visible .calligraphy-alt-lang {
+  color: #420815;
+  text-shadow:
+    0 0 14px rgba(243, 210, 142, 0.95),
+    0 0 2px rgba(66, 8, 21, 0.95),
+    0 1px 2px rgba(255, 240, 190, 0.8);
+}
+
+/* Ambient Sparkles */
 .spark-field {
   position: absolute;
   inset: 0;
@@ -722,38 +535,48 @@ html[lang="kn"] .door-copy h2 {
 }
 
 /* --------------------------------------------------------------------------
-   Door Opening State Transitions
+   Scroll Roll-Up Transitions (Parchment rolls smoothly up with letters into rod)
    -------------------------------------------------------------------------- */
-body.invitation-open .door-screen {
+body.invitation-open .scroll-body-track {
+  animation: parchmentRollUp 1.35s cubic-bezier(0.45, 0, 0.25, 1) forwards;
+}
+
+@keyframes parchmentRollUp {
+  0% {
+    transform: translateY(0);
+  }
+  15% {
+    transform: translateY(-5%);
+  }
+  50% {
+    transform: translateY(-52%);
+  }
+  100% {
+    transform: translateY(-105%);
+  }
+}
+
+/* After rolling up, the entire front screen and top rod fade out */
+body.invitation-open .letter-screen {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
+  transition: opacity 0.5s ease 1.3s, visibility 0s linear 1.85s;
 }
 
-body.invitation-open .door-screen::after,
-body.invitation-open .door-screen::before,
-body.invitation-open .door-frame {
+body.invitation-open .letter-screen::after,
+body.invitation-open .letter-screen::before {
   opacity: 0;
 }
 
-body.invitation-open .door-panel.left {
-  transform: rotateY(-115deg);
+body.invitation-open .letter-ganesha-wrapper,
+body.invitation-open .scroll-rod-wrap {
+  animation: rodFinishFade 0.45s ease 1.25s forwards;
 }
 
-body.invitation-open .door-panel.right {
-  transform: rotateY(115deg);
-}
-
-body.invitation-open .door-copy {
-  opacity: 0;
-  transform: translate(-50%, -46%) scale(0.94);
-}
-
-body.invitation-open .door-ganesha-wrapper,
-body.invitation-open .door-toran-bar,
-body.invitation-open .door-diya-wrap {
-  opacity: 0;
-  transition: opacity 0.4s ease 0.2s;
+@keyframes rodFinishFade {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-30px); }
 }
 
 /* --------------------------------------------------------------------------
@@ -846,7 +669,7 @@ body.invitation-open .card {
   inset: -8px;
   border-style: solid;
   border-width: 140px;
-  border-image-source: url('card-border.png');
+  border-image-source: url('../images/card-border.png');
   border-image-slice: 210;
   border-image-repeat: stretch;
   pointer-events: none;
@@ -943,34 +766,30 @@ h1.headline {
   box-shadow: 0 0 10px var(--vermillion);
 }
 
-.invite-line {
+/* Unified Royal Invitation Text (Single continuous harmonious message) */
+.invite-unified-text {
   text-align: center;
-  font-size: 16.5px;
-  line-height: 1.65;
+  font-size: clamp(15.5px, 3.8vw, 17.5px);
+  line-height: 2.1;
   color: var(--ivory);
-  margin: 0 0 4px;
+  margin: 18px auto 26px;
+  max-width: 500px;
+  padding: 0 12px;
+  letter-spacing: 0.25px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
 
-.host-name {
-  text-align: center;
+.invite-unified-text .host-name-inline {
+  display: inline-block;
   font-family: var(--font-display);
-  font-size: 28px;
+  font-size: clamp(25px, 6vw, 32px);
   color: var(--gold-bright);
-  margin: 6px 0 18px;
-  text-shadow: 0 0 14px rgba(217, 164, 65, 0.45);
+  line-height: 1.5;
+  margin: 6px 0;
+  text-shadow: 0 0 18px rgba(217, 164, 65, 0.6), 0 1px 2px rgba(0, 0, 0, 0.85);
 }
 
-.invite-body {
-  text-align: center;
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--ivory-muted);
-  margin: 0 auto 20px;
-  max-width: 460px;
-  padding: 0 8px;
-}
-
-.invite-body strong {
+.invite-unified-text strong {
   color: var(--gold-light);
   font-weight: 600;
 }
@@ -1322,14 +1141,16 @@ h1.headline {
     font-size: 30px;
   }
 
-  .host-name {
-    font-size: 24px;
-    margin: 4px 0 14px;
+  .invite-unified-text {
+    font-size: 14.5px;
+    line-height: 1.85;
+    margin: 14px auto 20px;
+    padding: 0 6px;
   }
 
-  .invite-body {
-    font-size: 14.5px;
-    line-height: 1.65;
+  .invite-unified-text .host-name-inline {
+    font-size: 24px;
+    margin: 4px 0;
   }
 
   .detail-card {
@@ -1375,58 +1196,42 @@ h1.headline {
   }
 }
 
-/* Ultra-compact / short-height screens (landscape or tiny phones) */
-@media (max-width: 600px) and (max-height: 650px) {
-  .doorway {
-    height: 96vh;
-    min-height: 0;
+/* Ultra-compact / short-height screens (landscape or compact phones) */
+@media (max-width: 600px) and (max-height: 720px) {
+  .letter-stage {
+    width: min(90vw, 340px);
   }
 
-  .door-frame {
-    top: 72px;
+  .letter-ganesha-wrapper {
+    margin-bottom: -7px;
   }
 
-  .door-ganesha-wrapper {
-    width: min(70vw, 210px);
-    bottom: calc(100% - 76px);
+  .letter-ganesha {
+    width: 185px;
+    max-width: 48vw;
   }
 
   .divine-halo {
+    width: 235px;
+    height: 235px;
+  }
+
+  .calligraphy-open-trigger {
+    width: auto;
+    max-width: 85%;
+    top: 61%;
+  }
+
+  .calligraphy-ink-img {
     width: 180px;
-    height: 180px;
   }
 
-  .door-copy {
-    width: 95%;
+  .calligraphy-alt-lang.lang-en {
+    font-size: 32px;
   }
 
-  .door-cartouche {
-    padding: 14px 12px 16px;
-  }
-
-  .door-title {
-    font-size: 22px;
-    margin-bottom: 2px;
-  }
-
-  .door-greeting {
-    font-size: 15px;
-  }
-
-  .door-blessing {
-    font-size: 11.5px;
-    margin-bottom: 8px;
-    line-height: 1.35;
-  }
-
-  .door-subtitle {
-    margin: 0 0 10px;
-    font-size: 12.5px;
-  }
-
-  .open-button {
-    padding: 9px 20px;
-    font-size: 13px;
+  .calligraphy-alt-lang.lang-kn {
+    font-size: 20px;
   }
 }
 
@@ -1436,8 +1241,7 @@ h1.headline {
 @media (prefers-reduced-motion: reduce) {
   .petal,
   .spark,
-  .open-button,
-  .btn-shine,
+  .calligraphy-open-trigger,
   .burst-flower,
   .burst-word,
   .diya-flame,
@@ -1453,19 +1257,17 @@ h1.headline {
     display: none;
   }
 
-  .door-panel,
-  .door-copy,
-  .door-frame,
-  .door-screen::after,
-  .door-screen::before,
-  .door-ganesha-wrapper,
-  .door-toran-bar,
-  .door-diya-wrap,
+  .letter-screen,
+  .scroll-rod-wrap,
+  .royal-scroll-assembly,
+  .letter-ganesha-wrapper,
+  .letter-screen::after,
+  .letter-screen::before,
   .card {
     transition: none !important;
   }
 
-  body.invitation-open .door-screen {
+  body.invitation-open .letter-screen {
     display: none !important;
   }
 

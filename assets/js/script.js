@@ -150,18 +150,6 @@ var translations = {
   }
 };
 
-// Obfuscation decoder to protect private numbers, address, and keys from GitHub scraping
-function _secDec(b64) {
-  if (!b64) return '';
-  try {
-    var bin = atob(b64);
-    var bytes = new Uint8Array(bin.length);
-    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-    return new TextDecoder('utf-8').decode(bytes);
-  } catch (e) {
-    try { return decodeURIComponent(escape(atob(b64))); } catch (err) { return ''; }
-  }
-}
 
 function getAppContacts() {
   if (window.APP_CONFIG && Array.isArray(window.APP_CONFIG.contacts) && window.APP_CONFIG.contacts.length > 0) {
@@ -172,7 +160,7 @@ function getAppContacts() {
     {
       id: 'sameer',
       keys: ['sameer', 'samir', 'समीर', 'ಸಮೀರ್'],
-      phone: _secDec('ODY2ODc2ODUyNg=='),
+      phone: '',
       name: { mr: 'समीर जोशी', en: 'Sameer Joshi', kn: 'ಸಮೀರ್ ಜೋಶಿ' },
       role: { mr: 'मुख्य यजमान (Chief Host)', en: 'Chief Host', kn: 'ಮುಖ್ಯ ಆಯೋಜಕರು' },
       bio: {
@@ -184,7 +172,7 @@ function getAppContacts() {
     {
       id: 'shashank',
       keys: ['shashank', 'शशांक', 'ಶಶಾಂಕ್'],
-      phone: _secDec('ODk5OTM2NTM4OA=='),
+      phone: '',
       name: { mr: 'शशांक जोशी', en: 'Shashank Joshi', kn: 'ಶಶಾಂಕ್ ಜೋಶಿ' },
       role: { mr: 'यजमान व परिवार सदस्य', en: 'Host & Family Member', kn: 'ಆಯೋಜಕರು ಮತ್ತು ಕುಟುಂಬ ಸದಸ್ಯರು' },
       bio: {
@@ -226,20 +214,20 @@ function getAppVenue() {
   }
   return {
     address: {
-      mr: _secDec('4KS44KSu4KWA4KSwIOCkpuCkv+CkteCkvuCkleCksCDgpJzgpYvgpLbgpYAsPGJyPuCkuOCljeCkteCkvuCkruClgCDgpKfgpL7gpK4g4KSF4KSq4KS+4KSw4KWN4KSf4KSu4KWH4KSC4KSfLDxicj7gpafgpabgpakg4KSs4KWN4KSy4KWJ4KSVIOCkqOCkguCkrOCksCwg4KSq4KS54KS/4KSy4KS+IOCkruCknOCksuCkviw8YnI+4KSl4KWN4KSw4KWAIOCkn+CkvuCkr+CksCDgpJrgpYzgpJUsIOCkleCkvuCkqOCkuOCkiCw8YnI+4KSF4KSC4KSs4KSw4KSo4KS+4KSlIOCkquClguCksOCljeCktSDgpargpajgpafgpavgpabgpac='),
-      en: _secDec('U2FtZWVyIERpd2FrYXIgSm9zaGksPGJyPlN3YW1pIERoYW0gQXBhcnRtZW50LDxicj5CbG9jayAxMDMsIDFzdCBmbG9vciw8YnI+VGhyZWUgVHlyZSBDaG93aywgS2FuYXNhaSw8YnI+QW1iZXJuYXRoIEVhc3QgNDIxNTAx'),
-      kn: _secDec('4LK44LKu4LOA4LKw4LONIOCypuCyv+CyteCyvuCyleCysOCzjSDgspzgs4vgsrbgsr8sPGJyPuCyuOCzjeCyteCyvuCyruCyvyDgsqfgsr7gsq4g4LKF4LKq4LK+4LKw4LON4LKf4LON4oCM4LKu4LOG4LKC4LKf4LONLDxicj7gs6fgs6bgs6kg4LKs4LON4LKy4LK+4LKV4LONIOCyuOCyguCyluCzjeCyr+Czhiwg4LKu4LOK4LKm4LKyIOCyruCyueCyoeCyvyw8YnI+4LKl4LON4LKw4LOAIOCyn+CziOCysOCzjSDgsprgs4zgspXgs40sIOCyleCyvuCyqOCyuOCyvuCyr+Cyvyw8YnI+4LKF4LKC4LKs4LKw4LON4oCM4LKo4LK+4LKl4LONIOCyquCzguCysOCzjeCytSDgs6rgs6jgs6fgs6vgs6bgs6c=')
+      mr: 'कानसई,<br>अंबरनाथ पूर्व ४२१५०१',
+      en: 'Kanasai,<br>Ambernath East 421501',
+      kn: 'ಕಾನಸಾಯಿ,<br>ಅಂಬರ್‌ನಾಥ್ ಪೂರ್ವ ೪೨೧೫೦೧'
     },
-    mapUrl: _secDec('aHR0cHM6Ly9tYXBzLmFwcC5nb28uZ2wvVmNGY044eEx2d3RuVDJSUjc='),
-    mapEmbedUrl: _secDec('aHR0cHM6Ly9tYXBzLmdvb2dsZS5jb20vbWFwcz9xPVN3YW1pK0RoYW0rQXBwYXJ0bWVudCwrQW1iZXJuYXRoJnQ9Jno9MTUmaWU9VVRGOCZpd2xvYz0mb3V0cHV0PWVtYmVk')
+    mapUrl: 'https://maps.google.com/?q=Ambernath,+Maharashtra',
+    mapEmbedUrl: 'https://maps.google.com/maps?q=Ambernath,+Maharashtra&t=&z=14&ie=UTF8&iwloc=&output=embed'
   };
 }
 
 function renderContactsHtml(language) {
   var contactsList = getAppContacts();
   return contactsList
-    .filter(function(c) { return c && c.phone && c.phone.trim() !== ''; })
-    .map(function(c) {
+    .filter(function (c) { return c && c.phone && c.phone.trim() !== ''; })
+    .map(function (c) {
       var name = (c.name && (c.name[language] || c.name.mr)) || '';
       var phone = c.phone || '';
       var cleanTel = phone.replace(/[^0-9+]/g, '');
@@ -255,7 +243,7 @@ function setLanguage(language) {
   var selected = translations[language] || translations.mr;
   document.documentElement.lang = language;
   document.title = selected.pageTitle;
-  
+
   // Dynamically sync address & contacts from secure configuration
   var venueData = getAppVenue();
   if (venueData && venueData.address) {
@@ -266,12 +254,12 @@ function setLanguage(language) {
   // Dynamically update Google Maps links and embed iframe from secure config
   if (venueData) {
     if (venueData.mapUrl) {
-      document.querySelectorAll('.venue-link, .venue-action-badge').forEach(function(link) {
+      document.querySelectorAll('.venue-link, .venue-action-badge').forEach(function (link) {
         link.setAttribute('href', venueData.mapUrl);
       });
     }
     if (venueData.mapEmbedUrl) {
-      document.querySelectorAll('.venue-map-iframe').forEach(function(iframe) {
+      document.querySelectorAll('.venue-map-iframe').forEach(function (iframe) {
         if (iframe.getAttribute('src') !== venueData.mapEmbedUrl) {
           iframe.setAttribute('src', venueData.mapEmbedUrl);
         }
@@ -284,7 +272,7 @@ function setLanguage(language) {
     var value = selected[key];
     if (value !== undefined) element.innerHTML = value;
   });
-  
+
   document.querySelectorAll('[data-i18n-attr]').forEach(function (element) {
     element.getAttribute('data-i18n-attr').split(',').forEach(function (item) {
       var parts = item.split(':');
@@ -373,7 +361,7 @@ function updateInvitationAudioTrack(language) {
       invitationAudio.play().then(function () {
         if (audioToggle) audioToggle.classList.add('playing');
         updateAudioBtnText();
-      }).catch(function () {});
+      }).catch(function () { });
     }
   }
 }
@@ -411,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function () {
         invitationAudio.play().then(function () {
           audioToggle.classList.add('playing');
           updateAudioBtnText();
-        }).catch(function () {});
+        }).catch(function () { });
       } else {
         invitationAudio.pause();
         audioToggle.classList.remove('playing');
@@ -447,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function () {
           invitationAudio.pause();
           invitationAudio.muted = false;
           if (invitationAudio.readyState > 0 && isFinite(invitationAudio.duration)) {
-            try { invitationAudio.currentTime = 0; } catch (seekErr) {}
+            try { invitationAudio.currentTime = 0; } catch (seekErr) { }
           }
           invitationAudio.volume = 1.0;
         }).catch(function () {
@@ -455,7 +443,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       }
     } catch (e) {
-      try { invitationAudio.muted = false; } catch (err) {}
+      try { invitationAudio.muted = false; } catch (err) { }
     }
   }
 
@@ -474,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (invitationAudio.readyState > 0 && isFinite(invitationAudio.duration)) {
         try {
           invitationAudio.currentTime = 0;
-        } catch (seekErr) {}
+        } catch (seekErr) { }
       }
 
       var playPromise = invitationAudio.play();
@@ -500,8 +488,8 @@ document.addEventListener('DOMContentLoaded', function () {
           invitationAudio.play().then(function () {
             if (audioToggle) audioToggle.classList.add('playing');
             updateAudioBtnText();
-          }).catch(function () {});
-        } catch (err) {}
+          }).catch(function () { });
+        } catch (err) { }
       }
       window.removeEventListener('click', unlockHandler, true);
       window.removeEventListener('touchstart', unlockHandler, true);
@@ -614,7 +602,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (scrollTrack.setPointerCapture && e.pointerId !== undefined) {
           scrollTrack.setPointerCapture(e.pointerId);
         }
-      } catch (err) {}
+      } catch (err) { }
     }
 
     function onPointerMove(e) {
@@ -659,7 +647,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (scrollTrack.releasePointerCapture && e.pointerId !== undefined) {
           scrollTrack.releasePointerCapture(e.pointerId);
         }
-      } catch (err) {}
+      } catch (err) { }
 
       var clientY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : e.clientY;
       if (clientY === undefined) clientY = currentY;
@@ -712,7 +700,7 @@ document.addEventListener('DOMContentLoaded', function () {
       scrollTrack.addEventListener('pointerup', onPointerUp);
       scrollTrack.addEventListener('pointercancel', onPointerCancel);
     }
-    
+
     // Also bind direct touch & mouse events for maximum cross-browser audio permission compatibility
     scrollTrack.addEventListener('touchstart', onPointerDown, { passive: true });
     scrollTrack.addEventListener('touchmove', onPointerMove, { passive: true });
@@ -793,11 +781,11 @@ document.addEventListener('DOMContentLoaded', function () {
    AI Chatbot & Voice Assistant Logic (Powered by OpenRouter Free Model)
    ========================================================================== */
 
-var OPENROUTER_API_KEY = (function() {
+var OPENROUTER_API_KEY = (function () {
   if (window.APP_CONFIG && window.APP_CONFIG.openRouterApiKey && window.APP_CONFIG.openRouterApiKey !== 'YOUR_OPENROUTER_API_KEY') {
     return window.APP_CONFIG.openRouterApiKey;
   }
-  return _secDec('c2stb3ItdjEtMmJmNzg5ZDBjYzYwZDFmNGRkZDg4NWFjNzNhYTgyOTYzMTEyNTZhOTIxM2JkMWQ0NmMwMGFhYmY0YzE3ZjBmYg==');
+  return '';
 })();
 var OPENROUTER_MODEL = 'openrouter/free';
 
@@ -805,7 +793,7 @@ function buildGaneshSystemPrompt() {
   var contactsList = getAppContacts();
   var venueData = getAppVenue();
 
-  var contactLines = contactsList.map(function(c) {
+  var contactLines = contactsList.map(function (c) {
     var enName = (c.name && c.name.en) || '';
     var mrName = (c.name && c.name.mr) || '';
     var phone = c.phone || '';
@@ -855,7 +843,7 @@ function formatChatText(text) {
   var safe = text
     .replace(/<br\s*\/?>/gi, '\n')
     .replace(/<\/?(strong|b)>/gi, '**');
-  
+
   // Escape angle brackets for security
   safe = safe
     .replace(/&/g, '&amp;')
@@ -907,8 +895,8 @@ function cleanTextForSpeech(text) {
 
 // Pre-load speech synthesis voices
 if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-  window.speechSynthesis.onvoiceschanged = function() {
-    try { window.speechSynthesis.getVoices(); } catch (e) {}
+  window.speechSynthesis.onvoiceschanged = function () {
+    try { window.speechSynthesis.getVoices(); } catch (e) { }
   };
 }
 
@@ -937,12 +925,12 @@ function speakText(text, onStart, onEnd) {
 
   // Pre-fetch and choose best available voice
   var voices = window.speechSynthesis.getVoices() || [];
-  var match = voices.find(function(v) {
+  var match = voices.find(function (v) {
     return v.lang && (v.lang === utterance.lang || v.lang.replace('_', '-') === utterance.lang || v.lang.indexOf(currentLang) === 0);
   });
   if (!match && currentLang === 'mr') {
     // Marathi fallback to Hindi voice if Marathi voice isn't installed on the system
-    match = voices.find(function(v) { return v.lang && (v.lang.indexOf('hi') === 0 || (v.name && v.name.toLowerCase().indexOf('hindi') !== -1) || (v.name && v.name.toLowerCase().indexOf('marathi') !== -1)); });
+    match = voices.find(function (v) { return v.lang && (v.lang.indexOf('hi') === 0 || (v.name && v.name.toLowerCase().indexOf('hindi') !== -1) || (v.name && v.name.toLowerCase().indexOf('marathi') !== -1)); });
   }
   if (match) utterance.voice = match;
 
@@ -952,11 +940,11 @@ function speakText(text, onStart, onEnd) {
   if (typeof onStart === 'function') {
     utterance.onstart = onStart;
   }
-  utterance.onend = function() {
+  utterance.onend = function () {
     currentSpeechUtterance = null;
     if (typeof onEnd === 'function') onEnd();
   };
-  utterance.onerror = function() {
+  utterance.onerror = function () {
     currentSpeechUtterance = null;
     if (typeof onEnd === 'function') onEnd();
   };
@@ -979,24 +967,24 @@ function stopSpeech() {
  */
 function getLocalSmartAnswer(query, lang) {
   var q = (query || '').toLowerCase();
-  
+
   // Aarti / Timings query
   if (q.indexOf('आरती') !== -1 || q.indexOf('aarti') !== -1 || q.indexOf('arti') !== -1 || q.indexOf('time') !== -1 || q.indexOf('timing') !== -1 || q.indexOf('वेळ') !== -1 || q.indexOf('vel') !== -1 || q.indexOf('वाजता') !== -1 || q.indexOf('vasta') !== -1 || q.indexOf('ಆರತಿ') !== -1 || q.indexOf('ಸಮಯ') !== -1) {
     if (lang === 'mr') {
       return "🌸 **दैनिक आरतीची वेळ:**\n\n" +
-             "• **सकाळची आरती:** सकाळी ११:०० ते १२:०० दरम्यान\n" +
-             "• **सायंकाळची आरती:** रात्री ८:०० ते ९:०० दरम्यान\n\n" +
-             "आपण व आपले कुटुंबीय आरतीसाठी सहर्ष आमंत्रित आहात! गणपती बाप्पा मोरया! 🙏";
+        "• **सकाळची आरती:** सकाळी ११:०० ते १२:०० दरम्यान\n" +
+        "• **सायंकाळची आरती:** रात्री ८:०० ते ९:०० दरम्यान\n\n" +
+        "आपण व आपले कुटुंबीय आरतीसाठी सहर्ष आमंत्रित आहात! गणपती बाप्पा मोरया! 🙏";
     } else if (lang === 'kn') {
       return "🌸 **ದೈನಂದಿನ ಆರತಿ ಸಮಯ:**\n\n" +
-             "• **ಬೆಳಗಿನ ಆರತಿ:** ೧೧:೦೦ ರಿಂದ ೧೨:೦೦ ರ ನಡುವೆ\n" +
-             "• **ಸಂಜೆಯ ಆರತಿ:** ೮:೦೦ ರಿಂದ ೯:೦೦ ರ ನಡುವೆ\n\n" +
-             "ನೀವು ಮತ್ತು ನಿಮ್ಮ ಕುಟುಂಬ ಆರತಿಗೆ ಸಹರ್ಷ ಸ್ವಾಗತ! ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ! 🙏";
+        "• **ಬೆಳಗಿನ ಆರತಿ:** ೧೧:೦೦ ರಿಂದ ೧೨:೦೦ ರ ನಡುವೆ\n" +
+        "• **ಸಂಜೆಯ ಆರತಿ:** ೮:೦೦ ರಿಂದ ೯:೦೦ ರ ನಡುವೆ\n\n" +
+        "ನೀವು ಮತ್ತು ನಿಮ್ಮ ಕುಟುಂಬ ಆರತಿಗೆ ಸಹರ್ಷ ಸ್ವಾಗತ! ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ! 🙏";
     } else {
       return "🌸 **Daily Aarti Timings:**\n\n" +
-             "• **Morning Aarti:** Between 11:00 AM and 12:00 PM\n" +
-             "• **Evening Aarti:** Between 8:00 PM and 9:00 PM\n\n" +
-             "You and your family are warmly invited! Ganpati Bappa Morya! 🙏";
+        "• **Morning Aarti:** Between 11:00 AM and 12:00 PM\n" +
+        "• **Evening Aarti:** Between 8:00 PM and 9:00 PM\n\n" +
+        "You and your family are warmly invited! Ganpati Bappa Morya! 🙏";
     }
   }
 
@@ -1009,18 +997,18 @@ function getLocalSmartAnswer(query, lang) {
 
     if (lang === 'mr') {
       return "📍 **उत्सवाचे स्थळ व पत्ता:**\n\n" +
-             cleanAddr + "\n\n" +
-             "🗺️ **Google Maps लिंक:** " + mapLink + "\n\n" +
-             "आपले सहर्ष स्वागत आहे!";
+        cleanAddr + "\n\n" +
+        "🗺️ **Google Maps लिंक:** " + mapLink + "\n\n" +
+        "आपले सहर्ष स्वागत आहे!";
     } else if (lang === 'kn') {
       return "📍 **ಸ್ಥಳ ಮತ್ತು ವಿಳಾಸ:**\n\n" +
-             cleanAddr + "\n\n" +
-             "🗺️ **Google Maps ಲಿಂಕ್:** " + mapLink;
+        cleanAddr + "\n\n" +
+        "🗺️ **Google Maps ಲಿಂಕ್:** " + mapLink;
     } else {
       return "📍 **Celebration Venue & Address:**\n\n" +
-             cleanAddr + "\n\n" +
-             "🗺️ **Google Maps:** " + mapLink + "\n\n" +
-             "We warmly await your gracious presence!";
+        cleanAddr + "\n\n" +
+        "🗺️ **Google Maps:** " + mapLink + "\n\n" +
+        "We warmly await your gracious presence!";
     }
   }
 
@@ -1028,21 +1016,21 @@ function getLocalSmartAnswer(query, lang) {
   if (q.indexOf('तारीख') !== -1 || q.indexOf('tarikh') !== -1 || q.indexOf('date') !== -1 || q.indexOf('कधी') !== -1 || q.indexOf('kadhi') !== -1 || q.indexOf('विसर्जन') !== -1 || q.indexOf('visarjan') !== -1 || q.indexOf('स्थापना') !== -1 || q.indexOf('sthapana') !== -1 || q.indexOf('प्राणप्रतिष्ठा') !== -1 || q.indexOf('pranpratishtha') !== -1 || q.indexOf('when') !== -1 || q.indexOf('ದಿನಾಂಕ') !== -1 || q.indexOf('ವಿಸರ್ಜನೆ') !== -1) {
     if (lang === 'mr') {
       return "📅 **महत्त्वाच्या तारखा व कार्यक्रम:**\n\n" +
-             "• **प्राणप्रतिष्ठा (स्थापना):** सोमवार, १४ सप्टेंबर २०२६\n" +
-             "• **गणपती विसर्जन:** शनिवार, १९ सप्टेंबर २०२६ (सायंकाळी)\n" +
-             "• **उत्सव कालावधी:** १४ ते १९ सप्टेंबर २०२६\n\n" +
-             "बाप्पाचे आशीर्वाद घेण्यासाठी जरूर उपस्थित रहा! 🪔";
+        "• **प्राणप्रतिष्ठा (स्थापना):** सोमवार, १४ सप्टेंबर २०२६\n" +
+        "• **गणपती विसर्जन:** शनिवार, १९ सप्टेंबर २०२६ (सायंकाळी)\n" +
+        "• **उत्सव कालावधी:** १४ ते १९ सप्टेंबर २०२६\n\n" +
+        "बाप्पाचे आशीर्वाद घेण्यासाठी जरूर उपस्थित रहा! 🪔";
     } else if (lang === 'kn') {
       return "📅 **ಪ್ರಮುಖ ದಿನಾಂಕಗಳು ಮತ್ತು ಕಾರ್ಯಕ್ರಮ:**\n\n" +
-             "• **ಪ್ರಾಣಪ್ರತಿಷ್ಠೆ:** ಸೋಮವಾರ, ಸೆಪ್ಟೆಂಬರ್ 14, 2026\n" +
-             "• **ಗಣಪತಿ ವಿಸರ್ಜನೆ:** ಶನಿವಾರ, ಸೆಪ್ಟೆಂಬರ್ 19, 2026 (ಸಂಜೆ)\n" +
-             "• **ಉತ್ಸವ:** 14 ರಿಂದ 19 ಸೆಪ್ಟೆಂಬರ್ 2026";
+        "• **ಪ್ರಾಣಪ್ರತಿಷ್ಠೆ:** ಸೋಮವಾರ, ಸೆಪ್ಟೆಂಬರ್ 14, 2026\n" +
+        "• **ಗಣಪತಿ ವಿಸರ್ಜನೆ:** ಶನಿವಾರ, ಸೆಪ್ಟೆಂಬರ್ 19, 2026 (ಸಂಜೆ)\n" +
+        "• **ಉತ್ಸವ:** 14 ರಿಂದ 19 ಸೆಪ್ಟೆಂಬರ್ 2026";
     } else {
       return "📅 **Important Dates & Programme:**\n\n" +
-             "• **Pranpratishtha (Arrival):** Monday, September 14, 2026\n" +
-             "• **Ganpati Visarjan:** Saturday, September 19, 2026 (Evening)\n" +
-             "• **Celebration Duration:** September 14 to September 19, 2026\n\n" +
-             "Please join us in seeking Bappa's divine blessings! 🪔";
+        "• **Pranpratishtha (Arrival):** Monday, September 14, 2026\n" +
+        "• **Ganpati Visarjan:** Saturday, September 19, 2026 (Evening)\n" +
+        "• **Celebration Duration:** September 14 to September 19, 2026\n\n" +
+        "Please join us in seeking Bappa's divine blessings! 🪔";
     }
   }
 
@@ -1060,23 +1048,23 @@ function getLocalSmartAnswer(query, lang) {
 
   // Joshi Parivar identity query
   if ((q.indexOf('जोशी') !== -1 || q.indexOf('joshi') !== -1) && (q.indexOf('परिवार') !== -1 || q.indexOf('parivar') !== -1 || q.indexOf('family') !== -1) && isIdentityQuery) {
-    var parivarList = joshiContacts.map(function(item) {
+    var parivarList = joshiContacts.map(function (item) {
       var itemName = (item.name && (item.name[lang] || item.name.mr)) || '';
       return "• **" + itemName + ":** " + item.phone;
     }).join("\n");
 
     if (lang === 'mr') {
       return "🙏 **जोशी परिवार (यजमान):**\n\n" +
-             "जोशी परिवार हे अंबरनाथ येथील श्री गणेश चतुर्थी उत्सव २०२६ चे मुख्य निमंत्रक व यजमान आहेत. सर्व कुटुंबीय बाप्पाच्या दर्शनासाठी आपले सहर्ष स्वागत करत आहेत!\n\n" +
-             parivarList;
+        "जोशी परिवार हे अंबरनाथ येथील श्री गणेश चतुर्थी उत्सव २०२६ चे मुख्य निमंत्रक व यजमान आहेत. सर्व कुटुंबीय बाप्पाच्या दर्शनासाठी आपले सहर्ष स्वागत करत आहेत!\n\n" +
+        parivarList;
     } else if (lang === 'kn') {
       return "🙏 **ಜೋಶಿ ಕುಟುಂಬ (ಆಯೋಜಕರು):**\n\n" +
-             "ಜೋಶಿ ಕುಟುಂಬವು ಅಂಬರ್‌ನಾಥ್‌ನಲ್ಲಿ ಶ್ರೀ ಗಣೇಶ ಚತುರ್ಥಿ ಉತ್ಸವ ೨೦೨೬ ರ ಮುಖ್ಯ ಆಯೋಜಕರಾಗಿದ್ದಾರೆ.\n\n" +
-             parivarList;
+        "ಜೋಶಿ ಕುಟುಂಬವು ಅಂಬರ್‌ನಾಥ್‌ನಲ್ಲಿ ಶ್ರೀ ಗಣೇಶ ಚತುರ್ಥಿ ಉತ್ಸವ ೨೦೨೬ ರ ಮುಖ್ಯ ಆಯೋಜಕರಾಗಿದ್ದಾರೆ.\n\n" +
+        parivarList;
     } else {
       return "🙏 **The Joshi Family (Hosts):**\n\n" +
-             "The Joshi Parivar are the gracious hosts of the Ganesh Chaturthi Celebration 2026 in Ambernath.\n\n" +
-             parivarList;
+        "The Joshi Parivar are the gracious hosts of the Ganesh Chaturthi Celebration 2026 in Ambernath.\n\n" +
+        parivarList;
     }
   }
 
@@ -1102,18 +1090,18 @@ function getLocalSmartAnswer(query, lang) {
         var bioText = (singlePerson.bio && (singlePerson.bio[lang] || singlePerson.bio.mr)) || '';
         if (lang === 'mr') {
           return "🙏 **" + singleName + "** " + bioText + "\n\n" +
-                 "📞 **संपर्क क्रमांक:** " + singlePerson.phone + "\n\n" +
-                 "कोणत्याही माहितीसाठी आपण यांच्याशी संपर्क साधू शकता.";
+            "📞 **संपर्क क्रमांक:** " + singlePerson.phone + "\n\n" +
+            "कोणत्याही माहितीसाठी आपण यांच्याशी संपर्क साधू शकता.";
         } else if (lang === 'kn') {
           return "🙏 **" + singleName + "** " + bioText + "\n\n" +
-                 "📞 **ಸಂಪರ್ಕ:** " + singlePerson.phone;
+            "📞 **ಸಂಪರ್ಕ:** " + singlePerson.phone;
         } else {
           return "🙏 **" + singleName + "** " + bioText + "\n\n" +
-                 "📞 **Contact:** " + singlePerson.phone + "\n\n" +
-                 "Feel free to reach out for any assistance.";
+            "📞 **Contact:** " + singlePerson.phone + "\n\n" +
+            "Feel free to reach out for any assistance.";
         }
       } else {
-        var multiBioLines = matchedPersons.map(function(item) {
+        var multiBioLines = matchedPersons.map(function (item) {
           var itemName = (item.name && (item.name[lang] || item.name.mr)) || '';
           var itemBio = (item.bio && (item.bio[lang] || item.bio.mr)) || '';
           return "• **" + itemName + ":** " + itemBio + " (📞 " + item.phone + ")";
@@ -1121,14 +1109,14 @@ function getLocalSmartAnswer(query, lang) {
 
         if (lang === 'mr') {
           return "🙏 **जोशी परिवार यजमान माहिती:**\n\n" +
-                 multiBioLines + "\n\n" +
-                 "बाप्पाच्या उत्सवासाठी जोशी परिवार आपले सहर्ष स्वागत करत आहे!";
+            multiBioLines + "\n\n" +
+            "बाप्पाच्या उत्सवासाठी जोशी परिवार आपले सहर्ष स्वागत करत आहे!";
         } else if (lang === 'kn') {
           return "🙏 **ಜೋಶಿ ಕುಟುಂಬದ ಆಯೋಜಕರ ಮಾಹಿತಿ:**\n\n" + multiBioLines;
         } else {
           return "🙏 **Joshi Parivar Hosts Information:**\n\n" +
-                 multiBioLines + "\n\n" +
-                 "The Joshi Family warmly welcomes you to Bappa's celebration!";
+            multiBioLines + "\n\n" +
+            "The Joshi Family warmly welcomes you to Bappa's celebration!";
         }
       }
     } else {
@@ -1139,15 +1127,15 @@ function getLocalSmartAnswer(query, lang) {
         if (singlePerson.phone && singlePerson.phone.trim() !== '') {
           if (lang === 'mr') {
             return "📞 **" + singleName + " यांचा संपर्क क्रमांक:**\n\n" +
-                   "• **" + singleName + ":** " + singlePerson.phone + "\n\n" +
-                   "कोणत्याही मदतीसाठी आपण या नंबरवर कॉल करू शकता.";
+              "• **" + singleName + ":** " + singlePerson.phone + "\n\n" +
+              "कोणत्याही मदतीसाठी आपण या नंबरवर कॉल करू शकता.";
           } else if (lang === 'kn') {
             return "📞 **" + singleName + " ಸಂಪರ್ಕ ಸಂಖ್ಯೆ:**\n\n" +
-                   "• **" + singleName + ":** " + singlePerson.phone;
+              "• **" + singleName + ":** " + singlePerson.phone;
           } else {
             return "📞 **" + singleName + " Contact Details:**\n\n" +
-                   "• **" + singleName + ":** " + singlePerson.phone + "\n\n" +
-                   "Feel free to call anytime for assistance.";
+              "• **" + singleName + ":** " + singlePerson.phone + "\n\n" +
+              "Feel free to call anytime for assistance.";
           }
         } else {
           if (lang === 'mr') {
@@ -1160,8 +1148,8 @@ function getLocalSmartAnswer(query, lang) {
         }
       } else {
         var multiLines = matchedPersons
-          .filter(function(item) { return item && item.phone && item.phone.trim() !== ''; })
-          .map(function(item) {
+          .filter(function (item) { return item && item.phone && item.phone.trim() !== ''; })
+          .map(function (item) {
             var itemName = (item.name && (item.name[lang] || item.name.mr)) || '';
             return "• **" + itemName + ":** " + item.phone;
           }).join("\n");
@@ -1169,14 +1157,14 @@ function getLocalSmartAnswer(query, lang) {
         if (multiLines) {
           if (lang === 'mr') {
             return "📞 **संपर्क क्रमांक:**\n\n" +
-                   multiLines + "\n\n" +
-                   "कोणत्याही मदतीसाठी आपण वर दिलेल्या नंबरवर कॉल करू शकता.";
+              multiLines + "\n\n" +
+              "कोणत्याही मदतीसाठी आपण वर दिलेल्या नंबरवर कॉल करू शकता.";
           } else if (lang === 'kn') {
             return "📞 **ಸಂಪರ್ಕ ಸಂಖ್ಯೆಗಳು:**\n\n" + multiLines;
           } else {
             return "📞 **Requested Contact Details:**\n\n" +
-                   multiLines + "\n\n" +
-                   "Feel free to call anytime for assistance.";
+              multiLines + "\n\n" +
+              "Feel free to call anytime for assistance.";
           }
         }
       }
@@ -1186,23 +1174,23 @@ function getLocalSmartAnswer(query, lang) {
   // General Contact / Phone query - dynamic list
   if (q.indexOf('संपर्क') !== -1 || q.indexOf('sampark') !== -1 || q.indexOf('नंबर') !== -1 || q.indexOf('number') !== -1 || q.indexOf('मोबाइल') !== -1 || q.indexOf('मोबाईल') !== -1 || q.indexOf('mobile') !== -1 || q.indexOf('क्रमांक') !== -1 || q.indexOf('फोन') !== -1 || q.indexOf('phone') !== -1 || q.indexOf('contact') !== -1 || q.indexOf('call') !== -1 || q.indexOf('ಸಂಪರ್ಕ') !== -1) {
     var allContactsList = joshiContacts
-      .filter(function(item) { return item && item.phone && item.phone.trim() !== ''; })
-      .map(function(item) {
+      .filter(function (item) { return item && item.phone && item.phone.trim() !== ''; })
+      .map(function (item) {
         var itemName = (item.name && (item.name[lang] || item.name.mr)) || '';
         return "• **" + itemName + ":** " + item.phone;
       }).join("\n");
 
     if (lang === 'mr') {
       return "📞 **जोशी परिवार संपर्क माहिती:**\n\n" +
-             allContactsList + "\n\n" +
-             "कोणत्याही मदतीसाठी किंवा माहितीसाठी आपण वर दिलेल्या नंबरवर संपर्क साधू शकता.";
+        allContactsList + "\n\n" +
+        "कोणत्याही मदतीसाठी किंवा माहितीसाठी आपण वर दिलेल्या नंबरवर संपर्क साधू शकता.";
     } else if (lang === 'kn') {
       return "📞 **ಜೋಶಿ ಕುಟುಂಬದ ಸಂಪರ್ಕ ಸಂಖ್ಯೆಗಳು:**\n\n" +
-             allContactsList;
+        allContactsList;
     } else {
       return "📞 **Joshi Parivar Contact Details:**\n\n" +
-             allContactsList + "\n\n" +
-             "Feel free to call anytime for directions or assistance.";
+        allContactsList + "\n\n" +
+        "Feel free to call anytime for directions or assistance.";
     }
   }
 
@@ -1210,19 +1198,19 @@ function getLocalSmartAnswer(query, lang) {
   if (q.indexOf('प्रसाद') !== -1 || q.indexOf('दर्शन') !== -1 || q.indexOf('व्यवस्था') !== -1 || q.indexOf('जेवण') !== -1 || q.indexOf('खाण') !== -1 || q.indexOf('prasad') !== -1 || q.indexOf('darshan') !== -1 || q.indexOf('food') !== -1 || q.indexOf('ಪ್ರಸಾದ') !== -1 || q.indexOf('ದರ್ಶನ') !== -1) {
     if (lang === 'mr') {
       return "🌸 **दर्शन व प्रसादाची माहिती:**\n\n" +
-             "• बाप्पाचे दर्शन दिवसभर सर्व भक्तांसाठी खुले आहे.\n" +
-             "• आरतीनंतर सर्व भक्तांना बाप्पाचा पवित्र प्रसाद दिला जाईल.\n\n" +
-             "मंगलमूर्ती मोरया! 🙏";
+        "• बाप्पाचे दर्शन दिवसभर सर्व भक्तांसाठी खुले आहे.\n" +
+        "• आरतीनंतर सर्व भक्तांना बाप्पाचा पवित्र प्रसाद दिला जाईल.\n\n" +
+        "मंगलमूर्ती मोरया! 🙏";
     } else if (lang === 'kn') {
       return "🌸 **ದರ್ಶನ ಮತ್ತು ಪ್ರಸಾದದ ಮಾಹಿತಿ:**\n\n" +
-             "• ಭಕ್ತರಿಗೆ ದಿನವಿಡೀ ಗಣೇಶನ ದರ್ಶನ ಲಭ್ಯವಿದೆ.\n" +
-             "• ಆರತಿಯ ನಂತರ ಭಕ್ತರಿಗೆ ಪ್ರಸಾದ ವಿತರಿಸಲಾಗುತ್ತದೆ.\n\n" +
-             "ಮಂಗಳಮೂರ್ತಿ ಮೋರಯಾ! 🙏";
+        "• ಭಕ್ತರಿಗೆ ದಿನವಿಡೀ ಗಣೇಶನ ದರ್ಶನ ಲಭ್ಯವಿದೆ.\n" +
+        "• ಆರತಿಯ ನಂತರ ಭಕ್ತರಿಗೆ ಪ್ರಸಾದ ವಿತರಿಸಲಾಗುತ್ತದೆ.\n\n" +
+        "ಮಂಗಳಮೂರ್ತಿ ಮೋರಯಾ! 🙏";
     } else {
       return "🌸 **Darshan & Prasad Information:**\n\n" +
-             "• Bappa's Darshan is open throughout the day for everyone.\n" +
-             "• Sacred Prasad will be distributed to all devotees following the Aarti ceremonies.\n\n" +
-             "Mangalmurti Morya! 🙏";
+        "• Bappa's Darshan is open throughout the day for everyone.\n" +
+        "• Sacred Prasad will be distributed to all devotees following the Aarti ceremonies.\n\n" +
+        "Mangalmurti Morya! 🙏";
     }
   }
 
@@ -1230,16 +1218,16 @@ function getLocalSmartAnswer(query, lang) {
   if (q.indexOf('कलावती') !== -1 || q.indexOf('kalavati') !== -1 || q.indexOf('गुरुदेवता') !== -1 || q.indexOf('gurudevta') !== -1 || q.indexOf('आशीर्वाद') !== -1 || q.indexOf('blessing') !== -1 || q.indexOf('ಕಲಾವತಿ') !== -1 || q.indexOf('शिव') !== -1 || q.indexOf('शिवाय') !== -1) {
     if (lang === 'mr') {
       return "🙏 **|| ॐ नमः शिवाय ||**\n\n" +
-             "परमपूज्य गुरुदेवता श्री कलावती आई यांच्या पावन आशीर्वादाने दरवर्षीप्रमाणे यावर्षीही जोशी परिवारातर्फे श्री गणेशाची मंगलमय स्थापना करण्यात येत आहे.\n\n" +
-             "गणपती बाप्पा मोरया! 🌸";
+        "परमपूज्य गुरुदेवता श्री कलावती आई यांच्या पावन आशीर्वादाने दरवर्षीप्रमाणे यावर्षीही जोशी परिवारातर्फे श्री गणेशाची मंगलमय स्थापना करण्यात येत आहे.\n\n" +
+        "गणपती बाप्पा मोरया! 🌸";
     } else if (lang === 'kn') {
       return "🙏 **|| ಓಂ ನಮಃ ಶಿವಾಯ ||**\n\n" +
-             "ಪರಮಪೂಜ್ಯ ಗುರುದೇವತೆ ಶ್ರೀ ಕಲಾವತಿ ಆಯಿಯವರ ದಿವ್ಯ ಆಶೀರ್ವಾದದಿಂದ ಪ್ರತಿವರ್ಷದಂತೆ ಈ ವರ್ಷವೂ ಜೋಶಿ ಕುಟುಂಬದಿಂದ ಶ್ರೀ ಗಣೇಶನ ಮಂಗಳಕರ ಪ್ರತಿಷ್ಠಾಪನೆ ನಡೆಯುತ್ತಿದೆ.\n\n" +
-             "ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ! 🌸";
+        "ಪರಮಪೂಜ್ಯ ಗುರುದೇವತೆ ಶ್ರೀ ಕಲಾವತಿ ಆಯಿಯವರ ದಿವ್ಯ ಆಶೀರ್ವಾದದಿಂದ ಪ್ರತಿವರ್ಷದಂತೆ ಈ ವರ್ಷವೂ ಜೋಶಿ ಕುಟುಂಬದಿಂದ ಶ್ರೀ ಗಣೇಶನ ಮಂಗಳಕರ ಪ್ರತಿಷ್ಠಾಪನೆ ನಡೆಯುತ್ತಿದೆ.\n\n" +
+        "ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ! 🌸";
     } else {
       return "🙏 **|| Om Namah Shivaya ||**\n\n" +
-             "With the divine blessings of our revered Gurudevta Shri Kalavati Aai, as every year, the Joshi family is establishing Lord Ganesha this year too.\n\n" +
-             "Ganpati Bappa Morya! 🌸";
+        "With the divine blessings of our revered Gurudevta Shri Kalavati Aai, as every year, the Joshi family is establishing Lord Ganesha this year too.\n\n" +
+        "Ganpati Bappa Morya! 🌸";
     }
   }
 
@@ -1321,7 +1309,7 @@ function isGibberishOrInvalid(str) {
 function sanitizeAiResponse(rawAnswer) {
   var dict = translations[currentLang] || translations.mr;
   if (!rawAnswer) return dict.invalidInputMsg;
-  
+
   var clean = rawAnswer.trim();
 
   // Remove <think> tags if model leaks internal CoT
@@ -1381,11 +1369,11 @@ function fetchAiResponse(userText) {
   }
 
   var langName = currentLang === 'mr' ? 'Marathi (मराठी)' : (currentLang === 'kn' ? 'Kannada (ಕನ್ನಡ)' : 'English');
-  var fallbackText = currentLang === 'mr' 
+  var fallbackText = currentLang === 'mr'
     ? 'मला आपला प्रश्न समजला नाही.'
     : (currentLang === 'kn' ? 'ನಿಮ್ಮ ಪ್ರಶ್ನೆ ನನಗೆ ಅರ್ಥವಾಗಲಿಲ್ಲ.' : 'I could not understand your question.');
 
-  var localizedSystemPrompt = buildGaneshSystemPrompt() + 
+  var localizedSystemPrompt = buildGaneshSystemPrompt() +
     "\n\nCURRENT LANGUAGE INSTRUCTION:\n" +
     "- The user has selected the interface language: " + langName + ".\n" +
     "- You MUST respond ONLY in " + langName + ".\n" +
@@ -1402,7 +1390,7 @@ function fetchAiResponse(userText) {
   }
 
   var controller = new AbortController();
-  var timeoutId = setTimeout(function() {
+  var timeoutId = setTimeout(function () {
     controller.abort();
   }, 14000);
 
@@ -1422,25 +1410,25 @@ function fetchAiResponse(userText) {
     }),
     signal: controller.signal
   })
-  .then(function(res) {
-    clearTimeout(timeoutId);
-    if (!res.ok) {
-      throw new Error('API Error: ' + res.status);
-    }
-    return res.json();
-  })
-  .then(function(data) {
-    if (data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
-      return data.choices[0].message.content.trim();
-    }
-    throw new Error('Invalid response structure');
-  })
-  .catch(function(err) {
-    clearTimeout(timeoutId);
-    console.warn('OpenRouter API request failed or timed out:', err);
-    var dict = translations[currentLang] || translations.mr;
-    return dict.invalidInputMsg || 'मला आपला प्रश्न समजला नाही.';
-  });
+    .then(function (res) {
+      clearTimeout(timeoutId);
+      if (!res.ok) {
+        throw new Error('API Error: ' + res.status);
+      }
+      return res.json();
+    })
+    .then(function (data) {
+      if (data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
+        return data.choices[0].message.content.trim();
+      }
+      throw new Error('Invalid response structure');
+    })
+    .catch(function (err) {
+      clearTimeout(timeoutId);
+      console.warn('OpenRouter API request failed or timed out:', err);
+      var dict = translations[currentLang] || translations.mr;
+      return dict.invalidInputMsg || 'मला आपला प्रश्न समजला नाही.';
+    });
 }
 
 /**
@@ -1471,19 +1459,19 @@ function appendChatMessage(sender, rawText) {
     speakBtn.setAttribute('aria-label', 'हा संदेश ऐका');
     speakBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg> <span>ऐका</span>';
 
-    speakBtn.addEventListener('click', function() {
+    speakBtn.addEventListener('click', function () {
       if (speakBtn.classList.contains('speaking')) {
         stopSpeech();
         speakBtn.classList.remove('speaking');
         speakBtn.querySelector('span').textContent = 'ऐका';
       } else {
-        document.querySelectorAll('.msg-speak-btn.speaking').forEach(function(btn) {
+        document.querySelectorAll('.msg-speak-btn.speaking').forEach(function (btn) {
           btn.classList.remove('speaking');
           btn.querySelector('span').textContent = 'ऐका';
         });
         speakBtn.classList.add('speaking');
         speakBtn.querySelector('span').textContent = 'थांबवा';
-        speakText(rawText, function() {}, function() {
+        speakText(rawText, function () { }, function () {
           speakBtn.classList.remove('speaking');
           speakBtn.querySelector('span').textContent = 'ऐका';
         });
@@ -1523,13 +1511,13 @@ function showTypingIndicator() {
   var typing = document.createElement('div');
   typing.id = 'chatTypingIndicator';
   typing.className = 'chat-msg bot';
-  typing.innerHTML = 
+  typing.innerHTML =
     '<div class="msg-bubble" style="padding: 6px 12px;">' +
-      '<div class="typing-dots">' +
-        '<span class="typing-dot"></span>' +
-        '<span class="typing-dot"></span>' +
-        '<span class="typing-dot"></span>' +
-      '</div>' +
+    '<div class="typing-dots">' +
+    '<span class="typing-dot"></span>' +
+    '<span class="typing-dot"></span>' +
+    '<span class="typing-dot"></span>' +
+    '</div>' +
     '</div>';
 
   container.appendChild(typing);
@@ -1565,7 +1553,7 @@ function handleSendUserMessage(text) {
     var dict = translations[currentLang] || translations.mr;
     var errorMsg = dict.invalidInputMsg;
     showTypingIndicator();
-    setTimeout(function() {
+    setTimeout(function () {
       hideTypingIndicator();
       appendChatMessage('bot', errorMsg);
       chatHistory.push({ role: 'assistant', content: errorMsg });
@@ -1577,7 +1565,7 @@ function handleSendUserMessage(text) {
   var localAnswer = getLocalSmartAnswer(query, currentLang);
   if (localAnswer) {
     showTypingIndicator();
-    setTimeout(function() {
+    setTimeout(function () {
       hideTypingIndicator();
       appendChatMessage('bot', localAnswer);
       chatHistory.push({ role: 'assistant', content: localAnswer });
@@ -1589,7 +1577,7 @@ function handleSendUserMessage(text) {
   showTypingIndicator();
 
   // Fetch AI answer for unrecognized or conversational queries
-  fetchAiResponse(query).then(function(answer) {
+  fetchAiResponse(query).then(function (answer) {
     hideTypingIndicator();
     var sanitized = sanitizeAiResponse(answer);
     appendChatMessage('bot', sanitized);
@@ -1640,7 +1628,7 @@ function initSpeechRecognition() {
     if (statusBar) statusBar.style.display = 'none';
   }
 
-  recognition.onstart = function() {
+  recognition.onstart = function () {
     isSpeechRecognitionActive = true;
     micBtn.classList.add('listening');
     if (statusBar) {
@@ -1650,7 +1638,7 @@ function initSpeechRecognition() {
     }
   };
 
-  recognition.onresult = function(event) {
+  recognition.onresult = function (event) {
     stopListeningUI();
     if (event.results && event.results[0] && event.results[0][0]) {
       var transcript = event.results[0][0].transcript;
@@ -1660,7 +1648,7 @@ function initSpeechRecognition() {
     }
   };
 
-  recognition.onerror = function(event) {
+  recognition.onerror = function (event) {
     stopListeningUI();
     console.warn('Speech recognition error:', event.error);
     if (event.error === 'not-allowed') {
@@ -1668,11 +1656,11 @@ function initSpeechRecognition() {
     }
   };
 
-  recognition.onend = function() {
+  recognition.onend = function () {
     stopListeningUI();
   };
 
-  micBtn.addEventListener('click', function() {
+  micBtn.addEventListener('click', function () {
     if (isSpeechRecognitionActive) {
       recognition.stop();
       stopListeningUI();
@@ -1703,7 +1691,7 @@ function initGaneshAiChatbot() {
   if (!trigger || !modal) return;
 
   // Toggle chat modal
-  trigger.addEventListener('click', function() {
+  trigger.addEventListener('click', function () {
     var isHidden = modal.hasAttribute('hidden');
     if (isHidden) {
       modal.removeAttribute('hidden');
@@ -1711,7 +1699,7 @@ function initGaneshAiChatbot() {
         updateChatWelcomeLanguage();
       }
       if (textInput && window.innerWidth > 480) {
-        setTimeout(function() { textInput.focus(); }, 150);
+        setTimeout(function () { textInput.focus(); }, 150);
       }
     } else {
       modal.setAttribute('hidden', '');
@@ -1721,7 +1709,7 @@ function initGaneshAiChatbot() {
 
   // Close button
   if (closeBtn) {
-    closeBtn.addEventListener('click', function() {
+    closeBtn.addEventListener('click', function () {
       modal.setAttribute('hidden', '');
       stopSpeech();
     });
@@ -1729,7 +1717,7 @@ function initGaneshAiChatbot() {
 
   // Clear chat
   if (clearBtn) {
-    clearBtn.addEventListener('click', function() {
+    clearBtn.addEventListener('click', function () {
       stopSpeech();
       chatHistory = [];
       updateChatWelcomeLanguage();
@@ -1738,8 +1726,8 @@ function initGaneshAiChatbot() {
 
 
   // Suggestion Chips
-  document.querySelectorAll('.chat-chip').forEach(function(chip) {
-    chip.addEventListener('click', function() {
+  document.querySelectorAll('.chat-chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
       var query = chip.getAttribute('data-query') || chip.textContent;
       handleSendUserMessage(query);
     });
@@ -1747,7 +1735,7 @@ function initGaneshAiChatbot() {
 
   // Form submit
   if (inputForm) {
-    inputForm.addEventListener('submit', function(e) {
+    inputForm.addEventListener('submit', function (e) {
       e.preventDefault();
       handleSendUserMessage();
     });

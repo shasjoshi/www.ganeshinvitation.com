@@ -63,7 +63,24 @@ body {
   padding: 48px 16px 64px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+body:not(.invitation-open) {
+  overflow: hidden !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  padding: 0 !important;
+  touch-action: none;
+}
+
+body.invitation-open {
+  align-items: flex-start;
+  padding-top: 36px;
+  padding-bottom: 64px;
+  overflow-y: auto;
 }
 
 /* Kannada Language Typography Support */
@@ -167,7 +184,11 @@ html[lang="kn"] .blessing {
 }
 
 .invitation-audio {
-  display: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* --------------------------------------------------------------------------
@@ -212,9 +233,9 @@ html[lang="kn"] .blessing {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 24px 14px;
+  overflow: hidden;
+  touch-action: none;
+  padding: 16px 14px;
   background-color: #1a0409;
   background-image:
     radial-gradient(ellipse at 50% 20%, rgba(243, 210, 142, 0.16) 0%, transparent 55%),
@@ -355,8 +376,16 @@ html[lang="kn"] .blessing {
   width: 100%;
   border: none;
   outline: none;
-  cursor: pointer;
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
   will-change: transform;
+}
+
+.scroll-body-track:active,
+.scroll-body-track.is-dragging {
+  cursor: grabbing;
 }
 
 .scroll-body-img {
@@ -538,18 +567,12 @@ html[lang="kn"] .blessing {
    Scroll Roll-Up Transitions (Parchment rolls smoothly up with letters into rod)
    -------------------------------------------------------------------------- */
 body.invitation-open .scroll-body-track {
-  animation: parchmentRollUp 1.35s cubic-bezier(0.45, 0, 0.25, 1) forwards;
+  animation: parchmentRollUp 1.3s cubic-bezier(0.35, 0.1, 0.25, 1) forwards;
 }
 
 @keyframes parchmentRollUp {
   0% {
-    transform: translateY(0);
-  }
-  15% {
-    transform: translateY(-5%);
-  }
-  50% {
-    transform: translateY(-52%);
+    transform: translateY(var(--scroll-current-y, 0px));
   }
   100% {
     transform: translateY(-105%);

@@ -8,15 +8,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Yatra+One&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Great+Vibes&family=Mukta:wght@300;400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Serif+Kannada:wght@600;700&family=Yatra+One&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="preload" as="image" href="card-border.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" as="image" href="assets/images/scroll-rod.png">
+  <link rel="preload" as="image" href="assets/images/scroll-body.png">
+  <link rel="preload" as="image" href="assets/images/amantran-calligraphy.png">
+  <link rel="preload" as="image" href="assets/images/ganesha.gif">
+  <link rel="preload" as="image" href="assets/images/card-border.png">
 </head>
 
 <body>
 
-  <audio class="invitation-audio" id="invitationAudio" src="voice/Bappa-Darshan-Marathi-Invitation-Joshi-Family.wav"
+  <audio class="invitation-audio" id="invitationAudio" src="assets/audio/Bappa-Darshan-Marathi-Invitation-Joshi-Family.wav"
     preload="auto"></audio>
 
   <!-- Floating Controls (Language & Audio) -->
@@ -48,207 +52,41 @@
   <!-- Ambient Falling Petals -->
   <div class="petal-field" id="petalField" aria-hidden="true"></div>
 
-  <!-- Grand 3D Doorway Entrance -->
-  <section class="door-screen" aria-label="गणेश आमंत्रण उघडा" data-i18n-attr="aria-label:doorAria">
+  <!-- Royal Festive Scroll Letter Entrance Screen -->
+  <section class="letter-screen" aria-label="गणेश आमंत्रण उघडा" data-i18n-attr="aria-label:doorAria">
+    <!-- Ambient Golden Sparkles -->
     <div class="spark-field" aria-hidden="true">
-      <span class="spark" style="left: 17%; top: 22%; animation-delay: .2s"></span>
-      <span class="spark" style="left: 82%; top: 19%; animation-delay: 1s"></span>
-      <span class="spark" style="left: 12%; top: 66%; animation-delay: 1.7s"></span>
-      <span class="spark" style="left: 88%; top: 73%; animation-delay: .7s"></span>
+      <span class="spark" style="left: 14%; top: 18%; animation-delay: .2s"></span>
+      <span class="spark" style="left: 84%; top: 22%; animation-delay: 1s"></span>
+      <span class="spark" style="left: 10%; top: 62%; animation-delay: 1.7s"></span>
+      <span class="spark" style="left: 89%; top: 68%; animation-delay: .7s"></span>
+      <span class="spark" style="left: 50%; top: 12%; animation-delay: 1.3s"></span>
     </div>
-    <div class="doorway">
-      <!-- Divine Ganesha Ledge & Halo -->
-      <div class="door-ganesha-wrapper">
+
+    <!-- Entrance Stage (Lord Ganesha Resting on Top Frame & Hanging Royal Scroll) -->
+    <div class="letter-stage">
+      <!-- Divine Lord Ganesha GIF & Glowing Halo (Touching the top frame of the scroll) -->
+      <div class="letter-ganesha-wrapper">
         <div class="divine-halo" aria-hidden="true"></div>
-        <img class="door-ganesha" src="ganesha.gif" alt="Lord Ganesha above the door" loading="eager">
+        <img class="letter-ganesha" src="assets/images/ganesha.gif" alt="Lord Ganesha" loading="eager">
       </div>
 
-      <div class="door-frame">
-        <!-- Ornate Temple Toran / Arch Lintel -->
-        <div class="door-toran-bar" aria-hidden="true">
-          <div class="toran-beam">
-            <span class="beam-knot left">✦</span>
-            <span class="beam-title">|| श्री गणेशाय नमः ||</span>
-            <span class="beam-knot right">✦</span>
-          </div>
-          <!-- Decorative Toran Garland (Mango Leaves & Marigolds) -->
-          <svg class="toran-garland" viewBox="0 0 440 28" fill="none" preserveAspectRatio="none">
-            <path d="M0,4 Q55,20 110,4 Q165,20 220,4 Q275,20 330,4 Q385,20 440,4" stroke="#D9A441" stroke-width="2" />
-            <path d="M55,14 C50,22 45,26 55,28 C65,26 60,22 55,14 Z" fill="#2E7D32" />
-            <path d="M165,14 C160,22 155,26 165,28 C175,26 170,22 165,14 Z" fill="#2E7D32" />
-            <path d="M275,14 C270,22 265,26 275,28 C285,26 280,22 275,14 Z" fill="#2E7D32" />
-            <path d="M385,14 C380,22 375,26 385,28 C395,26 390,22 385,14 Z" fill="#2E7D32" />
-            <circle cx="55" cy="14" r="5" fill="#E65100" />
-            <circle cx="55" cy="14" r="3" fill="#FBC02D" />
-            <circle cx="165" cy="14" r="5" fill="#E65100" />
-            <circle cx="165" cy="14" r="3" fill="#FBC02D" />
-            <circle cx="275" cy="14" r="5" fill="#E65100" />
-            <circle cx="275" cy="14" r="3" fill="#FBC02D" />
-            <circle cx="385" cy="14" r="5" fill="#E65100" />
-            <circle cx="385" cy="14" r="3" fill="#FBC02D" />
-            <circle cx="110" cy="4" r="4.5" fill="#E65100" />
-            <circle cx="220" cy="4" r="4.5" fill="#E65100" />
-            <circle cx="330" cy="4" r="4.5" fill="#E65100" />
-          </svg>
+      <!-- Royal Scroll Assembly -->
+      <div class="royal-scroll-assembly">
+        <!-- Top Suspension Rod Frame -->
+        <div class="scroll-rod-wrap">
+          <img class="scroll-rod-img" src="assets/images/scroll-rod.png" alt="Scroll Rod" aria-hidden="true">
         </div>
 
-        <!-- Left Door Leaf -->
-        <div class="door-panel left">
-          <div class="panel-surface">
-            <div class="carved-panel-box top">
-              <span class="brass-rosette">✦</span>
-            </div>
-            <div class="carved-panel-box mid">
-              <span class="brass-rosette">✦</span>
-              <!-- Brass Door Handle / Ring Knocker -->
-              <div class="door-handle left-handle" aria-hidden="true">
-                <div class="handle-base"></div>
-                <div class="handle-ring"></div>
-              </div>
-            </div>
-            <div class="carved-panel-box btm">
-              <span class="brass-rosette">✦</span>
-            </div>
-          </div>
-        </div>
+        <!-- Scroll Parchment Viewport (Rolls Upward into the Top Rod) -->
+        <div class="scroll-body-viewport">
+          <div class="scroll-body-track">
+            <img class="scroll-body-img" src="assets/images/scroll-body.png" alt="गणपती बाप्पा मोरया आमंत्रण पत्रिका" loading="eager">
 
-        <!-- Right Door Leaf -->
-        <div class="door-panel right">
-          <div class="panel-surface">
-            <div class="carved-panel-box top">
-              <span class="brass-rosette">✦</span>
-            </div>
-            <div class="carved-panel-box mid">
-              <span class="brass-rosette">✦</span>
-              <!-- Brass Door Handle / Ring Knocker -->
-              <div class="door-handle right-handle" aria-hidden="true">
-                <div class="handle-base"></div>
-                <div class="handle-ring"></div>
-              </div>
-            </div>
-            <div class="carved-panel-box btm">
-              <span class="brass-rosette">✦</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Base Glowing Brass Diyas -->
-        <div class="door-diya-wrap left" aria-hidden="true">
-          <div class="diya-light-halo"></div>
-          <svg class="brass-diya-svg" viewBox="0 0 60 50" fill="none">
-            <circle class="diya-flame-aura" cx="30" cy="15" r="14" fill="url(#flameAura)" />
-            <path class="diya-flame-outer"
-              d="M30 3C30 3 21 13 21 21C21 26 25 30 30 30C35 30 39 26 39 21C39 13 30 3 30 3Z"
-              fill="url(#flameGradOuter)" />
-            <path class="diya-flame-inner"
-              d="M30 11C30 11 25 17 25 22C25 25 27 27 30 27C33 27 35 25 35 22C35 17 30 11 30 11Z"
-              fill="url(#flameGradInner)" />
-            <path
-              d="M12 30 C 12 30, 20 44, 30 44 C 40 44, 48 30, 48 30 C 48 30, 56 30, 56 32 C 54 42, 44 48, 30 48 C 16 48, 6 42, 4 32 C 4 30, 12 30, 12 30 Z"
-              fill="url(#brassGrad)" stroke="#E5B04F" stroke-width="0.8" />
-            <ellipse cx="30" cy="47" rx="14" ry="2.5" fill="url(#brassGradDark)" stroke="#C8922A" stroke-width="0.8" />
-            <defs>
-              <radialGradient id="flameAura" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#FFE082" stop-opacity="0.9" />
-                <stop offset="50%" stop-color="#F2A93B" stop-opacity="0.4" />
-                <stop offset="100%" stop-color="#E65100" stop-opacity="0" />
-              </radialGradient>
-              <linearGradient id="flameGradOuter" x1="30" y1="3" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#FFFFFF" />
-                <stop offset="30%" stop-color="#FFE082" />
-                <stop offset="65%" stop-color="#F2A93B" />
-                <stop offset="100%" stop-color="#C1440E" />
-              </linearGradient>
-              <linearGradient id="flameGradInner" x1="30" y1="11" x2="30" y2="27" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#FFFFFF" />
-                <stop offset="70%" stop-color="#FFF9C4" />
-                <stop offset="100%" stop-color="#FFD54F" />
-              </linearGradient>
-              <linearGradient id="brassGrad" x1="4" y1="30" x2="56" y2="48" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#F5CE7A" />
-                <stop offset="40%" stop-color="#D9A441" />
-                <stop offset="75%" stop-color="#8F5E12" />
-                <stop offset="100%" stop-color="#F5CE7A" />
-              </linearGradient>
-              <linearGradient id="brassGradDark" x1="16" y1="45" x2="44" y2="49" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#8F5E12" />
-                <stop offset="50%" stop-color="#D9A441" />
-                <stop offset="100%" stop-color="#66410B" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-
-        <div class="door-diya-wrap right" aria-hidden="true">
-          <div class="diya-light-halo"></div>
-          <svg class="brass-diya-svg" viewBox="0 0 60 50" fill="none">
-            <circle class="diya-flame-aura" cx="30" cy="15" r="14" fill="url(#flameAura2)" />
-            <path class="diya-flame-outer"
-              d="M30 3C30 3 21 13 21 21C21 26 25 30 30 30C35 30 39 26 39 21C39 13 30 3 30 3Z"
-              fill="url(#flameGradOuter2)" />
-            <path class="diya-flame-inner"
-              d="M30 11C30 11 25 17 25 22C25 25 27 27 30 27C33 27 35 25 35 22C35 17 30 11 30 11Z"
-              fill="url(#flameGradInner2)" />
-            <path
-              d="M12 30 C 12 30, 20 44, 30 44 C 40 44, 48 30, 48 30 C 48 30, 56 30, 56 32 C 54 42, 44 48, 30 48 C 16 48, 6 42, 4 32 C 4 30, 12 30, 12 30 Z"
-              fill="url(#brassGrad2)" stroke="#E5B04F" stroke-width="0.8" />
-            <ellipse cx="30" cy="47" rx="14" ry="2.5" fill="url(#brassGradDark2)" stroke="#C8922A" stroke-width="0.8" />
-            <defs>
-              <radialGradient id="flameAura2" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#FFE082" stop-opacity="0.9" />
-                <stop offset="50%" stop-color="#F2A93B" stop-opacity="0.4" />
-                <stop offset="100%" stop-color="#E65100" stop-opacity="0" />
-              </radialGradient>
-              <linearGradient id="flameGradOuter2" x1="30" y1="3" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#FFFFFF" />
-                <stop offset="30%" stop-color="#FFE082" />
-                <stop offset="65%" stop-color="#F2A93B" />
-                <stop offset="100%" stop-color="#C1440E" />
-              </linearGradient>
-              <linearGradient id="flameGradInner2" x1="30" y1="11" x2="30" y2="27" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#FFFFFF" />
-                <stop offset="70%" stop-color="#FFF9C4" />
-                <stop offset="100%" stop-color="#FFD54F" />
-              </linearGradient>
-              <linearGradient id="brassGrad2" x1="4" y1="30" x2="56" y2="48" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#F5CE7A" />
-                <stop offset="40%" stop-color="#D9A441" />
-                <stop offset="75%" stop-color="#8F5E12" />
-                <stop offset="100%" stop-color="#F5CE7A" />
-              </linearGradient>
-              <linearGradient id="brassGradDark2" x1="16" y1="45" x2="44" y2="49" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#8F5E12" />
-                <stop offset="50%" stop-color="#D9A441" />
-                <stop offset="100%" stop-color="#66410B" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-
-        <!-- Royal Festive Cartouche (Door Invitation Content) -->
-        <div class="door-copy">
-          <div class="door-cartouche">
-            <div class="cartouche-corner tl"></div>
-            <div class="cartouche-corner tr"></div>
-            <div class="cartouche-corner bl"></div>
-            <div class="cartouche-corner br"></div>
-
-            <div class="om door-mantra" data-i18n="doorMantra">|| ॐ नमः शिवाय ||</div>
-            <div class="door-greeting-wrap">
-              <span class="greeting-sparkle">✦</span>
-              <span class="door-greeting" data-i18n="greeting">नमस्कार</span>
-              <span class="greeting-sparkle">✦</span>
-            </div>
-            <div class="door-blessing" data-i18n="doorBlessing">परमपूज्य गुरुदेवता श्री कलावती आई यांच्या आशीर्वादाने
-              दरवर्षीप्रमाणे यावर्षीही आपण गणेशाची स्थापना करीत आहोत.</div>
-            <h2 class="door-title" data-i18n="doorTitle">गणपती बाप्पा मोरया</h2>
-            <p class="door-subtitle" data-i18n="doorSubtitle">आपल्यासाठी खास आमंत्रण</p>
-
-            <button class="open-button" id="openInvitation" type="button">
-              <span class="btn-shine" aria-hidden="true"></span>
-              <span class="btn-diya-icon" aria-hidden="true">🪔</span>
-              <span class="btn-text" data-i18n="openButton">आमंत्रण उघडा</span>
-              <span class="btn-diya-icon" aria-hidden="true">🪔</span>
+            <!-- Calligraphic Invitation Inscription (Part of the vertical letter, matching Ganpati Bappa Morya calligraphy) -->
+            <button class="calligraphy-open-trigger" id="openInvitation" type="button" aria-label="आमंत्रण उघडा" title="आमंत्रण उघडा">
+              <img class="calligraphy-ink-img" src="assets/images/amantran-calligraphy.png" alt="आमंत्रण उघडा" loading="eager">
+              <span class="calligraphy-alt-lang lang-mr" data-i18n="openButton" style="display: none;">आमंत्रण उघडा</span>
             </button>
           </div>
         </div>
@@ -303,10 +141,14 @@
       <div class="line"></div>
     </div>
 
-    <p class="invite-line" data-i18n="inviteLine">अत्यंत आनंदाने आणि भक्तिभावाने</p>
-    <div class="host-name" data-i18n="hostNames">जोशी परिवार</div>
-    <p class="invite-body" data-i18n="inviteBody">आपणास व आपल्या परिवारास <strong>गणेश चतुर्थी</strong><br>उत्सवासाठी
-      सहर्ष आमंत्रित करत आहोत.</p>
+    <!-- Unified Invitation Text -->
+    <p class="invite-unified-text" data-i18n="inviteUnifiedText">
+      परमपूज्य गुरुदेवता श्री कलावती आई यांच्या आशीर्वादाने दरवर्षीप्रमाणे यावर्षीही आपण गणेशाची स्थापना करीत आहोत.<br>
+      अत्यंत आनंदाने आणि भक्तिभावाने<br>
+      <span class="host-name-inline">जोशी परिवार</span><br>
+      आपणास व आपल्या परिवारास <strong>गणेश चतुर्थी</strong><br>
+      उत्सवासाठी सहर्ष आमंत्रित करत आहोत.
+    </p>
 
     <!-- Event Details Cards -->
     <div class="details">
@@ -336,8 +178,8 @@
           <div class="detail-label" data-i18n="locationLabel">स्थळ</div>
           <div class="detail-value">
             <a class="venue-link" href="https://maps.app.goo.gl/VcFcN8xLvwtnT2pR7" target="_blank" rel="noopener">
-              <span data-i18n="address">स्वामी धाम अपार्टमेंट,<br>१०३ ब्लॉक नंबर, पहिला मजला,<br>थ्री टायर चौक,
-                कंसई,<br>अंबरनाथ पूर्व ४२१५०१</span>
+              <span data-i18n="address">समीर दिवाकर जोशी,<br>स्वामी धाम अपार्टमेंट,<br>१०३ ब्लॉक नंबर, पहिला मजला,<br>थ्री टायर चौक,
+                कानसई,<br>अंबरनाथ पूर्व ४२१५०१</span>
             </a>
 
             <!-- Mini Map Preview Window -->
@@ -404,7 +246,7 @@
         <div class="chat-header-info">
           <div class="chat-avatar-wrap">
             <span class="chat-avatar-halo" aria-hidden="true"></span>
-            <img src="ganesha.gif" alt="Ganesh AI" class="chat-avatar-img">
+            <img src="assets/images/ganesha.gif" alt="Ganesh AI" class="chat-avatar-img">
             <span class="chat-online-dot" title="Online"></span>
           </div>
           <div class="chat-header-text">
@@ -476,7 +318,7 @@
     </div>
   </div>
 
-  <script src="script.js" defer></script>
+  <script src="assets/js/script.js" defer></script>
 </body>
 
 </html>
